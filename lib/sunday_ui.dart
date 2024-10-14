@@ -5,6 +5,26 @@ import 'dart:ui';
 import 'package:sunday_core/GetGtorage/get_storage.dart';
 import 'package:sunday_ui/Scripts/Colors/storing_color/storing_color.dart';
 
+/// Initializes the UI settings and stores them in the SundayGetStorage.
+///
+/// This function initializes the global UI settings and writes them to the storage.
+/// If no globals are provided, it uses the default settings. The settings include
+/// default UI styles for different platforms, color schemes, border styles, radius
+/// values, font settings, and shadow settings.
+///
+/// The [globals] parameter is an optional object that contains the UI settings.
+/// If [globals] is not provided, the function uses the default settings.
+///
+/// Example usage:
+/// ```dart
+/// await initUI();
+/// ```
+///
+/// Args:
+///   globals (Object?): An optional object containing the UI settings.
+///
+/// Returns:
+///   Future<void>: A future that completes when the operation is done.
 Future<void> initUI({Object? globals}) async {
   final box = SundayGetStorage();
 

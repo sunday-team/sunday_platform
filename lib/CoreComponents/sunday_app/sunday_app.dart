@@ -1,31 +1,71 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:sunday_core/GetGtorage/get_storage.dart';
 import 'package:sunday_core/Print/print.dart';
+import 'package:sunday_ui/CoreComponents/sunday_app/cupertino_app.dart';
+import 'package:sunday_ui/CoreComponents/sunday_app/material_app.dart';
+import 'package:sunday_ui/Scripts/preferences/change_key.dart';
+import 'package:sunday_ui/Scripts/preferences/get_key.dart';
+import 'package:sunday_ui/Scripts/preferences/get_path.dart';
+import 'package:sunday_ui/style.dart';
 
-enum SundayUIStyle {
-  material,
-  cupertino,
-}
-
+/// A customizable application widget that can switch between Material and Cupertino styles.
+///
+/// This widget provides a flexible foundation for building cross-platform apps
+/// with a consistent look and feel, while allowing for easy switching between
+/// Material and Cupertino design languages.
 class SundayApp extends StatefulWidget {
+  /// The widget to be displayed as the home screen of the app.
   final Widget home;
-  final String title;
-  final ThemeData? theme;
-  final Color? primaryColor;
-  final Iterable<Locale>? supportedLocales;
-  final Locale? locale;
-  final SundayUIStyle uiStyle;
-  final Map<String, WidgetBuilder>? routes;
-  final String? initialRoute;
-  final GlobalKey<NavigatorState>? navigatorKey;
-  final List<NavigatorObserver>? navigatorObservers;
-  final RouteFactory? onGenerateRoute;
-  final RouteFactory? onUnknownRoute;
-  final bool debugShowCheckedModeBanner;
-  final bool showPerformanceOverlay;
-  final bool showSemanticsDebugger;
 
+  /// The title of the app, typically displayed in the device's task switcher.
+  final String title;
+
+  /// The theme to use for the Material version of the app.
+  final ThemeData? theme;
+
+  /// The primary color to use for the Cupertino version of the app.
+  final Color? primaryColor;
+
+  /// The list of locales the app supports.
+  final dynamic supportedLocales;
+
+  /// The locale to use for the app's localized resources.
+  final Locale? locale;
+
+  /// The UI style to use (Material or Cupertino).
+  final Style uiStyle;
+
+  /// The app's top-level routing table.
+  final Map<String, WidgetBuilder>? routes;
+
+  /// The name of the first route to show.
+  final String? initialRoute;
+
+  /// A key to use for the Navigator.
+  final GlobalKey<NavigatorState>? navigatorKey;
+
+  /// A list of observers for the Navigator.
+  final List<NavigatorObserver>? navigatorObservers;
+
+  /// The route generator callback used when the app is navigating to a named route.
+  final RouteFactory? onGenerateRoute;
+
+  /// The route generator callback used when the app is navigating to an unknown route.
+  final RouteFactory? onUnknownRoute;
+
+  /// Whether to show a "DEBUG" banner in checked mode.
+  final bool? debugShowCheckedModeBanner;
+
+  /// Whether to show performance overlay.
+  final bool? showPerformanceOverlay;
+
+  /// Whether to show semantics debugger.
+  final bool? showSemanticsDebugger;
+
+  /// Creates a SundayApp.
+  ///
+  /// The [home], [title], and [uiStyle] arguments must not be null.
   const SundayApp({
     super.key,
     required this.home,
@@ -34,16 +74,16 @@ class SundayApp extends StatefulWidget {
     this.primaryColor,
     this.supportedLocales,
     this.locale,
-    this.uiStyle = SundayUIStyle.material,
+    required this.uiStyle,
     this.routes,
     this.initialRoute,
     this.navigatorKey,
     this.navigatorObservers,
     this.onGenerateRoute,
     this.onUnknownRoute,
-    this.debugShowCheckedModeBanner = false,
-    this.showPerformanceOverlay = false,
-    this.showSemanticsDebugger = false,
+    this.debugShowCheckedModeBanner,
+    this.showPerformanceOverlay,
+    this.showSemanticsDebugger,
   });
 
   @override
@@ -51,13 +91,16 @@ class SundayApp extends StatefulWidget {
 }
 
 class _SundayAppState extends State<SundayApp> {
+  /// Flag to trigger UI reset.
   var resetUI = false;
+
   @override
   void initState() {
     super.initState();
     uiChanges();
   }
 
+  /// Sets up listeners for UI changes and initializes platform-specific settings.
   void uiChanges() {
     final box = SundayGetStorage();
     Stream<bool?> resetUIStream = box.listenKey<bool>('resetUI');
@@ -71,81 +114,63 @@ class _SundayAppState extends State<SundayApp> {
         sundayPrint('ResetUI was removed');
       }
     });
+
+    /// Initializes platform-specific settings.
+    void initPlatform() {
+      final path = getPath(context);
+      getKey(path).then((data) {
+        if (data is Map) {
+          if (data['type'] != 'sunday_app' || data.isEmpty) {
+            changeKey(path, {
+              "type": "sunday_app",
+              "theme": widget.theme?.toString(),
+              "primaryColor": widget.primaryColor?.toString(),
+              "backgroundColor": widget.primaryColor?.toString(),
+            });
+          }
+        }
+      });
+    }
+    initPlatform();
   }
 
   @override
   Widget build(BuildContext context) {
-    final universalTheme = widget.theme ??
-        ThemeData(
-          primaryColor: widget.primaryColor ?? Colors.blue,
-        );
-
-    final commonProperties = {
-      'home': widget.home,
-      'title': widget.title,
-      'routes': widget.routes,
-      'initialRoute': widget.initialRoute,
-      'navigatorKey': widget.navigatorKey,
-      'navigatorObservers':
-          widget.navigatorObservers ?? const <NavigatorObserver>[],
-      'onGenerateRoute': widget.onGenerateRoute,
-      'onUnknownRoute': widget.onUnknownRoute,
-      'supportedLocales': widget.supportedLocales ?? const [Locale('en', 'US')],
-      'locale': widget.locale,
-      'debugShowCheckedModeBanner': widget.debugShowCheckedModeBanner,
-      'showPerformanceOverlay': widget.showPerformanceOverlay,
-      'showSemanticsDebugger': widget.showSemanticsDebugger,
-    };
-
-    if (widget.uiStyle == SundayUIStyle.material) {
-      return MaterialApp(
-        theme: universalTheme,
-        home: commonProperties['home'] as Widget?,
-        title: commonProperties['title'] as String,
-        routes:
-            (commonProperties['routes'] as Map<String, WidgetBuilder>?) ?? {},
-        initialRoute: commonProperties['initialRoute'] as String?,
-        navigatorKey:
-            commonProperties['navigatorKey'] as GlobalKey<NavigatorState>?,
-        navigatorObservers:
-            commonProperties['navigatorObservers'] as List<NavigatorObserver>,
-        onGenerateRoute: commonProperties['onGenerateRoute'] as RouteFactory?,
-        onUnknownRoute: commonProperties['onUnknownRoute'] as RouteFactory?,
-        supportedLocales:
-            commonProperties['supportedLocales'] as Iterable<Locale>,
-        locale: commonProperties['locale'] as Locale?,
-        debugShowCheckedModeBanner:
-            commonProperties['debugShowCheckedModeBanner'] as bool,
-        showPerformanceOverlay:
-            commonProperties['showPerformanceOverlay'] as bool,
-        showSemanticsDebugger:
-            commonProperties['showSemanticsDebugger'] as bool,
+    if (widget.uiStyle == Style.material) {
+      return SundayMaterialApp(
+        theme: widget.theme,
+        home: widget.home,
+        title: widget.title,
+        routes: widget.routes,
+        initialRoute: widget.initialRoute,
+        navigatorKey: widget.navigatorKey,
+        navigatorObservers: widget.navigatorObservers,
+        onGenerateRoute: widget.onGenerateRoute,
+        onUnknownRoute: widget.onUnknownRoute,
+        supportedLocales: widget.supportedLocales,
+        locale: widget.locale,
+        debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+        showPerformanceOverlay: widget.showPerformanceOverlay,
+        showSemanticsDebugger: widget.showSemanticsDebugger,
       );
     } else {
-      return CupertinoApp(
+      return SundayCupertinoApp(
         theme: CupertinoThemeData(
-          primaryColor: universalTheme.primaryColor,
+          primaryColor: widget.primaryColor,
         ),
-        home: commonProperties['home'] as Widget?,
-        title: commonProperties['title'] as String,
-        routes:
-            (commonProperties['routes'] as Map<String, WidgetBuilder>?) ?? {},
-        initialRoute: commonProperties['initialRoute'] as String?,
-        navigatorKey:
-            commonProperties['navigatorKey'] as GlobalKey<NavigatorState>?,
-        navigatorObservers:
-            commonProperties['navigatorObservers'] as List<NavigatorObserver>,
-        onGenerateRoute: commonProperties['onGenerateRoute'] as RouteFactory?,
-        onUnknownRoute: commonProperties['onUnknownRoute'] as RouteFactory?,
-        supportedLocales:
-            commonProperties['supportedLocales'] as Iterable<Locale>,
-        locale: commonProperties['locale'] as Locale?,
-        debugShowCheckedModeBanner:
-            commonProperties['debugShowCheckedModeBanner'] as bool,
-        showPerformanceOverlay:
-            commonProperties['showPerformanceOverlay'] as bool,
-        showSemanticsDebugger:
-            commonProperties['showSemanticsDebugger'] as bool,
+        home: widget.home,
+        title: widget.title,
+        routes: widget.routes,
+        initialRoute: widget.initialRoute,
+        navigatorKey: widget.navigatorKey,
+        navigatorObservers: widget.navigatorObservers,
+        onGenerateRoute: widget.onGenerateRoute,
+        onUnknownRoute: widget.onUnknownRoute,
+        supportedLocales: widget.supportedLocales,
+        locale: widget.locale,
+        debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+        showPerformanceOverlay: widget.showPerformanceOverlay,
+        showSemanticsDebugger: widget.showSemanticsDebugger,
       );
     }
   }
