@@ -1,6 +1,7 @@
 name: sunday_ui_library
 description: "A flutter project to showcase sunday_ui components"
 version: 1.0.0+1
+publish_to: none
 
 environment:
   sdk: ^3.5.3
@@ -10,7 +11,9 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-
+  sunday_ui:
+    path: ../
+  sunday_core: ^0.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

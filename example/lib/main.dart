@@ -1,69 +1,85 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:sunday_core/Print/print.dart';
+import 'package:sunday_ui/CoreComponents/sunday_app/sunday_app.dart';
+import 'package:sunday_ui/CoreComponents/sunday_bottom_bar/sunday_bottom_bar.dart';
+import 'package:sunday_ui/CoreComponents/sunday_navigationbar_item/sunday_navigationbar_item.dart';
+import 'package:sunday_ui/style.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+const style = Style.material;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return const SundayApp(
+      home: MyHomePage(),
+      title: "hey he hey",
+      uiStyle: style,
     );
+    // return MaterialApp(
+    //   title: 'Flutter Demo',
+    //   theme: ThemeData(
+    //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    //     useMaterial3: true,
+    //   ),
+    //   home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    // );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    int currentIndex = 0;
+    return SundayBottomBar(
+      style: style,
+      items: const <SundayNavigationBarItem>[
+        SundayNavigationBarItem(
+          icon: Icon(CupertinoIcons.star_fill),
+          label: 'Favorites',
+          style: style,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+        SundayNavigationBarItem(
+          icon: Icon(CupertinoIcons.clock_solid),
+          label: 'Recents',
+          style: style,
+        ),
+        SundayNavigationBarItem(
+          icon: Icon(CupertinoIcons.person_alt_circle_fill),
+          label: 'Contacts',
+          style: style,
+        ),
+        SundayNavigationBarItem(
+          icon: Icon(CupertinoIcons.circle_grid_3x3_fill),
+          label: 'Keypad',
+          style: style,
+        ),
+      ],
+      currentIndex: currentIndex,
+      onTap: (index) {
+        sundayPrint("Tapped on item $index");
+        setState(() {
+          currentIndex = index;
+          sundayPrint("currentIndex: $currentIndex");
+        });
+      },
+      tabBuilder: (BuildContext context, int index) {
+        return Center(
+          child: Text("Tab $index"),
+        );
+      },
     );
   }
 }
