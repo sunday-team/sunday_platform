@@ -28,7 +28,7 @@ class SundayApp extends StatefulWidget {
   final Color? primaryColor;
 
   /// The list of locales the app supports.
-  final dynamic supportedLocales;
+  final List<Locale> supportedLocales;
 
   /// The locale to use for the app's localized resources.
   final Locale? locale;
@@ -66,6 +66,15 @@ class SundayApp extends StatefulWidget {
   /// Whether to support dark mode.
   final bool supportDarkMode;
 
+  /// The localization delegates for the app.
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+
+  /// The locale resolution callback.
+  final Locale? Function(Locale?, Iterable<Locale>)? localeResolutionCallback;
+
+  /// The builder function for the app.
+  final Widget Function(BuildContext, Widget?)? builder;
+
   /// Creates a SundayApp.
   ///
   /// The [home], [title], and [uiStyle] arguments must not be null.
@@ -75,7 +84,26 @@ class SundayApp extends StatefulWidget {
     required this.title,
     this.theme,
     this.primaryColor,
-    this.supportedLocales,
+    this.supportedLocales = const [
+      Locale('en', ''),
+      Locale('ar', ''),
+      Locale('bn', ''),
+      Locale('de', ''),
+      Locale('es', ''),
+      Locale('fr', ''),
+      Locale('hi', ''),
+      Locale('ja', ''),
+      Locale('jv', ''),
+      Locale('ko', ''),
+      Locale('mr', ''),
+      Locale('pt', ''),
+      Locale('ru', ''),
+      Locale('ta', ''),
+      Locale('tr', ''),
+      Locale('ur', ''),
+      Locale('vi', ''),
+      Locale('zh', ''),
+    ],
     this.locale,
     required this.uiStyle,
     this.routes,
@@ -84,10 +112,13 @@ class SundayApp extends StatefulWidget {
     this.navigatorObservers,
     this.onGenerateRoute,
     this.onUnknownRoute,
-    this.debugShowCheckedModeBanner,
+    this.debugShowCheckedModeBanner = false,
     this.showPerformanceOverlay,
     this.showSemanticsDebugger,
     this.supportDarkMode = true,
+    this.localizationsDelegates,
+    this.localeResolutionCallback,
+    this.builder,
   });
 
   @override
@@ -140,43 +171,47 @@ class _SundayAppState extends State<SundayApp> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.uiStyle == Style.material) {
-      return SundayMaterialApp(
-        theme: widget.theme,
-        home: widget.home,
-        title: widget.title,
-        routes: widget.routes,
-        initialRoute: widget.initialRoute,
-        navigatorKey: widget.navigatorKey,
-        navigatorObservers: widget.navigatorObservers,
-        onGenerateRoute: widget.onGenerateRoute,
-        onUnknownRoute: widget.onUnknownRoute,
-        supportedLocales: widget.supportedLocales,
-        locale: widget.locale,
-        debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-        showPerformanceOverlay: widget.showPerformanceOverlay,
-        showSemanticsDebugger: widget.showSemanticsDebugger,
-        supportDarkMode: widget.supportDarkMode,
-      );
-    } else {
-      return SundayCupertinoApp(
-        theme: CupertinoThemeData(
-          primaryColor: widget.primaryColor,
-        ),
-        home: widget.home,
-        title: widget.title,
-        routes: widget.routes,
-        initialRoute: widget.initialRoute,
-        navigatorKey: widget.navigatorKey,
-        navigatorObservers: widget.navigatorObservers,
-        onGenerateRoute: widget.onGenerateRoute,
-        onUnknownRoute: widget.onUnknownRoute,
-        supportedLocales: widget.supportedLocales,
-        locale: widget.locale,
-        debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-        showPerformanceOverlay: widget.showPerformanceOverlay,
-        showSemanticsDebugger: widget.showSemanticsDebugger,
-      );
-    }
+    final app = widget.uiStyle == Style.material
+        ? SundayMaterialApp(
+            theme: widget.theme,
+            home: widget.home,
+            title: widget.title,
+            routes: widget.routes,
+            initialRoute: widget.initialRoute,
+            navigatorKey: widget.navigatorKey,
+            navigatorObservers: widget.navigatorObservers,
+            onGenerateRoute: widget.onGenerateRoute,
+            onUnknownRoute: widget.onUnknownRoute,
+            supportedLocales: widget.supportedLocales,
+            locale: widget.locale,
+            debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+            showPerformanceOverlay: widget.showPerformanceOverlay,
+            showSemanticsDebugger: widget.showSemanticsDebugger,
+            supportDarkMode: widget.supportDarkMode,
+            localizationsDelegates: widget.localizationsDelegates,
+            localeResolutionCallback: widget.localeResolutionCallback,
+          )
+        : SundayCupertinoApp(
+            theme: CupertinoThemeData(
+              primaryColor: widget.primaryColor,
+            ),
+            home: widget.home,
+            title: widget.title,
+            routes: widget.routes,
+            initialRoute: widget.initialRoute,
+            navigatorKey: widget.navigatorKey,
+            navigatorObservers: widget.navigatorObservers,
+            onGenerateRoute: widget.onGenerateRoute,
+            onUnknownRoute: widget.onUnknownRoute,
+            supportedLocales: widget.supportedLocales,
+            locale: widget.locale,
+            debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+            showPerformanceOverlay: widget.showPerformanceOverlay,
+            showSemanticsDebugger: widget.showSemanticsDebugger,
+            localizationsDelegates: widget.localizationsDelegates,
+            localeResolutionCallback: widget.localeResolutionCallback,
+          );
+
+    return widget.builder != null ? widget.builder!(context, app) : app;
   }
 }

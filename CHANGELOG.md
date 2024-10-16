@@ -30,3 +30,14 @@
 
 * Added more styles
 
+## 0.1.2
+
+* Added more components
+
+* Added more documentation
+
+* Added more examples
+
+## 0.1.3
+
+* fixed the app component

@@ -47,6 +47,12 @@ class SundayCupertinoApp extends StatelessWidget {
   /// Turns on a little "DEBUG" banner in checked mode to indicate that the app is in checked mode.
   final bool? showSemanticsDebugger;
 
+  /// The delegates for this app's [Localizations] widget.
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+
+  /// The callback that determines the app's locale when the app is started.
+  final LocaleResolutionCallback? localeResolutionCallback;
+
   /// Creates a [SundayCupertinoApp].
   ///
   /// At least the [home] and [title] arguments must be non-null.
@@ -66,6 +72,8 @@ class SundayCupertinoApp extends StatelessWidget {
     this.debugShowCheckedModeBanner,
     this.showPerformanceOverlay,
     this.showSemanticsDebugger,
+    this.localizationsDelegates,
+    this.localeResolutionCallback,
   });
 
   @override
@@ -85,6 +93,8 @@ class SundayCupertinoApp extends StatelessWidget {
       debugShowCheckedModeBanner: debugShowCheckedModeBanner ?? false,
       showPerformanceOverlay: showPerformanceOverlay ?? false,
       showSemanticsDebugger: showSemanticsDebugger ?? false,
+      localizationsDelegates: localizationsDelegates,
+      localeResolutionCallback: localeResolutionCallback,
     );
   }
 }

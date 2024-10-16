@@ -50,6 +50,12 @@ class SundayMaterialApp extends StatelessWidget {
   /// Whether to support dark mode.
   final bool supportDarkMode;
 
+  /// The delegates for this app's [Localizations] widget.
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+
+  /// The callback that determines the app's locale when the app is started.
+  final LocaleResolutionCallback? localeResolutionCallback;
+
   /// Creates a [SundayMaterialApp].
   ///
   /// At least the [home] and [title] arguments must be non-null.
@@ -70,6 +76,8 @@ class SundayMaterialApp extends StatelessWidget {
     this.showPerformanceOverlay,
     this.showSemanticsDebugger,
     this.supportDarkMode = false, // Default to false
+    this.localizationsDelegates,
+    this.localeResolutionCallback,
   });
 
   @override
@@ -95,6 +103,8 @@ class SundayMaterialApp extends StatelessWidget {
       debugShowCheckedModeBanner: debugShowCheckedModeBanner ?? false,
       showPerformanceOverlay: showPerformanceOverlay ?? false,
       showSemanticsDebugger: showSemanticsDebugger ?? false,
+      localizationsDelegates: localizationsDelegates,
+      localeResolutionCallback: localeResolutionCallback,
     );
   }
 }

@@ -116,10 +116,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: SafeArea(
               child: SundayListView(
                 style: widget.currentStyle,
-                itemCount: 3,
                 header: "Headers",
-                itemBuilder: (context, index) {
-                  return SundayListTile(
+                children: [
+                  SundayListTile(
                     leading: Container(
                       width: 50,
                       height: 50,
@@ -131,8 +130,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         SundayText("Subtitle", style: widget.currentStyle),
                     trailing:
                         SundayText("Trailing", style: widget.currentStyle),
-                  );
-                },
+                  ),
+                ],
               ),
             ))
           ]),
