@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 /// A custom text button widget that uses Material design.
 class MaterialTextButton extends StatelessWidget {
-  /// The text to display on the button.
-  final String text;
 
   /// The callback that is called when the button is tapped or otherwise activated.
   final VoidCallback? onPressed;
@@ -50,7 +48,6 @@ class MaterialTextButton extends StatelessWidget {
   /// Creates a MaterialTextButton.
   const MaterialTextButton({
     super.key,
-    required this.text,
     this.onPressed,
     this.color,
     this.textStyle,

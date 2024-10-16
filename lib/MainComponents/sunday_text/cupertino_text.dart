@@ -9,6 +9,9 @@ class SundayCupertinoText extends StatelessWidget {
   /// The text to display.
   final String text;
 
+  /// The style to use for the text.
+  final TextStyle? style;
+
   /// The strut style to use for the text.
   final StrutStyle? strutStyle;
 
@@ -48,6 +51,7 @@ class SundayCupertinoText extends StatelessWidget {
   const SundayCupertinoText({
     super.key,
     required this.text,
+    this.style,
     this.strutStyle,
     this.textAlign = TextAlign.start,
     this.textDirection,
@@ -65,7 +69,7 @@ class SundayCupertinoText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(fontFamily: Platform.isIOS ? '.SF Pro Text' : null),
+      style: style ?? CupertinoTheme.of(context).textTheme.textStyle,
       strutStyle: strutStyle,
       textAlign: textAlign,
       textDirection: textDirection,

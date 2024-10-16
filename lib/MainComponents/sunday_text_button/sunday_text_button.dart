@@ -5,8 +5,6 @@ import 'package:sunday_ui/style.dart';
 
 /// A custom text button that adapts to different styles (Material, Cupertino, etc.)
 class SundayTextButton extends StatelessWidget {
-  /// The text to display on the button.
-  final String text;
 
   /// The callback that is called when the button is tapped or otherwise activated.
   final VoidCallback onPressed;
@@ -28,7 +26,6 @@ class SundayTextButton extends StatelessWidget {
   /// The [text], [onPressed], [style], and [child] parameters must not be null.
   const SundayTextButton({
     super.key,
-    required this.text,
     required this.onPressed,
     this.color,
     this.textStyle,
@@ -41,7 +38,6 @@ class SundayTextButton extends StatelessWidget {
     switch (style) {
       case Style.material:
         return MaterialTextButton(
-          text: text,
           onPressed: onPressed,
           color: color,
           textStyle: textStyle,
@@ -51,7 +47,6 @@ class SundayTextButton extends StatelessWidget {
       case Style.custom:
       case Style.latestIOS:
         return CupertinoTextButton(
-          text: text,
           onPressed: onPressed,
           color: color,
           textStyle: textStyle,

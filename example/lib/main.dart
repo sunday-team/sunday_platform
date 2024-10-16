@@ -1,70 +1,93 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' show Icons;
 import 'package:sunday_core/Print/print.dart';
 import 'package:sunday_ui/CoreComponents/sunday_app/sunday_app.dart';
 import 'package:sunday_ui/CoreComponents/sunday_bottom_bar/sunday_bottom_bar.dart';
 import 'package:sunday_ui/CoreComponents/sunday_navigationbar_item/sunday_navigationbar_item.dart';
+import 'package:sunday_ui/MainComponents/sunday_list_tile/sunday_list_tile.dart';
+import 'package:sunday_ui/MainComponents/sunday_list_view/sunday_list_view.dart';
+import 'package:sunday_ui/MainComponents/sunday_text/sunday_text.dart';
+import 'package:sunday_ui/MainComponents/sunday_text_button/sunday_text_button.dart';
+import 'package:sunday_ui/MainComponents/sunday_text_field/sunday_text_field.dart';
 import 'package:sunday_ui/style.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-const style = Style.material;
-
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Style _currentStyle = Style.material;
+
+  void _toggleStyle() {
+    setState(() {
+      _currentStyle =
+          _currentStyle == Style.material ? Style.latestIOS : Style.material;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const SundayApp(
-      home: MyHomePage(),
-      title: "hey he hey",
-      uiStyle: style,
+    return SundayApp(
+      home: MyHomePage(
+        currentStyle: _currentStyle,
+        onStyleToggle: _toggleStyle,
+      ),
+      title: "Style Switcher Demo",
+      uiStyle: _currentStyle,
     );
-    // return MaterialApp(
-    //   title: 'Flutter Demo',
-    //   theme: ThemeData(
-    //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-    //     useMaterial3: true,
-    //   ),
-    //   home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    // );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  final Style currentStyle;
+  final VoidCallback onStyleToggle;
+
+  const MyHomePage({
+    super.key,
+    required this.currentStyle,
+    required this.onStyleToggle,
+  });
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    int currentIndex = 0;
     return SundayBottomBar(
-      style: style,
-      items: const <SundayNavigationBarItem>[
+      style: widget.currentStyle,
+      items: <SundayNavigationBarItem>[
         SundayNavigationBarItem(
-          icon: Icon(CupertinoIcons.star_fill),
+          icon: Icon(widget.currentStyle == Style.material
+              ? Icons.star
+              : CupertinoIcons.star_fill),
           label: 'Favorites',
-          style: style,
+          style: widget.currentStyle,
         ),
         SundayNavigationBarItem(
-          icon: Icon(CupertinoIcons.clock_solid),
+          icon: const Icon(CupertinoIcons.clock_solid),
           label: 'Recents',
-          style: style,
+          style: widget.currentStyle,
         ),
         SundayNavigationBarItem(
-          icon: Icon(CupertinoIcons.person_alt_circle_fill),
+          icon: const Icon(CupertinoIcons.person_alt_circle_fill),
           label: 'Contacts',
-          style: style,
+          style: widget.currentStyle,
         ),
         SundayNavigationBarItem(
-          icon: Icon(CupertinoIcons.circle_grid_3x3_fill),
+          icon: const Icon(CupertinoIcons.circle_grid_3x3_fill),
           label: 'Keypad',
-          style: style,
+          style: widget.currentStyle,
         ),
       ],
       currentIndex: currentIndex,
@@ -77,7 +100,42 @@ class _MyHomePageState extends State<MyHomePage> {
       },
       tabBuilder: (BuildContext context, int index) {
         return Center(
-          child: Text("Tab $index"),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            SundayTextButton(
+              onPressed: widget.onStyleToggle,
+              style: widget.currentStyle,
+              child: const Text("Toggle Style"),
+            ),
+            const SizedBox(height: 20),
+            Text("Tab $index"),
+            SundayTextField(
+              style: widget.currentStyle,
+              placeholder: "Enter text",
+            ),
+            Expanded(
+                child: SafeArea(
+              child: SundayListView(
+                style: widget.currentStyle,
+                itemCount: 3,
+                header: "Headers",
+                itemBuilder: (context, index) {
+                  return SundayListTile(
+                    leading: Container(
+                      width: 50,
+                      height: 50,
+                      color: CupertinoColors.activeGreen,
+                    ),
+                    style: widget.currentStyle,
+                    title: SundayText("Title", style: widget.currentStyle),
+                    subtitle:
+                        SundayText("Subtitle", style: widget.currentStyle),
+                    trailing:
+                        SundayText("Trailing", style: widget.currentStyle),
+                  );
+                },
+              ),
+            ))
+          ]),
         );
       },
     );

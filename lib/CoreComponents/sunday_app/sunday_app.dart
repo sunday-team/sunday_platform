@@ -63,6 +63,9 @@ class SundayApp extends StatefulWidget {
   /// Whether to show semantics debugger.
   final bool? showSemanticsDebugger;
 
+  /// Whether to support dark mode.
+  final bool supportDarkMode;
+
   /// Creates a SundayApp.
   ///
   /// The [home], [title], and [uiStyle] arguments must not be null.
@@ -84,6 +87,7 @@ class SundayApp extends StatefulWidget {
     this.debugShowCheckedModeBanner,
     this.showPerformanceOverlay,
     this.showSemanticsDebugger,
+    this.supportDarkMode = true,
   });
 
   @override
@@ -152,6 +156,7 @@ class _SundayAppState extends State<SundayApp> {
         debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
         showPerformanceOverlay: widget.showPerformanceOverlay,
         showSemanticsDebugger: widget.showSemanticsDebugger,
+        supportDarkMode: widget.supportDarkMode,
       );
     } else {
       return SundayCupertinoApp(

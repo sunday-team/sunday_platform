@@ -19,3 +19,14 @@
 * added many other components
 
 * documentation
+
+## 0.1.1
+
+* Added many more components
+
+* Added more documentation
+
+* Added more examples
+
+* Added more styles
+

@@ -35,33 +35,23 @@ class SundayMaterialBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Map to convert SundayNavigationBarItem to NavigationDestination
+    List<NavigationDestination> destinations = items.map((item) {
+      return NavigationDestination(
+        selectedIcon: item.icon,
+        icon: item.icon, // Assuming the same icon is used for selected and unselected
+        label: item.label ?? '', // Providing a default value for null labels
+      );
+    }).toList();
+
     return Scaffold(
       body: tabBuilder(context, currentIndex),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
-          // Assuming you have a state variable named currentPageIndex
           onTap(index);
         },
-        indicatorColor: Colors.amber,
         selectedIndex: currentIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Badge(child: Icon(Icons.notifications_sharp)),
-            label: 'Notifications',
-          ),
-          NavigationDestination(
-            icon: Badge(
-              label: Text('2'),
-              child: Icon(Icons.messenger_sharp),
-            ),
-            label: 'Messages',
-          ),
-        ],
+        destinations: destinations,
       ),
     );
   }

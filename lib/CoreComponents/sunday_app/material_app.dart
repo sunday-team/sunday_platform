@@ -47,6 +47,9 @@ class SundayMaterialApp extends StatelessWidget {
   /// Turns on a overlay that shows the accessibility information reported by the framework.
   final bool? showSemanticsDebugger;
 
+  /// Whether to support dark mode.
+  final bool supportDarkMode;
+
   /// Creates a [SundayMaterialApp].
   ///
   /// At least the [home] and [title] arguments must be non-null.
@@ -66,12 +69,19 @@ class SundayMaterialApp extends StatelessWidget {
     this.debugShowCheckedModeBanner,
     this.showPerformanceOverlay,
     this.showSemanticsDebugger,
+    this.supportDarkMode = false, // Default to false
   });
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: theme,
+      theme: supportDarkMode 
+          ? ThemeData.dark().copyWith(
+              // Merge with the provided theme if any
+              primaryColor: theme?.primaryColor,
+              // Add other theme properties as needed
+            )
+          : theme,
       home: home,
       title: title,
       routes: routes ?? {},

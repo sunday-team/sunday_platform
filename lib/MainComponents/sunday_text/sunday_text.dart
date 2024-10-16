@@ -10,7 +10,7 @@ import 'package:sunday_ui/style.dart';
 /// with various text properties.
 class SundayText extends StatelessWidget {
   /// The text to display.
-  final String text;
+  final String data;
 
   /// The style to apply to the text. This determines whether the text will be displayed
   /// using Material or Cupertino design language.
@@ -33,10 +33,10 @@ class SundayText extends StatelessWidget {
 
   /// Creates a [SundayText] widget.
   ///
-  /// The [text] and [style] parameters are required.
-  const SundayText({
+  /// The [data] parameter is the text to display, and [style] is required.
+  const SundayText(
+    this.data, {
     super.key,
-    required this.text,
     required this.style,
     this.textStyle,
     this.textAlign,
@@ -50,7 +50,7 @@ class SundayText extends StatelessWidget {
     switch (style) {
       case Style.material:
         return SundayMaterialText(
-            text: text,
+            text: data,
             style: textStyle,
             textAlign: textAlign,
             overflow: overflow,
@@ -60,13 +60,14 @@ class SundayText extends StatelessWidget {
       case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoText(
-            text: text,
+            text: data,
             textAlign: textAlign ?? TextAlign.start,
             overflow: overflow ?? TextOverflow.clip,
             maxLines: maxLines,
             textScaler: textScaleFactor != null ? TextScaler.linear(textScaleFactor!) : TextScaler.noScaling,
             softWrap: true,
             textWidthBasis: TextWidthBasis.parent,
+            style: textStyle,
         );
       default:
         throw UnimplementedError('Unsupported style: $style');

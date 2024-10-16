@@ -5,9 +5,6 @@ import 'package:flutter/cupertino.dart';
 /// This widget provides a customizable text button that follows the iOS design
 /// guidelines and integrates well with the Sunday app's aesthetics.
 class CupertinoTextButton extends StatelessWidget {
-  /// The text to display inside the button.
-  final String text;
-
   /// The callback that is called when the button is tapped or otherwise activated.
   final VoidCallback onPressed;
 
@@ -52,10 +49,9 @@ class CupertinoTextButton extends StatelessWidget {
 
   /// Creates a [CupertinoTextButton].
   ///
-  /// The [text] and [onPressed] parameters must not be null.
+  /// The [onPressed] parameter must not be null.
   const CupertinoTextButton({
     super.key,
-    required this.text,
     required this.onPressed,
     this.color,
     this.textStyle,
