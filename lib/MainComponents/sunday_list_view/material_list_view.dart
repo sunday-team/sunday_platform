@@ -5,21 +5,13 @@ class SundayMaterialListView extends StatelessWidget {
   /// Creates a [SundayMaterialListView].
   const SundayMaterialListView({
     super.key,
-    required this.itemCount,
-    required this.itemBuilder,
-    this.separatorBuilder,
+    required this.children,
     this.padding,
     this.scrollController,
   });
 
-  /// The number of items in the list.
-  final int itemCount;
-
-  /// A function that builds list items.
-  final Widget Function(BuildContext, int) itemBuilder;
-
-  /// A function that builds separators between list items (optional).
-  final Widget Function(BuildContext, int)? separatorBuilder;
+  /// The list of widgets to display in the list view.
+  final List<Widget> children;
 
   /// The padding around the list view.
   final EdgeInsetsGeometry? padding;
@@ -29,20 +21,10 @@ class SundayMaterialListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return separatorBuilder != null
-        ? ListView.separated(
-            itemCount: itemCount,
-            itemBuilder: itemBuilder,
-            separatorBuilder: separatorBuilder!,
-            padding: padding,
-            controller: scrollController,
-          )
-        : ListView.builder(
-            itemCount: itemCount,
-            itemBuilder: itemBuilder,
-            padding: padding,
-            controller: scrollController,
-          );
+    return ListView(
+      padding: padding,
+      controller: scrollController,
+      children: children,
+    );
   }
 }
-

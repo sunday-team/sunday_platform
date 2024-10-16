@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart' show Divider;
 import 'package:sunday_ui/MainComponents/sunday_list_view/material_list_view.dart';
 import 'package:sunday_ui/MainComponents/sunday_list_view/cupertino_list_view.dart';
@@ -15,10 +14,9 @@ class SundayListView extends StatelessWidget {
   const SundayListView({
     super.key,
     required this.style,
-    required this.itemBuilder,
     this.padding,
     this.scrollController,
-    required this.itemCount,
+    required this.children,
     this.insetGrouped = true,
     this.showDividers = true,
     this.header,
@@ -27,9 +25,6 @@ class SundayListView extends StatelessWidget {
 
   /// The style of the list view (Material or Cupertino).
   final Style style;
-
-  /// A function that builds list items (for both Material and Cupertino styles).
-  final Widget Function(BuildContext, int) itemBuilder;
 
   /// The padding around the list view (for Material style).
   final EdgeInsetsGeometry? padding;
@@ -40,9 +35,6 @@ class SundayListView extends StatelessWidget {
   /// Whether to use an inset grouped style (for Cupertino style).
   final bool insetGrouped;
 
-  /// The number of items in the list view.
-  final int itemCount;
-
   /// Whether to show dividers between list items.
   final bool showDividers;
 
@@ -52,50 +44,55 @@ class SundayListView extends StatelessWidget {
   /// A footer widget to display below the list.
   final Widget? footer;
 
+  /// The list of widgets to display in the list view.
+  final List<Widget> children;
+
   @override
   Widget build(BuildContext context) {
     switch (style) {
       case Style.material:
         return SundayMaterialListView(
-          itemCount: itemCount,
-          itemBuilder: itemBuilder,
-          separatorBuilder:
-              showDividers ? (context, index) => const Divider() : null,
           padding: padding,
           scrollController: scrollController,
+          children: children,
         );
       case Style.cupertino:
         return SundayCupertinoListView(
-          insetGrouped: true,
-          itemCount: itemCount,
-          itemBuilder: itemBuilder,
+          insetGrouped: insetGrouped,
           padding: padding ?? EdgeInsets.zero,
           scrollController: scrollController ?? ScrollController(),
           header: header != null ? SundayText(header!, style: style) : const SizedBox.shrink(),
           footer: footer ?? const SizedBox.shrink(),
           backgroundColor: CupertinoColors.systemGroupedBackground,
           dividerColor: showDividers
-              ? CupertinoColors.activeBlue
-              : CupertinoColors.systemRed,
-          separatorBuilder: (context, index) =>
-              showDividers ? const Divider() : const SizedBox.shrink(),
+              ? CupertinoColors.separator
+              : CupertinoColors.systemBackground,
+          children: children,
         );
       case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoListView(
-          insetGrouped: true,
-          itemCount: itemCount,
-          itemBuilder: itemBuilder,
+          insetGrouped: insetGrouped,
           padding: padding ?? EdgeInsets.zero,
           scrollController: scrollController ?? ScrollController(),
-          header: Padding(padding: const EdgeInsets.fromLTRB(14, 0, 0, 0), child: SundayText(header?.toUpperCase() ?? "", style: style, textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400,color: CupertinoColors.systemGrey))),
+          header: Padding(
+            padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+            child: SundayText(
+              header?.toUpperCase() ?? "",
+              style: style,
+              textStyle: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                color: CupertinoColors.systemGrey,
+              ),
+            ),
+          ),
           footer: footer ?? const SizedBox.shrink(),
           backgroundColor: CupertinoColors.systemGroupedBackground,
           dividerColor: showDividers
-              ? CupertinoColors.activeBlue
-              : CupertinoColors.systemRed,
-          separatorBuilder: (context, index) =>
-              showDividers ? const Divider() : const SizedBox.shrink(),
+              ? CupertinoColors.separator
+              : CupertinoColors.systemBackground,
+          children: children,
         );
       default:
         throw UnimplementedError('Unsupported style: $style');

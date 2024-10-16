@@ -5,8 +5,6 @@ class SundayCupertinoListView extends StatelessWidget {
   /// Creates a [SundayCupertinoListView].
   const SundayCupertinoListView({
     super.key,
-    required this.itemBuilder,
-    required this.itemCount,
     required this.insetGrouped,
     required this.padding,
     required this.scrollController,
@@ -14,14 +12,8 @@ class SundayCupertinoListView extends StatelessWidget {
     required this.footer,
     required this.backgroundColor,
     required this.dividerColor,
-    required this.separatorBuilder,
+    required this.children,
   });
-
-  /// A function that builds list items.
-  final Widget Function(BuildContext, int) itemBuilder;
-
-  /// The number of items in the list view.
-  final int itemCount;
 
   /// Whether to use an inset grouped style.
   final bool insetGrouped;
@@ -44,17 +36,12 @@ class SundayCupertinoListView extends StatelessWidget {
   /// The color of the dividers between items.
   final Color dividerColor;
 
-  /// A function that builds separators between items.
-  final Widget Function(BuildContext, int) separatorBuilder;
+  /// The list of widgets to display in the list view.
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> children = List.generate(
-      itemCount,
-      (index) => itemBuilder(context, index),
-    );
-
-    final listSection = insetGrouped 
+    final listSection = insetGrouped
         ? CupertinoListSection.insetGrouped(
             header: header,
             footer: footer,

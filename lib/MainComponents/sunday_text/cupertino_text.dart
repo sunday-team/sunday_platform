@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:universal_io/io.dart';
 
 /// A custom Cupertino-style text widget for the Sunday app.
 ///
