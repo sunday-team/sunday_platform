@@ -20,6 +20,8 @@ class SundayListView extends StatelessWidget {
     this.showDividers = true,
     this.header,
     this.footer,
+    this.margin,
+    this.dividerColor,
   });
 
   /// The style of the list view (Material or Cupertino).
@@ -46,6 +48,12 @@ class SundayListView extends StatelessWidget {
   /// The list of widgets to display in the list view.
   final List<Widget> children;
 
+  /// The margin around the list view.
+  final EdgeInsetsGeometry? margin;
+
+  /// The color of the dividers between items.
+  final Color? dividerColor;
+
   @override
   Widget build(BuildContext context) {
     switch (style) {
@@ -53,6 +61,7 @@ class SundayListView extends StatelessWidget {
         return SundayMaterialListView(
           padding: padding,
           scrollController: scrollController,
+          header: header ?? '',
           children: children,
         );
       case Style.cupertino:
@@ -60,37 +69,38 @@ class SundayListView extends StatelessWidget {
           insetGrouped: insetGrouped,
           padding: padding ?? EdgeInsets.zero,
           scrollController: scrollController ?? ScrollController(),
-          header: header != null ? SundayText(header!, style: style) : const SizedBox.shrink(),
+          header: header != null
+              ? SundayText(header!, style: style)
+              : const SizedBox.shrink(),
           footer: footer ?? const SizedBox.shrink(),
           backgroundColor: CupertinoColors.systemGroupedBackground,
-          dividerColor: showDividers
-              ? CupertinoColors.separator
-              : CupertinoColors.systemBackground,
+          dividerColor: dividerColor,
           children: children,
         );
       case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoListView(
           insetGrouped: insetGrouped,
-          padding: padding ?? EdgeInsets.zero,
-          scrollController: scrollController ?? ScrollController(),
-          header: Padding(
-            padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
-            child: SundayText(
-              header?.toUpperCase() ?? "",
-              style: style,
-              textStyle: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w400,
-                color: CupertinoColors.systemGrey,
-              ),
-            ),
-          ),
-          footer: footer ?? const SizedBox.shrink(),
+          padding: padding,
+          scrollController: scrollController,
+          margin: margin,
+          header: header != null
+              ? Padding(
+                  padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                  child: SundayText(
+                    header?.toUpperCase() ?? "",
+                    style: style,
+                    textStyle: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: CupertinoColors.systemGrey,
+                    ),
+                  ),
+                )
+              : null,
+          footer: footer,
           backgroundColor: CupertinoColors.systemGroupedBackground,
-          dividerColor: showDividers
-              ? CupertinoColors.separator
-              : CupertinoColors.systemBackground,
+          dividerColor: dividerColor,
           children: children,
         );
       default:

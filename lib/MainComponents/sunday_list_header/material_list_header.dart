@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sunday_ui/MainComponents/sunday_text/sunday_text.dart';
+import 'package:sunday_ui/style.dart';
 
 /// A Material-style list header for the Sunday UI package.
 class SundayMaterialListHeader extends StatelessWidget {
@@ -13,15 +16,21 @@ class SundayMaterialListHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10),
-      child: Text(
-        header,
-        style: TextStyle(
-          color: MediaQuery.of(context).platformBrightness == Brightness.light ? const Color(0xFF282B2D) : const Color(0xFF6B7280),
-          fontSize: 12,
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 15, 0),
+          child: SundayText(
+            header,
+            style: Style.material,
+            textStyle: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              color: CupertinoColors.systemGrey,
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

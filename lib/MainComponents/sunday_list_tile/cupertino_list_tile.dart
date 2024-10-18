@@ -40,7 +40,7 @@ class SundayCupertinoListTile extends StatelessWidget {
   final Color? backgroundColor;
 
   /// The internal padding for the list tile's contents.
-  final EdgeInsetsDirectional? padding;
+  final EdgeInsetsGeometry? padding;
 
   /// Additional information to display below the [subtitle].
   final String? additionalInfo;

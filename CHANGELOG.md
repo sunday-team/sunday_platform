@@ -49,3 +49,11 @@
 * added more documentation
 
 * added more components
+
+## 0.1.5
+
+* added all components to a library
+
+* added more documentation
+
+* fixed components

@@ -61,7 +61,7 @@ class SundayListTile extends StatelessWidget {
           trailing: trailing,
           onTap: onTap,
           tileColor: backgroundColor,
-          contentPadding: padding as EdgeInsets?,
+          contentPadding: padding as EdgeInsetsGeometry?,
         );
       case Style.cupertino:
         return SundayCupertinoListTile(
@@ -71,7 +71,7 @@ class SundayListTile extends StatelessWidget {
           trailing: trailing,
           onTap: onTap,
           backgroundColor: backgroundColor,
-          padding: padding as EdgeInsetsDirectional?,
+          padding: padding as EdgeInsetsGeometry?,
           additionalInfo: additionalInfo,
           style: style,
         );
@@ -79,13 +79,13 @@ class SundayListTile extends StatelessWidget {
       case Style.latestIOS:
         return SundayLatestIOSListTile(
           leading:
-              ClipRRect(borderRadius: BorderRadius.circular(6), child: leading),
+              leading,
           title: title,
           subtitle: subtitle,
           trailing: trailing,
           onTap: onTap,
           tileColor: backgroundColor,
-          contentPadding: padding as EdgeInsetsDirectional?,
+          contentPadding: padding as EdgeInsetsGeometry?,
         );
       default:
         throw UnimplementedError('Unsupported style: $style');

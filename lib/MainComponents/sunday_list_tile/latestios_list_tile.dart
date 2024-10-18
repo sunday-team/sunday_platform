@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sunday_ui/MainComponents/sunday_text/sunday_text.dart';
+import 'package:sunday_ui/style.dart';
 
 /// A Material-style list tile for the Sunday UI package.
 ///
@@ -38,30 +41,22 @@ class SundayLatestIOSListTile extends StatelessWidget {
   /// The internal padding for the list tile's contents.
   final EdgeInsetsGeometry? contentPadding;
 
+  
+
   @override
   Widget build(BuildContext context) {
-    return Material(
-      type: MaterialType.transparency,
-      child: ListTile(
-        leading: leading != null
-            ? SizedBox(
-                width: 40,
-                height: 40,
-                child: leading,
-              )
-            : null,
-        title: Row(
-          children: [
-            title ?? const SizedBox(),
-            const Spacer(),
-            trailing ?? const SizedBox(),
-          ],
-        ),
-        subtitle: subtitle,
-        onTap: onTap,
-        tileColor: tileColor,
-        contentPadding: contentPadding,
-      ),
+    return CupertinoListTile.notched(
+      leading: leading != null ? SizedBox(
+        width: 50,
+        height: 50,
+        child: leading,
+      ) : null,
+      title: title ?? const SundayText("", style: Style.latestIOS),
+      subtitle: subtitle,
+      trailing: trailing,
+      onTap: onTap,
+      backgroundColor: tileColor,
+      padding: contentPadding,
     );
   }
 }

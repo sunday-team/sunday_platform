@@ -5,6 +5,28 @@ import 'dart:ui';
 import 'package:sunday_core/GetGtorage/get_storage.dart';
 import 'package:sunday_ui/Scripts/Colors/storing_color/storing_color.dart';
 
+/// export specific files
+export 'style.dart';
+
+/// export main components
+export 'MainComponents/sunday_list_header/sunday_list_header.dart';
+export 'MainComponents/sunday_list_tile/sunday_list_tile.dart';
+export 'MainComponents/sunday_list_view/sunday_list_view.dart';
+export 'MainComponents/sunday_text/sunday_text.dart';
+export 'MainComponents/sunday_text_button/sunday_text_button.dart';
+export 'MainComponents/sunday_text_field/sunday_text_field.dart';
+
+/// export scripts
+export 'Scripts/Colors/storing_color/storing_color.dart';
+
+/// export core components
+export 'CoreComponents/sunday_app/sunday_app.dart';
+export 'CoreComponents/sunday_appbar/sunday_appbar.dart';
+export 'CoreComponents/sunday_bottom_bar/sunday_bottom_bar.dart';
+export 'CoreComponents/sunday_navigationbar_item/sunday_navigationbar_item.dart';
+export 'CoreComponents/sunday_scaffold/sunday_scaffold.dart';
+
+
 /// Initializes the UI settings and stores them in the SundayGetStorage.
 ///
 /// This function initializes the global UI settings and writes them to the storage.

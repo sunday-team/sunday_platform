@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sunday_ui/MainComponents/sunday_text/sunday_text.dart';
+import 'package:sunday_ui/sunday_ui.dart';
 
 /// A Cupertino-style list header for the Sunday UI package.
 class SundayCupertinoListHeader extends StatelessWidget {
@@ -13,12 +15,21 @@ class SundayCupertinoListHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10),
-      child: Text(
-        header.toUpperCase(),
-        style: TextStyle(color: MediaQuery.of(context).platformBrightness == Brightness.light ? const Color.fromARGB(255, 40, 39, 39) : const Color.fromARGB(255, 209, 199, 199), fontSize: 12),
-      ),
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(33, 10, 0, 0),
+          child: SundayText(
+            header.toUpperCase(),
+            style: Style.cupertino,
+            textStyle: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+              color: CupertinoColors.systemGrey,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

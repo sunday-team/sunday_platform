@@ -40,25 +40,28 @@ class SundayMaterialListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: leading != null
-          ? SizedBox(
-              width: 40,
-              height: 40,
-              child: leading,
-            )
-          : null,
-      title: Row(
-        children: [
-          title ?? const SizedBox(),
-          const Spacer(),
-          trailing ?? const SizedBox(),
-        ],
+    return Material(
+      type: MaterialType.transparency,
+      child: ListTile(
+        leading: leading != null
+            ? SizedBox(
+                width: 40,
+                height: 40,
+                child: leading,
+              )
+            : null,
+        title: Row(
+          children: [
+            title ?? const SizedBox(),
+            const Spacer(),
+            trailing ?? const SizedBox(),
+          ],
+        ),
+        subtitle: subtitle,
+        onTap: onTap,
+        tileColor: tileColor,
+        contentPadding: contentPadding,
       ),
-      subtitle: subtitle,
-      onTap: onTap,
-      tileColor: tileColor,
-      contentPadding: contentPadding,
     );
   }
 }
