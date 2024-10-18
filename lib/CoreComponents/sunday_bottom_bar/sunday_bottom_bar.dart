@@ -12,7 +12,7 @@ import 'package:sunday_ui/style.dart';
 class SundayBottomBar extends StatefulWidget {
   /// Creates a [SundayBottomBar] widget.
   ///
-  /// The [items], [currentIndex], [onTap], [style], and [tabBuilder] parameters are required and should not be null.
+  /// The [items], [currentIndex], [onTap], [style], [tabBuilder], and [height] parameters are required and should not be null.
   const SundayBottomBar({
     super.key,
     required this.items,
@@ -58,16 +58,25 @@ class SundayBottomBar extends StatefulWidget {
   final Widget? child;
 
   @override
-  _SundayBottomBarState createState() => _SundayBottomBarState();
+  SundayBottomBarState createState() => SundayBottomBarState();
 }
 
-class _SundayBottomBarState extends State<SundayBottomBar> {
+/// Builds the bottom navigation bar based on the style provided.
+///
+/// This method dynamically builds the bottom navigation bar based on the style
+/// specified in the [SundayBottomBar] widget. It supports Material, Cupertino, and Custom styles.
+class SundayBottomBarState extends State<SundayBottomBar> {
   @override
   Widget build(BuildContext context) {
     switch (widget.style) {
       case Style.material:
         return SundayMaterialBottomBar(
-          items: widget.items,
+          items: widget.items
+              .map((item) => BottomNavigationBarItem(
+                    icon: item.icon,
+                    label: item.label,
+                  ))
+              .toList(),
           currentIndex: widget.currentIndex,
           onTap: widget.onTap,
           tabBuilder: widget.tabBuilder,
@@ -76,10 +85,12 @@ class _SundayBottomBarState extends State<SundayBottomBar> {
       case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoBottomBar(
-          items: widget.items.map((item) => BottomNavigationBarItem(
-            icon: item.icon,
-            label: item.label,
-          )).toList(),
+          items: widget.items
+              .map((item) => BottomNavigationBarItem(
+                    icon: item.icon,
+                    label: item.label,
+                  ))
+              .toList(),
           currentIndex: widget.currentIndex,
           onTap: widget.onTap,
           tabBuilder: widget.tabBuilder,
@@ -89,3 +100,116 @@ class _SundayBottomBarState extends State<SundayBottomBar> {
     }
   }
 }
+
+// import 'package:flutter/material.dart';
+
+// /// A Material-style bottom navigation bar with a scaffold.
+// ///
+// /// This widget provides a scaffold that includes a bottom navigation bar. It allows
+// /// users to switch between different views in the application.
+// ///
+// /// The [items] parameter is a list of BottomNavigationBarItems that represent the navigation items.
+// /// The [currentIndex] parameter indicates the currently selected item, and the
+// /// [onTap] callback is triggered when an item is tapped.
+// class SundayMaterialBottomBar extends StatelessWidget {
+//   /// Creates a [SundayMaterialBottomBar].
+//   ///
+//   /// The [items], [currentIndex], [onTap], and [tabBuilder] parameters must not be null.
+//   const SundayMaterialBottomBar({
+//     super.key,
+//     required this.items,
+//     required this.currentIndex,
+//     required this.onTap,
+//     required this.tabBuilder,
+//     required this.height, // Added height property
+//   });
+
+//   /// The list of BottomNavigationBarItems to display as navigation items.
+//   final List<BottomNavigationBarItem> items;
+
+//   /// The index of the currently selected item.
+//   final int currentIndex;
+
+//   /// Callback function that is called when an item is tapped.
+//   final ValueChanged<int> onTap;
+
+//   /// Builder function that creates the content for each tab.
+//   final IndexedWidgetBuilder tabBuilder;
+
+//   /// The height of the bottom navigation bar.
+//   final double height; // Added height property
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: tabBuilder(context, currentIndex),
+//       bottomNavigationBar: Container(
+//         height: height,
+//         child: CustomNavigationBar(
+//           onTap: onTap,
+//           currentIndex: currentIndex,
+//           items: items,
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// /// A custom navigation bar widget.
+// ///
+// /// This widget is used in the [SundayMaterialBottomBar] to display the navigation items.
+// /// It takes a list of [BottomNavigationBarItem]s, the current index, and a callback function
+// /// that is triggered when an item is tapped.
+// class CustomNavigationBar extends StatelessWidget {
+//   /// The callback function that is called when an item is tapped.
+//   final ValueChanged<int> onTap;
+
+//   /// The index of the currently selected item.
+//   final int currentIndex;
+
+//   /// The list of BottomNavigationBarItems to display as navigation items.
+//   final List<BottomNavigationBarItem> items;
+
+//   /// Creates a [CustomNavigationBar].
+//   ///
+//   /// The [onTap], [currentIndex], and [items] parameters must not be null.
+//   const CustomNavigationBar({
+//     super.key,
+//     required this.onTap,
+//     required this.currentIndex,
+//     required this.items,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Material(
+//       color: Theme.of(context).colorScheme.surfaceContainer,
+//       child: SafeArea(
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceAround,
+//           children: List.generate(items.length, (index) {
+//             final item = items[index];
+//             final isSelected = index == currentIndex;
+//             return Expanded(
+//               child: GestureDetector(
+//                 onTap: () => onTap(index),
+//                 behavior: HitTestBehavior.opaque,
+//                 child: Center(
+//                   child: IconTheme(
+//                     data: IconThemeData(
+//                       color: isSelected
+//                           ? Theme.of(context).colorScheme.primary
+//                           : Theme.of(context).colorScheme.onSurface,
+//                       size: 24,
+//                     ),
+//                     child: item.icon
+//                   ),
+//                 ),
+//               ),
+//             );
+//           }),
+//         ),
+//       ),
+//     );
+//   }
+// }

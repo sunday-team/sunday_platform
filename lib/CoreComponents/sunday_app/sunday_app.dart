@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sunday_core/GetGtorage/get_storage.dart';
 import 'package:sunday_core/Print/print.dart';
 import 'package:sunday_ui/CoreComponents/sunday_app/cupertino_app.dart';
@@ -171,6 +172,13 @@ class _SundayAppState extends State<SundayApp> {
 
   @override
   Widget build(BuildContext context) {
+    final Iterable<LocalizationsDelegate<dynamic>> effectiveLocalizationsDelegates = [
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+      ...?widget.localizationsDelegates,
+    ];
+
     final app = widget.uiStyle == Style.material
         ? SundayMaterialApp(
             theme: widget.theme,
@@ -188,7 +196,7 @@ class _SundayAppState extends State<SundayApp> {
             showPerformanceOverlay: widget.showPerformanceOverlay,
             showSemanticsDebugger: widget.showSemanticsDebugger,
             supportDarkMode: widget.supportDarkMode,
-            localizationsDelegates: widget.localizationsDelegates,
+            localizationsDelegates: effectiveLocalizationsDelegates,
             localeResolutionCallback: widget.localeResolutionCallback,
           )
         : SundayCupertinoApp(
@@ -208,7 +216,7 @@ class _SundayAppState extends State<SundayApp> {
             debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
             showPerformanceOverlay: widget.showPerformanceOverlay,
             showSemanticsDebugger: widget.showSemanticsDebugger,
-            localizationsDelegates: widget.localizationsDelegates,
+            localizationsDelegates: effectiveLocalizationsDelegates,
             localeResolutionCallback: widget.localeResolutionCallback,
           );
 

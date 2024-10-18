@@ -83,13 +83,17 @@ class SundayMaterialApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: supportDarkMode 
-          ? ThemeData.dark().copyWith(
-              // Merge with the provided theme if any
-              primaryColor: theme?.primaryColor,
-              // Add other theme properties as needed
-            )
-          : theme,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: theme?.primaryColor,
+        // Add other theme properties as needed
+      ),
+      darkTheme: supportDarkMode ? ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: theme?.primaryColor,
+        // Add other theme properties as needed
+      ) : null,
+      themeMode: supportDarkMode ? ThemeMode.system : ThemeMode.light,
       home: home,
       title: title,
       routes: routes ?? {},

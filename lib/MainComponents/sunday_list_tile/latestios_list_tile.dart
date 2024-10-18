@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 ///
 /// This widget wraps the [ListTile] from the Flutter framework,
 /// customized for the Sunday UI package.
-class SundayMaterialListTile extends StatelessWidget {
+class SundayLatestIOSListTile extends StatelessWidget {
   /// Creates a [SundayMaterialListTile].
-  const SundayMaterialListTile({
+  const SundayLatestIOSListTile({
     super.key,
     this.leading,
     this.title,
@@ -40,25 +40,28 @@ class SundayMaterialListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: leading != null
-          ? SizedBox(
-              width: 40,
-              height: 40,
-              child: leading,
-            )
-          : null,
-      title: Row(
-        children: [
-          title ?? const SizedBox(),
-          const Spacer(),
-          trailing ?? const SizedBox(),
-        ],
+    return Material(
+      type: MaterialType.transparency,
+      child: ListTile(
+        leading: leading != null
+            ? SizedBox(
+                width: 40,
+                height: 40,
+                child: leading,
+              )
+            : null,
+        title: Row(
+          children: [
+            title ?? const SizedBox(),
+            const Spacer(),
+            trailing ?? const SizedBox(),
+          ],
+        ),
+        subtitle: subtitle,
+        onTap: onTap,
+        tileColor: tileColor,
+        contentPadding: contentPadding,
       ),
-      subtitle: subtitle,
-      onTap: onTap,
-      tileColor: tileColor,
-      contentPadding: contentPadding,
     );
   }
 }

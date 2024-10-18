@@ -16,5 +16,5 @@ import 'package:uuid/uuid.dart';
 ///   void: This function does not return a value.
 void resetUI() {
   final box = SundayGetStorage();
-  box.write('resetUI', const Uuid().v4());
+  box.write('resetUI', const Uuid());
 }

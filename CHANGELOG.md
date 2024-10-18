@@ -41,3 +41,11 @@
 ## 0.1.3
 
 * fixed the app component
+
+## 0.1.4
+
+* fixed the app component and many other components
+
+* added more documentation
+
+* added more components

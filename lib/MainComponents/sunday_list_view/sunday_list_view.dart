@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' show Divider;
 import 'package:sunday_ui/MainComponents/sunday_list_view/material_list_view.dart';
 import 'package:sunday_ui/MainComponents/sunday_list_view/cupertino_list_view.dart';
 import 'package:sunday_ui/MainComponents/sunday_text/sunday_text.dart';

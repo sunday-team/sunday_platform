@@ -33,7 +33,7 @@ class SundayMaterialText extends StatelessWidget {
     this.textAlign,
     this.overflow,
     this.maxLines,
-    this.textScaleFactor,
+    this.textScaleFactor, Color? textColor,
   });
 
   @override

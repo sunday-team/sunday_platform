@@ -68,7 +68,7 @@ class SundayCupertinoText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: style ?? CupertinoTheme.of(context).textTheme.textStyle,
+      style: style,
       strutStyle: strutStyle,
       textAlign: textAlign,
       textDirection: textDirection,

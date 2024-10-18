@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:sunday_ui/MainComponents/sunday_list_tile/cupertino_list_tile.dart';
+import 'package:sunday_ui/MainComponents/sunday_list_tile/latestios_list_tile.dart';
 import 'package:sunday_ui/MainComponents/sunday_list_tile/material_list_tile.dart';
 import 'package:sunday_ui/style.dart';
 
@@ -76,17 +77,15 @@ class SundayListTile extends StatelessWidget {
         );
       case Style.custom:
       case Style.latestIOS:
-        return SundayCupertinoListTile(
+        return SundayLatestIOSListTile(
           leading:
               ClipRRect(borderRadius: BorderRadius.circular(6), child: leading),
           title: title,
           subtitle: subtitle,
           trailing: trailing,
           onTap: onTap,
-          backgroundColor: backgroundColor,
-          padding: padding as EdgeInsetsDirectional?,
-          additionalInfo: additionalInfo,
-          style: style,
+          tileColor: backgroundColor,
+          contentPadding: padding as EdgeInsetsDirectional?,
         );
       default:
         throw UnimplementedError('Unsupported style: $style');

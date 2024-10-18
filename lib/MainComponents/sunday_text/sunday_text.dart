@@ -31,6 +31,9 @@ class SundayText extends StatelessWidget {
   /// The number of font pixels for each logical pixel.
   final double? textScaleFactor;
 
+  /// The color of the text.
+  final Color? textColor;
+
   /// Creates a [SundayText] widget.
   ///
   /// The [data] parameter is the text to display, and [style] is required.
@@ -43,6 +46,7 @@ class SundayText extends StatelessWidget {
     this.overflow,
     this.maxLines,
     this.textScaleFactor,
+    this.textColor,
   });
 
   @override
@@ -55,7 +59,8 @@ class SundayText extends StatelessWidget {
             textAlign: textAlign,
             overflow: overflow,
             maxLines: maxLines,
-            textScaleFactor: textScaleFactor);
+            textScaleFactor: textScaleFactor,
+            textColor: textColor);
       case Style.cupertino:
       case Style.custom:
       case Style.latestIOS:
@@ -67,8 +72,7 @@ class SundayText extends StatelessWidget {
             textScaler: textScaleFactor != null ? TextScaler.linear(textScaleFactor!) : TextScaler.noScaling,
             softWrap: true,
             textWidthBasis: TextWidthBasis.parent,
-            style: textStyle,
-        );
+            style: textStyle);
       default:
         throw UnimplementedError('Unsupported style: $style');
     }
