@@ -1,13 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:sunday_core/GetGtorage/get_storage.dart';
-import 'package:sunday_core/Print/print.dart';
 import 'package:sunday_ui/CoreComponents/sunday_app/cupertino_app.dart';
 import 'package:sunday_ui/CoreComponents/sunday_app/material_app.dart';
-import 'package:sunday_ui/Scripts/preferences/change_key.dart';
-import 'package:sunday_ui/Scripts/preferences/get_key.dart';
-import 'package:sunday_ui/Scripts/preferences/get_path.dart';
 import 'package:sunday_ui/style.dart';
 
 /// A customizable application widget that can switch between Material and Cupertino styles.
@@ -127,48 +122,6 @@ class SundayApp extends StatefulWidget {
 }
 
 class _SundayAppState extends State<SundayApp> {
-  /// Flag to trigger UI reset.
-  var resetUI = false;
-
-  @override
-  void initState() {
-    super.initState();
-    uiChanges();
-  }
-
-  /// Sets up listeners for UI changes and initializes platform-specific settings.
-  void uiChanges() {
-    final box = SundayGetStorage();
-    Stream<bool?> resetUIStream = box.listenKey<bool>('resetUI');
-    resetUIStream.listen((newResetUI) {
-      if (newResetUI != null) {
-        setState(() {
-          resetUI = !resetUI;
-        });
-        sundayPrint('ResetUI changed to: $resetUI');
-      } else {
-        sundayPrint('ResetUI was removed');
-      }
-    });
-
-    /// Initializes platform-specific settings.
-    void initPlatform() {
-      final path = getPath(context);
-      getKey(path).then((data) {
-        if (data is Map) {
-          if (data['type'] != 'sunday_app' || data.isEmpty) {
-            changeKey(path, {
-              "type": "sunday_app",
-              "theme": widget.theme?.toString(),
-              "primaryColor": widget.primaryColor?.toString(),
-              "backgroundColor": widget.primaryColor?.toString(),
-            });
-          }
-        }
-      });
-    }
-    initPlatform();
-  }
 
   @override
   Widget build(BuildContext context) {

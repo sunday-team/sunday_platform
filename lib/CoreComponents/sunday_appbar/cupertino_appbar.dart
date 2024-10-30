@@ -33,6 +33,9 @@ class SundayCupertinoAppBar extends StatelessWidget {
   /// Whether to animate the app bar when transitioning between routes.
   final bool transitionBetweenRoutes;
 
+  /// The hero tag for the app bar.
+  final String heroTag;
+
   /// Creates a [SundayCupertinoAppBar].
   ///
   /// The [automaticallyImplyLeading] and [transitionBetweenRoutes] arguments
@@ -48,6 +51,7 @@ class SundayCupertinoAppBar extends StatelessWidget {
     this.brightness,
     this.padding,
     this.transitionBetweenRoutes = true,
+    required this.heroTag,
   });
 
   @override
@@ -61,6 +65,7 @@ class SundayCupertinoAppBar extends StatelessWidget {
       brightness: brightness,
       padding: padding,
       transitionBetweenRoutes: transitionBetweenRoutes,
+      heroTag: heroTag,
     );
   }
 }

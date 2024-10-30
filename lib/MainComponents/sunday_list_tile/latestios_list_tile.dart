@@ -18,6 +18,8 @@ class SundayLatestIOSListTile extends StatelessWidget {
     this.onTap,
     this.tileColor,
     this.contentPadding,
+    this.width,
+    this.height,
   });
 
   /// A widget to display before the title.
@@ -41,14 +43,19 @@ class SundayLatestIOSListTile extends StatelessWidget {
   /// The internal padding for the list tile's contents.
   final EdgeInsetsGeometry? contentPadding;
 
-  
+  /// The width of the leading widget.
+  final double? width;
+
+  /// The height of the leading widget.
+  final double? height;
+
 
   @override
   Widget build(BuildContext context) {
     return CupertinoListTile.notched(
       leading: leading != null ? SizedBox(
-        width: 50,
-        height: 50,
+        width: width,
+        height: height,
         child: leading,
       ) : null,
       title: title ?? const SundayText("", style: Style.latestIOS),

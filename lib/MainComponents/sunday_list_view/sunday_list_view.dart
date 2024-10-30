@@ -81,7 +81,7 @@ class SundayListView extends StatelessWidget {
       case Style.latestIOS:
         return SundayCupertinoListView(
           insetGrouped: insetGrouped,
-          padding: padding,
+          padding: padding ?? const EdgeInsets.symmetric(vertical: 10),
           scrollController: scrollController,
           margin: margin,
           header: header != null

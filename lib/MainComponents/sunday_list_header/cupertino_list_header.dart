@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sunday_ui/MainComponents/sunday_text/sunday_text.dart';
 import 'package:sunday_ui/sunday_ui.dart';
 
 /// A Cupertino-style list header for the Sunday UI package.

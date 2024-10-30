@@ -21,6 +21,8 @@ class SundayListTile extends StatelessWidget {
     this.backgroundColor,
     this.padding,
     this.additionalInfo,
+    this.width,
+    this.height,
   });
 
   /// The style of the list tile (Material or Cupertino).
@@ -50,6 +52,12 @@ class SundayListTile extends StatelessWidget {
   /// Additional information to display (only used in Cupertino style).
   final String? additionalInfo;
 
+  /// The width of the leading widget.
+  final double? width;
+
+  /// The height of the leading widget.
+  final double? height;
+
   @override
   Widget build(BuildContext context) {
     switch (style) {
@@ -61,7 +69,7 @@ class SundayListTile extends StatelessWidget {
           trailing: trailing,
           onTap: onTap,
           tileColor: backgroundColor,
-          contentPadding: padding as EdgeInsetsGeometry?,
+          contentPadding: padding,
         );
       case Style.cupertino:
         return SundayCupertinoListTile(
@@ -71,21 +79,22 @@ class SundayListTile extends StatelessWidget {
           trailing: trailing,
           onTap: onTap,
           backgroundColor: backgroundColor,
-          padding: padding as EdgeInsetsGeometry?,
+          padding: padding,
           additionalInfo: additionalInfo,
           style: style,
         );
       case Style.custom:
       case Style.latestIOS:
         return SundayLatestIOSListTile(
-          leading:
-              leading,
+          leading: leading,
           title: title,
           subtitle: subtitle,
           trailing: trailing,
           onTap: onTap,
           tileColor: backgroundColor,
-          contentPadding: padding as EdgeInsetsGeometry?,
+          contentPadding: padding ?? const EdgeInsets.fromLTRB(10, 5, 10, 5),
+          width: width,
+          height: height,
         );
       default:
         throw UnimplementedError('Unsupported style: $style');

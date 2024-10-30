@@ -50,13 +50,15 @@ class SundayMaterialListTile extends StatelessWidget {
                 child: leading,
               )
             : null,
-        title: Row(
-          children: [
-            title ?? const SizedBox(),
-            const Spacer(),
-            trailing ?? const SizedBox(),
-          ],
-        ),
+        title: trailing != null
+            ? Row(
+                children: [
+                  title ?? const SizedBox(),
+                  const Spacer(),
+                  trailing ?? const SizedBox(),
+                ],
+              )
+            : title,
         subtitle: subtitle,
         onTap: onTap,
         tileColor: tileColor,

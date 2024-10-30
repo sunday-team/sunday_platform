@@ -57,3 +57,9 @@
 * added more documentation
 
 * fixed components
+
+## 0.1.6
+
+* fixed components
+
+* added some components
