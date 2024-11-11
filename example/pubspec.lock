@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  color_theme_provider:
+    dependency: "direct main"
+    description:
+      name: color_theme_provider
+      sha256: "927da84236b7f823fbf6c233c99b8841f5368ea0e86ee4a17268779fb9bd11f4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   crypto:
     dependency: transitive
     description:
@@ -315,7 +323,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.1.3"
+    version: "0.1.6"
   term_glyph:
     dependency: transitive
     description:
