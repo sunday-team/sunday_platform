@@ -21,6 +21,9 @@ class SundayTextButton extends StatelessWidget {
   /// The child widget to display inside the button.
   final Widget child;
 
+  /// The padding to use for the button.
+  final EdgeInsetsGeometry? padding;
+
   /// Creates a [SundayTextButton].
   ///
   /// The [text], [onPressed], [style], and [child] parameters must not be null.
@@ -31,6 +34,7 @@ class SundayTextButton extends StatelessWidget {
     this.textStyle,
     required this.style,
     required this.child,
+    this.padding,
   });
 
   @override
@@ -42,6 +46,7 @@ class SundayTextButton extends StatelessWidget {
           color: color,
           textStyle: textStyle,
           child: child,
+          padding: padding,
         );
       case Style.cupertino:
       case Style.custom:
@@ -51,6 +56,7 @@ class SundayTextButton extends StatelessWidget {
           color: color,
           textStyle: textStyle,
           child: child,
+          padding: padding,
         );
       default:
         throw UnimplementedError('Unsupported style: $style');
