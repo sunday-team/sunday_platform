@@ -63,3 +63,9 @@
 * fixed components
 
 * added some components
+
+## 0.1.7
+
+* fixed components
+
+* added some new components
