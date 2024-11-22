@@ -33,7 +33,8 @@ class _ToogleSidebarButtonState extends State<ToogleSidebarButton> {
 
   @override
   void initState() {
-    disposeListen = box.listenKey("sidebar-layout-process-${widget.keyCollapsed}", (value) {
+    disposeListen =
+        box.listenKey("sidebar-layout-process-${widget.keyCollapsed}", (value) {
       sundayPrint("value: $value");
       if (value["action"] == "collapse") {
         if (value["whichIsTapped"] == "sidebar-layout-toogle-button") {

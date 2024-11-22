@@ -39,11 +39,14 @@ class SundayMaterialBottomBar extends StatelessWidget {
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: onTap,
         selectedIndex: currentIndex,
-        destinations: items.map((item) => NavigationDestination(
-          selectedIcon: item.icon,
-          icon: item.icon,
-          label: item.label ?? "", // Remove label if height is too small
-        )).toList(),
+        destinations: items
+            .map((item) => NavigationDestination(
+                  selectedIcon: item.icon,
+                  icon: item.icon,
+                  label:
+                      item.label ?? "", // Remove label if height is too small
+                ))
+            .toList(),
       ),
     );
   }

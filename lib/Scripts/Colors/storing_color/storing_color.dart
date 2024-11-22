@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:sunday_core/GetGtorage/get_storage.dart';
+import 'package:sunday_get_storage/sunday_get_storage.dart';
 
 /// Stores a Color object as an integer value in local storage.
 ///
@@ -20,7 +20,7 @@ import 'package:sunday_core/GetGtorage/get_storage.dart';
 /// The color is stored as an integer (color.value) for efficient storage and retrieval.
 /// To retrieve the stored color, use the corresponding retrieval function.
 void storingColor(Color color, String key) {
-  final box = SundayGetStorage();
+  final box = GetStorage();
   box.write(key, color.value); // Store as integer
 }
 

@@ -69,7 +69,9 @@ class SundayText extends StatelessWidget {
             textAlign: textAlign ?? TextAlign.start,
             overflow: overflow ?? TextOverflow.clip,
             maxLines: maxLines,
-            textScaler: textScaleFactor != null ? TextScaler.linear(textScaleFactor!) : TextScaler.noScaling,
+            textScaler: textScaleFactor != null
+                ? TextScaler.linear(textScaleFactor!)
+                : TextScaler.noScaling,
             softWrap: true,
             textWidthBasis: TextWidthBasis.parent,
             style: textStyle);

@@ -18,7 +18,7 @@ import 'package:flutter/cupertino.dart';
 String getPath(BuildContext context) {
   final element = context as Element;
   String path = '';
-  
+
   /// Visits the ancestor elements of the given [element] and constructs
   /// the widget hierarchy path.
   ///
@@ -28,6 +28,6 @@ String getPath(BuildContext context) {
     path = '${ancestor.widget.runtimeType}/$path';
     return true;
   });
-  
+
   return path;
 }

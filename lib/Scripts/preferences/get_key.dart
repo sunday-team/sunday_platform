@@ -1,4 +1,4 @@
-import 'package:sunday_core/GetGtorage/get_storage.dart';
+import 'package:sunday_get_storage/sunday_get_storage.dart';
 
 /// Retrieves the value associated with the given key from the storage.
 ///
@@ -12,6 +12,6 @@ import 'package:sunday_core/GetGtorage/get_storage.dart';
 ///   Future<T?>: A future that completes with the value associated with the key,
 ///   or null if the key does not exist.
 Future<T?> getKey<T>(String key) async {
-  final box = SundayGetStorage();
+  final box = GetStorage();
   return await box.read<T>(key);
 }

@@ -5,7 +5,6 @@ import 'package:sunday_ui/style.dart';
 
 /// A custom text button that adapts to different styles (Material, Cupertino, etc.)
 class SundayTextButton extends StatelessWidget {
-
   /// The callback that is called when the button is tapped or otherwise activated.
   final VoidCallback onPressed;
 
@@ -63,4 +62,3 @@ class SundayTextButton extends StatelessWidget {
     }
   }
 }
-

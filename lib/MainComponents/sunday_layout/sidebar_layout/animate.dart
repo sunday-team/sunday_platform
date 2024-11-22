@@ -1,13 +1,13 @@
 import 'package:flutter/widgets.dart';
 
 /// A widget that provides an animated transition for a group of sidebar items.
-/// 
+///
 /// The [SidebarItemGroupAnimate] widget animates its child widget based on the
 /// [collapsed] state, transitioning between expanded and collapsed states over
 /// a specified [animationDuration].
 class SidebarItemGroupAnimate extends StatefulWidget {
   /// Creates a [SidebarItemGroupAnimate] widget.
-  /// 
+  ///
   /// The [child] parameter must not be null. The [collapsed] parameter
   /// determines the initial state of the animation, and defaults to false.
   /// The [animationDuration] parameter specifies the duration of the animation

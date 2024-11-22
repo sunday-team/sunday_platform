@@ -79,13 +79,17 @@ class _SundayLayoutState extends State<SundayLayout> {
                       child: SideBarLayout(
                         keyCollapsed: widget.desktopLayoutStyle.keyCollapsed,
                         itemTextColor: widget.desktopLayoutStyle.itemTextColor,
-                        darkItemTextColor: widget.desktopLayoutStyle.darkItemTextColor,
+                        darkItemTextColor:
+                            widget.desktopLayoutStyle.darkItemTextColor,
                         titleColor: widget.desktopLayoutStyle.titleColor,
-                        backgroundColor: widget.desktopLayoutStyle.backgroundColor,
+                        backgroundColor:
+                            widget.desktopLayoutStyle.backgroundColor,
                         title: widget.desktopLayoutStyle.title,
                         children: widget.desktopLayoutStyle.children,
-                        itemBackgroundColor: widget.desktopLayoutStyle.itemBackgroundColor,
-                        darkItemBackgroundColor: widget.desktopLayoutStyle.darkItemBackgroundColor,
+                        itemBackgroundColor:
+                            widget.desktopLayoutStyle.itemBackgroundColor,
+                        darkItemBackgroundColor:
+                            widget.desktopLayoutStyle.darkItemBackgroundColor,
                       ),
                     ),
 

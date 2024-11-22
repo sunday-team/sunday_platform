@@ -79,3 +79,11 @@
 ## 0.1.9
 
 * fixed pub.dev problems
+
+## 0.2.0
+
+* formatted code
+
+* added more documentation
+
+* fixed some problems

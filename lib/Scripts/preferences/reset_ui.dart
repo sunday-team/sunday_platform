@@ -1,4 +1,4 @@
-import 'package:sunday_core/GetGtorage/get_storage.dart';
+import 'package:sunday_get_storage/sunday_get_storage.dart';
 import 'package:uuid/uuid.dart';
 
 /// Resets the UI by generating a new unique identifier and storing it in the storage.
@@ -15,6 +15,6 @@ import 'package:uuid/uuid.dart';
 /// Returns:
 ///   void: This function does not return a value.
 void resetUI() {
-  final box = SundayGetStorage();
+  final box = GetStorage();
   box.write('resetUI', const Uuid());
 }

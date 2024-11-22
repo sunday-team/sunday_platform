@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 /// A custom text button widget that uses Material design.
 class MaterialTextButton extends StatelessWidget {
-
   /// The callback that is called when the button is tapped or otherwise activated.
   final VoidCallback? onPressed;
 
@@ -71,11 +70,14 @@ class MaterialTextButton extends StatelessWidget {
       style: TextButton.styleFrom(
         foregroundColor: color ?? Theme.of(context).primaryColor,
         backgroundColor: Colors.transparent,
-        disabledForegroundColor: disabledColor ?? Theme.of(context).disabledColor,
+        disabledForegroundColor:
+            disabledColor ?? Theme.of(context).disabledColor,
         padding: padding ?? const EdgeInsets.symmetric(horizontal: 16.0),
         alignment: alignment,
         minimumSize: minSize != null ? Size(minSize!, minSize!) : null,
-        shape: borderRadius != null ? RoundedRectangleBorder(borderRadius: borderRadius!) : null,
+        shape: borderRadius != null
+            ? RoundedRectangleBorder(borderRadius: borderRadius!)
+            : null,
       ),
       focusNode: focusNode,
       autofocus: autofocus,

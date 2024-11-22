@@ -89,16 +89,18 @@ class _SidebarItemState extends State<SidebarItem> {
             // Add spacing between the icon and text.
             const SizedBox(width: 10),
             // Display the text with specific styling.
-            Text(widget.text,
-                style: TextStyle(
-                    fontFamily: "SF Pro",
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal,
-                    color: MediaQuery.of(context).platformBrightness == Brightness.dark
+            Text(
+              widget.text,
+              style: TextStyle(
+                fontFamily: "SF Pro",
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                color:
+                    MediaQuery.of(context).platformBrightness == Brightness.dark
                         ? widget.darkItemTextColor
                         : widget.itemTextColor,
-                  ),
-                ),
+              ),
+            ),
           ],
         ),
       ),

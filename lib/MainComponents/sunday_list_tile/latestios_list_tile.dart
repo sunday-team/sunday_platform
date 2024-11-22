@@ -49,15 +49,16 @@ class SundayLatestIOSListTile extends StatelessWidget {
   /// The height of the leading widget.
   final double? height;
 
-
   @override
   Widget build(BuildContext context) {
     return CupertinoListTile.notched(
-      leading: leading != null ? SizedBox(
-        width: width,
-        height: height,
-        child: leading,
-      ) : null,
+      leading: leading != null
+          ? SizedBox(
+              width: width,
+              height: height,
+              child: leading,
+            )
+          : null,
       title: title ?? const SundayText("", style: Style.latestIOS),
       subtitle: subtitle,
       trailing: trailing,

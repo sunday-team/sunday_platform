@@ -89,11 +89,13 @@ class _SideBarItemGroupState extends State<SideBarItemGroup> {
                   Text(
                     widget.title,
                     style: TextStyle(
-                      color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                      color: MediaQuery.of(context).platformBrightness ==
+                              Brightness.dark
                           ? widget.darkItemTextColor
                           : widget.itemTextColor,
                     ),
                   ),
+
                   /// Display an icon that rotates based on the collapsed state.
                   AnimatedRotation(
                     turns: isCollapsed ? 0.75 : 1,
@@ -104,8 +106,10 @@ class _SideBarItemGroupState extends State<SideBarItemGroup> {
               ),
             ),
           ),
+
         /// Add spacing between the header and the items.
         const SizedBox(height: 10),
+
         /// If the group can be shown or hidden, display the items with animation.
         if (widget.showAndHide)
           SidebarItemGroupAnimate(
@@ -129,6 +133,7 @@ class _SideBarItemGroupState extends State<SideBarItemGroup> {
               ],
             ),
           ),
+
         /// If the group cannot be shown or hidden, display the items directly.
         if (!widget.showAndHide)
           Column(

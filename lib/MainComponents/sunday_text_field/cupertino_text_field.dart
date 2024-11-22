@@ -297,9 +297,10 @@ class SundayCupertinoTextField extends StatelessWidget {
       placeholder: placeholder,
       decoration: decoration ?? _defaultDecoration(context),
       style: textFieldstyle,
-      placeholderStyle: placeholderStyle ?? CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-            color: CupertinoColors.placeholderText,
-          ),
+      placeholderStyle: placeholderStyle ??
+          CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                color: CupertinoColors.placeholderText,
+              ),
       autocorrect: autocorrect ?? true,
       autofillHints: autofillHints,
       autofocus: autofocus ?? false,

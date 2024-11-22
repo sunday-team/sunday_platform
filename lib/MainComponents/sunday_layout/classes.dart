@@ -67,12 +67,12 @@ class SidebarItemGroup {
 }
 
 /// Enum representing the position of the sidebar.
-enum SideBarPosition { 
+enum SideBarPosition {
   /// Sidebar positioned on the left.
-  left, 
-  
+  left,
+
   /// Sidebar positioned on the right.
-  right 
+  right
 }
 
 /// Split View Layout with bottom bar at the bottom.

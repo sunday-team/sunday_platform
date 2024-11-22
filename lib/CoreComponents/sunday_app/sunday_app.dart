@@ -122,10 +122,10 @@ class SundayApp extends StatefulWidget {
 }
 
 class _SundayAppState extends State<SundayApp> {
-
   @override
   Widget build(BuildContext context) {
-    final Iterable<LocalizationsDelegate<dynamic>> effectiveLocalizationsDelegates = [
+    final Iterable<LocalizationsDelegate<dynamic>>
+        effectiveLocalizationsDelegates = [
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
       GlobalCupertinoLocalizations.delegate,

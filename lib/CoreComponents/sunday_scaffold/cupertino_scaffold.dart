@@ -65,13 +65,15 @@ class SundayCupertinoScaffold extends StatelessWidget {
         middle: sundayAppBar.middle,
         leading: sundayAppBar.leading,
         trailing: sundayAppBar.actions != null
-            ? Row(mainAxisSize: MainAxisSize.min, children: sundayAppBar.actions!)
+            ? Row(
+                mainAxisSize: MainAxisSize.min, children: sundayAppBar.actions!)
             : null,
         backgroundColor: sundayAppBar.backgroundColor,
         // Add other properties as needed
       );
     }
 
-    throw ArgumentError('navigationBar must be either ObstructingPreferredSizeWidget or SundayAppBar');
+    throw ArgumentError(
+        'navigationBar must be either ObstructingPreferredSizeWidget or SundayAppBar');
   }
 }

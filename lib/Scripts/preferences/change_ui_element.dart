@@ -1,5 +1,5 @@
-import 'package:sunday_core/GetGtorage/get_storage.dart';
 import 'package:sunday_core/Print/print.dart';
+import 'package:sunday_get_storage/sunday_get_storage.dart';
 
 /// Changes the global settings stored in SundayGetStorage.
 ///
@@ -20,7 +20,7 @@ import 'package:sunday_core/Print/print.dart';
 /// Returns:
 ///   Future<void>: A future that completes when the operation is done.
 Future<void> changeGlobals(String key, dynamic value) async {
-  final box = SundayGetStorage();
+  final box = GetStorage();
   var globals = await box.read('sunday_ui:globals');
 
   // Split the key into parts

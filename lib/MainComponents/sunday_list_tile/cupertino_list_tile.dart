@@ -51,11 +51,13 @@ class SundayCupertinoListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoListTile.notched(
-      leading: leading != null ? SizedBox(
-        width: 50,
-        height: 50,
-        child: leading,
-      ) : null,
+      leading: leading != null
+          ? SizedBox(
+              width: 50,
+              height: 50,
+              child: leading,
+            )
+          : null,
       title: title ?? SundayText("", style: style),
       subtitle: subtitle,
       trailing: trailing,

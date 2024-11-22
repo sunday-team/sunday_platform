@@ -88,11 +88,13 @@ class SundayMaterialApp extends StatelessWidget {
         primaryColor: theme?.primaryColor,
         // Add other theme properties as needed
       ),
-      darkTheme: supportDarkMode ? ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: theme?.primaryColor,
-        // Add other theme properties as needed
-      ) : null,
+      darkTheme: supportDarkMode
+          ? ThemeData(
+              brightness: Brightness.dark,
+              primaryColor: theme?.primaryColor,
+              // Add other theme properties as needed
+            )
+          : null,
       themeMode: supportDarkMode ? ThemeMode.system : ThemeMode.light,
       home: home,
       title: title,

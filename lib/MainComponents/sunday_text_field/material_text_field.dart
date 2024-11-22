@@ -7,12 +7,12 @@ import 'package:sunday_ui/style.dart';
 
 /// A customizable Material-style text field for the Sunday UI framework.
 ///
-/// This widget provides a text input field with Material design styling. 
-/// It allows for customization of various properties such as label text, 
+/// This widget provides a text input field with Material design styling.
+/// It allows for customization of various properties such as label text,
 /// hint text, and input decoration.
 ///
 /// ## Parameters
-/// 
+///
 /// - `labelText`: The text to display as the label for the text field.
 /// - `hintText`: The text to display as a hint when the text field is empty.
 /// - `controller`: A controller for managing the text being edited.
@@ -79,10 +79,10 @@ import 'package:sunday_ui/style.dart';
 /// - `undoController`: Controls the undo state.
 ///
 /// ## Usage
-/// 
-/// To use the `SundayMaterialTextField`, you can create an instance of it 
+///
+/// To use the `SundayMaterialTextField`, you can create an instance of it
 /// in your widget tree. For example:
-/// 
+///
 /// ```dart
 /// SundayMaterialTextField(
 ///   labelText: 'Enter your name',
@@ -98,16 +98,16 @@ import 'package:sunday_ui/style.dart';
 /// ```
 ///
 /// ## Example
-/// 
-/// Here is a complete example of how to use the `SundayMaterialTextField` 
+///
+/// Here is a complete example of how to use the `SundayMaterialTextField`
 /// within a Flutter application:
-/// 
+///
 /// ```dart
 /// class MyApp extends StatelessWidget {
 ///   @override
 ///   Widget build(BuildContext context) {
 ///     final TextEditingController myController = TextEditingController();
-///     
+///
 ///     return MaterialApp(
 ///       home: Scaffold(
 ///         appBar: AppBar(title: Text('Material Text Field Example')),
@@ -466,9 +466,10 @@ class SundayMaterialTextField extends StatelessWidget {
       smartQuotesType: smartQuotesType,
       spellCheckConfiguration: spellCheckConfiguration,
       strutStyle: strutStyle,
-      style: textStyle ?? TextStyle(
-        color: Theme.of(context).colorScheme.onSurface,
-      ),
+      style: textStyle ??
+          TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
       textAlignVertical: textAlignVertical,
       undoController: undoController,
       onSubmitted: onSubmitted,
