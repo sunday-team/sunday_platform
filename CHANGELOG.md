@@ -75,3 +75,7 @@
 * fixed sidebar button
 
 * added new button to collapse sidebar
+
+## 0.1.9
+
+* fixed pub.dev problems
