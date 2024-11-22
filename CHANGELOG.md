@@ -69,3 +69,9 @@
 * fixed components
 
 * added some new components
+
+## 0.1.8
+
+* fixed sidebar button
+
+* added new button to collapse sidebar

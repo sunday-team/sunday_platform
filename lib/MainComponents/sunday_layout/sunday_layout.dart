@@ -77,6 +77,7 @@ class _SundayLayoutState extends State<SundayLayout> {
                     SundayScaffold(
                       style: widget.style,
                       child: SideBarLayout(
+                        keyCollapsed: widget.desktopLayoutStyle.keyCollapsed,
                         itemTextColor: widget.desktopLayoutStyle.itemTextColor,
                         darkItemTextColor: widget.desktopLayoutStyle.darkItemTextColor,
                         titleColor: widget.desktopLayoutStyle.titleColor,

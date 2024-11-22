@@ -45,8 +45,8 @@ class SundayTextButton extends StatelessWidget {
           onPressed: onPressed,
           color: color,
           textStyle: textStyle,
-          child: child,
           padding: padding,
+          child: child,
         );
       case Style.cupertino:
       case Style.custom:
@@ -55,8 +55,8 @@ class SundayTextButton extends StatelessWidget {
           onPressed: onPressed,
           color: color,
           textStyle: textStyle,
-          child: child,
           padding: padding,
+          child: child,
         );
       default:
         throw UnimplementedError('Unsupported style: $style');

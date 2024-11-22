@@ -1,12 +1,12 @@
 // Importing the color theme provider package for theme management.
-import 'package:color_theme_provider/color_theme_provider.dart';
 // Importing Cupertino widgets for iOS-style design.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sunday_core/Print/print.dart';
+import 'package:sunday_get_storage/sunday_get_storage.dart';
 // Importing the sidebar item group widget.
 import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/group.dart';
 // Importing theme data for styling.
-import 'package:sunday_ui/theme_data.dart';
 
 /// A stateful widget representing the sidebar layout.
 class SideBarLayout extends StatefulWidget {
@@ -22,6 +22,7 @@ class SideBarLayout extends StatefulWidget {
     this.darkItemTextColor = Colors.white,
     this.itemBackgroundColor = const Color(0xffDFDEE5),
     this.darkItemBackgroundColor = const Color(0xff39383D),
+    required this.keyCollapsed,
   });
 
   /// The title of the sidebar layout.
@@ -51,23 +52,39 @@ class SideBarLayout extends StatefulWidget {
   /// The color of the background of the item.
   final Color itemBackgroundColor;
 
+  /// The key of the collapsed state.
+  final String keyCollapsed;
+
   /// Creates the mutable state for this widget.
   @override
   State<SideBarLayout> createState() => _SideBarLayoutState();
 }
 
 /// The state class for SideBarLayout.
-class _SideBarLayoutState extends State<SideBarLayout> {
+class _SideBarLayoutState extends State<SideBarLayout>
+    with SingleTickerProviderStateMixin {
   /// An integer variable to track a tapped item, initialized to 1.
   var tappedOne = 1;
 
   /// A boolean variable to track the collapsed state of the sidebar.
   bool isCollapsed = false;
 
+  /// Animation controller for the sidebar position
+  late AnimationController _controller;
+  late Animation<double> _slideAnimation;
+
+  /// A Database for storing data about sidebar
+  final box = GetStorage();
+
   /// Toggles the collapsed state of the sidebar.
   void toggleCollapsed() {
     setState(() {
       isCollapsed = !isCollapsed;
+      if (isCollapsed) {
+        _controller.forward();
+      } else {
+        _controller.reverse();
+      }
     });
   }
 
@@ -75,6 +92,31 @@ class _SideBarLayoutState extends State<SideBarLayout> {
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+    _slideAnimation = Tween<double>(
+      begin: 1,
+      end: 0,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+    box.listenKey("sidebar-layout-process-${widget.keyCollapsed}", (value) {
+      sundayPrint("value: $value");
+      if (value["action"] == "collapse") {
+        if (value["whichIsTapped"] == "toogle-button") {
+          toggleCollapsed();
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   /// Builds the widget tree for the sidebar layout.
@@ -83,91 +125,80 @@ class _SideBarLayoutState extends State<SideBarLayout> {
     /// Determine the current brightness to select appropriate colors.
     final isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
-    final iPadBackgroundColor =
-        isDarkMode ? const Color(0xff1B1B1B) : const Color(0xffF1F1F5);
-    final textColor = isDarkMode ? widget.darkItemTextColor : widget.itemTextColor;
+    // final iPadBackgroundColor =
+    //     isDarkMode ? const Color(0xff1B1B1B) : const Color(0xffF1F1F5);
+    final textColor =
+        isDarkMode ? widget.darkItemTextColor : widget.itemTextColor;
     final dividerColor = isDarkMode
         ? const Color(0xff121212)
         : const Color.fromARGB(255, 181, 181, 181);
 
-    /// Returns a row containing the sidebar and a divider.
-    return Row(
-      mainAxisSize: MainAxisSize.min, // Set mainAxisSize to min
-      children: [
-        /// Uses Flexible instead of Expanded to allow for loose fitting.
-        Flexible(
-          fit: FlexFit.loose, // Use FlexFit.loose for flexible children
-          child: SizedBox(
-            width: 350, // Provide a fixed width to avoid unbounded width
+    /// Returns a sliding sidebar.
+    return SizeTransition(
+      sizeFactor: _slideAnimation,
+      axis: Axis.horizontal,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 350,
             child: CupertinoPageScaffold(
-              /// Sets the background color of the page.
               backgroundColor: widget.backgroundColor,
-
-              /// Uses a custom scroll view to display the sidebar content.
               child: CustomScrollView(
                 slivers: <Widget>[
-                  /// A navigation bar for the sidebar.
                   CupertinoSliverNavigationBar(
-                    /// Disables transition animations between routes.
-                    transitionBetweenRoutes: false,
-
-                    /// Removes the border of the navigation bar.
-                    border: null,
-
-                    /// Sets the background color of the navigation bar.
-                    backgroundColor: widget.backgroundColor,
-
-                    /// A leading icon for the navigation bar.
                     leading: GestureDetector(
-                      onTap: () {},
-                      child: const Icon(CupertinoIcons.sidebar_left, weight: 1),
+                      onTap: () {
+                        var state = {
+                          "isCollapsed": isCollapsed,
+                          "whichIsTapped": "sidebar-layout-toogle-button",
+                          "action": "collapse",
+                        };
+                        box.write(
+                            "sidebar-layout-process-${widget.keyCollapsed}",
+                            state);
+                        toggleCollapsed();
+                      },
+                      child: const Icon(CupertinoIcons.sidebar_left),
                     ),
-
-                    /// Displays the large title of the sidebar.
+                    transitionBetweenRoutes: false,
+                    border: null,
+                    backgroundColor: widget.backgroundColor,
                     largeTitle: Text(
                       widget.title,
                       style: TextStyle(color: textColor),
                     ),
                   ),
-
-                  /// Adapts a box to the sliver layout.
                   SliverToBoxAdapter(
-                    /// Displays a column of sidebar item groups.
                     child: Column(
-                        children: widget.children.asMap().entries.map((entry) {
-                      /// Retrieves each sidebar item group.
-                      final item = entry.value;
-
-                      /// Returns a SideBarItemGroup widget.
-                      return SideBarItemGroup(
-                        darkItemTextColor: widget.darkItemTextColor,
-                        itemTextColor: widget.itemTextColor,
-                        itemBackgroundColor: widget.itemBackgroundColor,
-                        darkItemBackgroundColor: widget.darkItemBackgroundColor,
-                        title: item.title,
-                        isCollapsed: item.isCollapsed,
-                        showAndHide: item.showAndHide,
-                        children: item.children,
-                      );
-                    }).toList()),
+                      children: widget.children.asMap().entries.map((entry) {
+                        final item = entry.value;
+                        return SideBarItemGroup(
+                          darkItemTextColor: widget.darkItemTextColor,
+                          itemTextColor: widget.itemTextColor,
+                          itemBackgroundColor: widget.itemBackgroundColor,
+                          darkItemBackgroundColor:
+                              widget.darkItemBackgroundColor,
+                          title: item.title,
+                          isCollapsed: isCollapsed,
+                          showAndHide: item.showAndHide,
+                          children: item.children,
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-        ),
-
-        /// A container acting as a divider between the sidebar and other content.
-        Container(
-          /// Sets the width of the divider.
-          width: 1,
-
-          /// Sets the color of the divider.
-          decoration: BoxDecoration(
-            color: dividerColor,
+          Container(
+            width: 1,
+            decoration: BoxDecoration(
+              color: dividerColor,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

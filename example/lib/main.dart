@@ -1,6 +1,5 @@
 import 'package:color_theme_provider/color_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/group.dart';
 import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/item.dart';
 import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/view.dart';
