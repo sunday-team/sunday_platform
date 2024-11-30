@@ -97,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
         keyCollapsed: "desktop-sidebar-layout",
         children: [
           SideBarItemGroup(
+            isCollapsed: false,
             showAndHide: false,
             title: "Photo Library",
             children: [
@@ -133,6 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           SideBarItemGroup(
+            isCollapsed: false,
             showAndHide: true,
             title: "Albums",
             children: [
