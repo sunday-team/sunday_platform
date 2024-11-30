@@ -87,3 +87,13 @@
 * added more documentation
 
 * fixed some problems
+
+## 0.2.1
+
+* added more components
+
+* added more documentation
+
+* fixed some problems
+
+* and more...

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sunday_ui/MainComponents/sunday_layout/classes.dart';
-import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/view.dart';
 import 'package:sunday_ui/sunday_ui.dart';
 
 /// A widget that represents the main layout for the Sunday UI, adapting
@@ -40,33 +39,10 @@ class _SundayLayoutState extends State<SundayLayout> {
     var isMobile = MediaQuery.of(context).size.width > 768;
 
     switch (widget.desktopLayoutStyle.runtimeType) {
-      case const (SplitViewBottomBarBottom):
+      case const (SundayBottomBar):
         return SundayScaffold(
           style: widget.style,
-          child: isMobile
-              ? Row(
-                  children: [
-                    SizedBox(
-                      width: 350,
-                      child: SundayBottomBar(
-                        items: widget.desktopLayoutStyle.items
-                            .map<SundayNavigationBarItem>(
-                                (destination) => SundayNavigationBarItem(
-                                      style: widget.style,
-                                      icon: destination.icon,
-                                      label: destination.label,
-                                    ))
-                            .toList(),
-                        currentIndex: widget.desktopLayoutStyle.bottomBarIndex,
-                        onTap: widget.desktopLayoutStyle.onBottomBarTap,
-                        style: widget.style,
-                        tabBuilder: widget.desktopLayoutStyle.tabBuilder,
-                      ),
-                    ),
-                    Expanded(child: widget.desktopLayoutStyle.rightView),
-                  ],
-                )
-              : widget.mobileLayoutStyle,
+          child: widget.mobileLayoutStyle,
         );
       case const (SideBarLayout):
         return SundayScaffold(
@@ -92,14 +68,12 @@ class _SundayLayoutState extends State<SundayLayout> {
                             widget.desktopLayoutStyle.darkItemBackgroundColor,
                       ),
                     ),
-
-                    /// The right view of the sidebar layout.
                     Expanded(child: widget.mainView),
                   ],
                 )
               : widget.mobileLayoutStyle,
         );
-      case SplitViewSideBarRight:
+      case const (SplitViewSideBarRight):
         return SundayScaffold(
           style: widget.style,
           child: Row(

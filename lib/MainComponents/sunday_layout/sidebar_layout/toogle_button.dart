@@ -1,50 +1,57 @@
 import 'package:flutter/cupertino.dart';
-
-/// A package that provides basic widgets for Flutter apps.
-import 'package:flutter/widgets.dart';
 import 'package:sunday_core/Print/print.dart';
-
-/// A package that provides persistent storage functionality.
-/// See: https://pub.dev/packages/sunday_get_storage
 import 'package:sunday_get_storage/sunday_get_storage.dart';
 
 /// A widget that provides a toggle button for the sidebar.
-class ToogleSidebarButton extends StatefulWidget {
+class ToggleSidebarButton extends StatefulWidget {
   /// Creates a toggle button for the sidebar.
-  const ToogleSidebarButton({super.key, required this.keyCollapsed});
+  const ToggleSidebarButton({super.key, required this.keyCollapsed});
 
   /// The key of the collapsed state.
   final String keyCollapsed;
 
   @override
-  State<ToogleSidebarButton> createState() => _ToogleSidebarButtonState();
+  State<ToggleSidebarButton> createState() => _ToggleSidebarButtonState();
 }
 
-/// The state for the [ToogleSidebarButton] widget.
-class _ToogleSidebarButtonState extends State<ToogleSidebarButton> {
+/// The state for the [ToggleSidebarButton] widget.
+class _ToggleSidebarButtonState extends State<ToggleSidebarButton> {
   /// Whether the sidebar is collapsed.
   bool isVisible = false;
 
   /// Storage box for persisting the collapsed state.
-  final box = GetStorage();
+  GetStorage? _box;
 
   /// Subscription for the storage listener
   Function? disposeListen;
 
   @override
   void initState() {
-    disposeListen =
-        box.listenKey("sidebar-layout-process-${widget.keyCollapsed}", (value) {
-      sundayPrint("value: $value");
-      if (value["action"] == "collapse") {
-        if (value["whichIsTapped"] == "sidebar-layout-toogle-button") {
-          setState(() {
-            isVisible = true;
-          });
-        }
-      }
-    });
     super.initState();
+    _initStorage();
+  }
+
+  Future<void> _initStorage() async {
+    try {
+      await GetStorage.init();
+      _box = GetStorage();
+
+      disposeListen = _box
+          ?.listenKey("sidebar-layout-process-${widget.keyCollapsed}", (value) {
+        if (!mounted) return;
+        sundayPrint("value: $value");
+        if (value != null && value is Map) {
+          if (value["action"] == "collapse" &&
+              value["whichIsTapped"] == "sidebar-layout-toogle-button") {
+            setState(() {
+              isVisible = true;
+            });
+          }
+        }
+      });
+    } catch (e) {
+      sundayPrint("Error initializing storage: $e");
+    }
   }
 
   @override
@@ -56,16 +63,24 @@ class _ToogleSidebarButtonState extends State<ToogleSidebarButton> {
   }
 
   /// Toggles the collapsed state of the sidebar.
-  void toogleButton() {
-    var state = {
-      "isCollapsed": !isVisible,
-      "whichIsTapped": "toogle-button",
-      "action": "collapse",
-    };
-    box.write("sidebar-layout-process-${widget.keyCollapsed}", state);
-    setState(() {
-      isVisible = !isVisible;
-    });
+  Future<void> toogleButton() async {
+    try {
+      final state = {
+        "isCollapsed": !isVisible,
+        "whichIsTapped": "toogle-button",
+        "action": "collapse",
+      };
+
+      await _box?.write("sidebar-layout-process-${widget.keyCollapsed}", state);
+
+      if (mounted) {
+        setState(() {
+          isVisible = !isVisible;
+        });
+      }
+    } catch (e) {
+      sundayPrint("Error toggling button: $e");
+    }
   }
 
   @override

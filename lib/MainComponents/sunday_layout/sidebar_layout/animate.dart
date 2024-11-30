@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:sunday_core/Print/print.dart';
 
 /// A widget that provides an animated transition for a group of sidebar items.
 ///
@@ -30,7 +31,7 @@ class SidebarItemGroupAnimate extends StatefulWidget {
 
   /// Creates the mutable state for this widget.
   @override
-  _SidebarItemGroupAnimateState createState() =>
+  State<SidebarItemGroupAnimate> createState() =>
       _SidebarItemGroupAnimateState();
 }
 
@@ -39,6 +40,7 @@ class _SidebarItemGroupAnimateState extends State<SidebarItemGroupAnimate> {
   /// Builds the widget tree for the animation.
   @override
   Widget build(BuildContext context) {
+    sundayPrint(widget.collapsed);
     // Uses a TweenAnimationBuilder to animate the transition between states.
     return TweenAnimationBuilder<double>(
       // Sets the duration of the animation.

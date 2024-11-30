@@ -19,6 +19,8 @@ class SidebarItem extends StatefulWidget {
     this.darkItemTextColor = Colors.white,
     this.itemBackgroundColor = const Color(0xffDFDEE5),
     this.darkItemBackgroundColor = const Color(0xff39383D),
+    this.selectedItemTextColor = Colors.black,
+    this.darkSelectedItemTextColor = Colors.white
   });
 
   /// Callback function to be executed when the item is tapped.
@@ -47,6 +49,12 @@ class SidebarItem extends StatefulWidget {
 
   /// The color of the background of the item in dark mode.
   final Color darkItemBackgroundColor;
+
+  /// The color of the text of the selected item.
+  final Color selectedItemTextColor;
+
+  /// The color of the text of the selected item in dark mode.
+  final Color darkSelectedItemTextColor;
 
   @override
   State<SidebarItem> createState() => _SidebarItemState();
@@ -95,10 +103,13 @@ class _SidebarItemState extends State<SidebarItem> {
                 fontFamily: "SF Pro",
                 fontSize: 16,
                 fontWeight: FontWeight.normal,
-                color:
-                    MediaQuery.of(context).platformBrightness == Brightness.dark
+                color: widget.selectedIndex == widget.keyIndex
+                    ? (MediaQuery.of(context).platformBrightness == Brightness.dark
+                        ? widget.darkSelectedItemTextColor
+                        : widget.selectedItemTextColor)
+                    : (MediaQuery.of(context).platformBrightness == Brightness.dark
                         ? widget.darkItemTextColor
-                        : widget.itemTextColor,
+                        : widget.itemTextColor),
               ),
             ),
           ],

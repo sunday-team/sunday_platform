@@ -60,7 +60,7 @@ class SidebarItemGroup {
   /// Creates a sidebar item group.
   const SidebarItemGroup({
     required this.children,
-    this.isCollapsed = false,
+    required this.isCollapsed,
     required this.showAndHide,
     required this.title,
   });

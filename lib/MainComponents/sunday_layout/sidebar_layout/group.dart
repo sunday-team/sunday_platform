@@ -1,6 +1,7 @@
 // Importing necessary packages for theme, Cupertino widgets, and custom components.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sunday_core/Print/print.dart';
 import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/animate.dart';
 import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/item.dart';
 
@@ -31,6 +32,12 @@ class SideBarItemGroup extends StatefulWidget {
   /// The color of the background of the item in dark mode.
   final Color darkItemBackgroundColor;
 
+  /// The color of the text of the selected item.
+  final Color selectedItemTextColor;
+
+  /// The color of the text of the selected item in dark mode.
+  final Color darkSelectedItemTextColor;
+
   /// Creates a [SideBarItemGroup].
   ///
   /// The [children] and [title] parameters must not be null.
@@ -38,13 +45,15 @@ class SideBarItemGroup extends StatefulWidget {
   const SideBarItemGroup({
     super.key,
     required this.children,
-    this.isCollapsed = false,
-    this.showAndHide = false,
+    required this.isCollapsed,
+    required this.showAndHide,
     required this.title,
     this.itemTextColor = Colors.black,
     this.darkItemTextColor = Colors.white,
     this.itemBackgroundColor = const Color(0xffDFDEE5),
     this.darkItemBackgroundColor = const Color(0xff39383D),
+    this.selectedItemTextColor = Colors.black,
+    this.darkSelectedItemTextColor = Colors.white,
   });
 
   @override
@@ -53,20 +62,22 @@ class SideBarItemGroup extends StatefulWidget {
 
 /// State class for [SideBarItemGroup].
 class _SideBarItemGroupState extends State<SideBarItemGroup> {
-  /// A boolean indicating the current collapsed state of the group.
-  bool isCollapsed = false;
-
-  /// Toggles the collapsed state of the group.
-  void toggleCollapsed() {
-    setState(() {
-      isCollapsed = !isCollapsed;
-    });
-  }
+  late bool isCollapsed;
 
   @override
   void initState() {
     super.initState();
     isCollapsed = widget.isCollapsed;
+  }
+
+  @override
+  void didUpdateWidget(SideBarItemGroup oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isCollapsed != widget.isCollapsed) {
+      setState(() {
+        isCollapsed = widget.isCollapsed;
+      });
+    }
   }
 
   @override
@@ -156,5 +167,12 @@ class _SideBarItemGroupState extends State<SideBarItemGroup> {
           ),
       ],
     );
+  }
+
+  void toggleCollapsed() {
+    setState(() {
+      isCollapsed = !isCollapsed;
+      sundayPrint("Toggled isCollapsed to: $isCollapsed");
+    });
   }
 }

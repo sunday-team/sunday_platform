@@ -13,5 +13,5 @@ import 'package:sunday_get_storage/sunday_get_storage.dart';
 ///   or null if the key does not exist.
 Future<T?> getKey<T>(String key) async {
   final box = GetStorage();
-  return await box.read<T>(key);
+  return box.read<T>(key);
 }

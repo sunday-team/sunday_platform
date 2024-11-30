@@ -1,9 +1,5 @@
 import 'package:color_theme_provider/color_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/group.dart';
-import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/item.dart';
-import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/view.dart';
-import 'package:sunday_ui/MainComponents/sunday_layout/sunday_layout.dart';
 import 'package:sunday_ui/sunday_ui.dart';
 import 'package:sunday_ui_library/theme_data.dart';
 
@@ -98,6 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       desktopLayoutStyle: SideBarLayout(
         title: "Title",
+        keyCollapsed: "desktop-sidebar-layout",
         children: [
           SideBarItemGroup(
             showAndHide: false,
