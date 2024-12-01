@@ -20,6 +20,7 @@ class SundayLatestIOSListTile extends StatelessWidget {
     this.contentPadding,
     this.width,
     this.height,
+    this.leadingSize,
   });
 
   /// A widget to display before the title.
@@ -49,9 +50,13 @@ class SundayLatestIOSListTile extends StatelessWidget {
   /// The height of the leading widget.
   final double? height;
 
+  /// The size of the leading widget.
+  final double? leadingSize;
+
   @override
   Widget build(BuildContext context) {
     return CupertinoListTile.notched(
+      leadingSize: leadingSize ?? 30,
       leading: leading != null
           ? SizedBox(
               width: width,

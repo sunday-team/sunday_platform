@@ -23,6 +23,7 @@ class SundayListTile extends StatelessWidget {
     this.additionalInfo,
     this.width,
     this.height,
+    this.leadingSize,
   });
 
   /// The style of the list tile (Material or Cupertino).
@@ -58,6 +59,9 @@ class SundayListTile extends StatelessWidget {
   /// The height of the leading widget.
   final double? height;
 
+  /// The size of the leading widget.
+  final double? leadingSize;
+
   @override
   Widget build(BuildContext context) {
     switch (style) {
@@ -86,6 +90,7 @@ class SundayListTile extends StatelessWidget {
       case Style.custom:
       case Style.latestIOS:
         return SundayLatestIOSListTile(
+          leadingSize: leadingSize,
           leading: leading,
           title: title,
           subtitle: subtitle,

@@ -97,3 +97,11 @@
 * fixed some problems
 
 * and more...
+
+## 0.2.2
+
+* added more components
+
+* fixed some problems
+
+* and more...
