@@ -20,7 +20,7 @@ class SundayCupertinoScaffold extends StatelessWidget {
 
   /// The navigation bar to display at the top of the scaffold.
   ///
-  /// This can be either an [ObstructingPreferredSizeWidget] or a [SundayAppBar].
+  /// This can be either an [ObstructingPreferredSizeWidget], [CupertinoSliverNavigationBar], or a [SundayAppBar].
   final dynamic navigationBar;
 
   /// The primary content of the scaffold.
@@ -42,6 +42,28 @@ class SundayCupertinoScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (navigationBar is CupertinoSliverNavigationBar) {
+      return CupertinoPageScaffold(
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+        backgroundColor: backgroundColor,
+        child: CustomScrollView(
+          slivers: <Widget>[
+            CupertinoSliverNavigationBar(
+              leading: navigationBar.leading,
+              largeTitle: navigationBar.largeTitle,
+              trailing: navigationBar.trailing,
+              backgroundColor: navigationBar.backgroundColor,
+              brightness: navigationBar.brightness,
+              transitionBetweenRoutes: navigationBar.transitionBetweenRoutes,
+            ),
+            SliverFillRemaining(
+              child: child,
+            ),
+          ],
+        ),
+      );
+    }
+
     return CupertinoPageScaffold(
       navigationBar: _buildCupertinoNavigationBar(),
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
@@ -50,7 +72,7 @@ class SundayCupertinoScaffold extends StatelessWidget {
     );
   }
 
-  ObstructingPreferredSizeWidget? _buildCupertinoNavigationBar() {
+  dynamic _buildCupertinoNavigationBar() {
     if (navigationBar == null) {
       return null;
     }
@@ -59,21 +81,29 @@ class SundayCupertinoScaffold extends StatelessWidget {
       return navigationBar as ObstructingPreferredSizeWidget;
     }
 
+    if (navigationBar is CupertinoNavigationBar) {
+      return navigationBar as CupertinoNavigationBar;
+    }
+
     if (navigationBar is SundayAppBar) {
-      final SundayAppBar sundayAppBar = navigationBar as SundayAppBar;
+      final sundayAppBar = navigationBar as SundayAppBar;
       return CupertinoNavigationBar(
         middle: sundayAppBar.middle,
         leading: sundayAppBar.leading,
         trailing: sundayAppBar.actions != null
             ? Row(
-                mainAxisSize: MainAxisSize.min, children: sundayAppBar.actions!)
+                mainAxisSize: MainAxisSize.min,
+                children: sundayAppBar.actions!,
+              )
             : null,
         backgroundColor: sundayAppBar.backgroundColor,
-        // Add other properties as needed
+        brightness: sundayAppBar.brightness,
+        transitionBetweenRoutes: sundayAppBar.transitionBetweenRoutes,
       );
     }
 
     throw ArgumentError(
-        'navigationBar must be either ObstructingPreferredSizeWidget or SundayAppBar');
+      'navigationBar must be either ObstructingPreferredSizeWidget, CupertinoNavigationBar, CupertinoSliverNavigationBar, or SundayAppBar',
+    );
   }
 }

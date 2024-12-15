@@ -122,9 +122,7 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
           brightness: brightness,
           heroTag: heroTag ?? '${context.hashCode}_app_bar',
         );
-      default:
-        throw UnimplementedError('Unsupported style: $style');
-    }
+      }
   }
 
   @override
