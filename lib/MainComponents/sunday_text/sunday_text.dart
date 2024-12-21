@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sunday_ui/MainComponents/sunday_text/cupertino_text.dart';
-import 'package:sunday_ui/MainComponents/sunday_text/material_text.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/MainComponents/sunday_text/cupertino_text.dart';
+import 'package:sunday_platform/MainComponents/sunday_text/material_text.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A widget that displays text with different styles based on the provided [Style].
 ///

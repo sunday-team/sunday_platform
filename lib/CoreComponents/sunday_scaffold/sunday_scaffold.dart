@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:sunday_ui/CoreComponents/sunday_scaffold/cupertino_scaffold.dart';
-import 'package:sunday_ui/CoreComponents/sunday_scaffold/material_scaffold.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/CoreComponents/sunday_scaffold/cupertino_scaffold.dart';
+import 'package:sunday_platform/CoreComponents/sunday_scaffold/material_scaffold.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A scaffold widget that adapts to different UI styles (Material, Cupertino, etc.).
 ///

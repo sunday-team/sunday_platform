@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sunday_ui/MainComponents/sunday_list_view/material_list_view.dart';
-import 'package:sunday_ui/MainComponents/sunday_list_view/cupertino_list_view.dart';
-import 'package:sunday_ui/MainComponents/sunday_text/sunday_text.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/MainComponents/sunday_list_view/material_list_view.dart';
+import 'package:sunday_platform/MainComponents/sunday_list_view/cupertino_list_view.dart';
+import 'package:sunday_platform/MainComponents/sunday_text/sunday_text.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A list view component for the Sunday UI package.
 ///

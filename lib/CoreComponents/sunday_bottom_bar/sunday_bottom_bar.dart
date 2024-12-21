@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sunday_ui/CoreComponents/sunday_bottom_bar/material_bottom_bar.dart';
-import 'package:sunday_ui/CoreComponents/sunday_bottom_bar/cupertino_bottom_bar.dart';
-import 'package:sunday_ui/CoreComponents/sunday_navigationbar_item/sunday_navigationbar_item.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/CoreComponents/sunday_bottom_bar/material_bottom_bar.dart';
+import 'package:sunday_platform/CoreComponents/sunday_bottom_bar/cupertino_bottom_bar.dart';
+import 'package:sunday_platform/CoreComponents/sunday_navigationbar_item/sunday_navigationbar_item.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A customizable bottom navigation bar for the Sunday UI package.
 ///

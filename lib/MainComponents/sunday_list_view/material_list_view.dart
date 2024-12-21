@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sunday_ui/MainComponents/sunday_list_header/material_list_header.dart';
+import 'package:sunday_platform/MainComponents/sunday_list_header/material_list_header.dart';
 
 /// A Material-style list view for the Sunday UI package.
 class SundayMaterialListView extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
-import 'package:sunday_ui/MainComponents/sunday_text_field/cupertino_text_field.dart';
-import 'package:sunday_ui/MainComponents/sunday_text_field/material_text_field.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/MainComponents/sunday_text_field/cupertino_text_field.dart';
+import 'package:sunday_platform/MainComponents/sunday_text_field/material_text_field.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A customizable text field that adapts to different UI styles (Material, Cupertino, etc.).
 class SundayTextField extends StatelessWidget {

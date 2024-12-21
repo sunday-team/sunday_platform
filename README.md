@@ -1,4 +1,4 @@
-# Sunday UI
+# Sunday Platform
 
 A Flutter package providing universal UI components with custom styles, Cupertino, and Material design options.
 
@@ -12,4 +12,4 @@ A Flutter package providing universal UI components with custom styles, Cupertin
 
 ## Getting started
 
-To use this package, add `sunday_ui` as a dependency in your `pubspec.yaml` file:
+To use this package, add `sunday_platform` as a dependency in your `pubspec.yaml` file:

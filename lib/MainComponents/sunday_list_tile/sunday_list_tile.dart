@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:sunday_ui/MainComponents/sunday_list_tile/cupertino_list_tile.dart';
-import 'package:sunday_ui/MainComponents/sunday_list_tile/latestios_list_tile.dart';
-import 'package:sunday_ui/MainComponents/sunday_list_tile/material_list_tile.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/MainComponents/sunday_list_tile/cupertino_list_tile.dart';
+import 'package:sunday_platform/MainComponents/sunday_list_tile/latestios_list_tile.dart';
+import 'package:sunday_platform/MainComponents/sunday_list_tile/material_list_tile.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A list tile component for the Sunday UI package.
 ///

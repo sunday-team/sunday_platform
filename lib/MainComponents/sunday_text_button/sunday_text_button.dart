@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:sunday_ui/MainComponents/sunday_text_button/cupertino_text_button.dart';
-import 'package:sunday_ui/MainComponents/sunday_text_button/material_text_button.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/MainComponents/sunday_text_button/cupertino_text_button.dart';
+import 'package:sunday_platform/MainComponents/sunday_text_button/material_text_button.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A custom text button that adapts to different styles (Material, Cupertino, etc.)
 class SundayTextButton extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sunday_ui/CoreComponents/sunday_appbar/material_appbar.dart';
-import 'package:sunday_ui/CoreComponents/sunday_appbar/cupertino_appbar.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/CoreComponents/sunday_appbar/material_appbar.dart';
+import 'package:sunday_platform/CoreComponents/sunday_appbar/cupertino_appbar.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A customizable app bar that adapts to different UI styles (Material, Cupertino, etc.).
 class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -122,7 +122,7 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
           brightness: brightness,
           heroTag: heroTag ?? '${context.hashCode}_app_bar',
         );
-      }
+    }
   }
 
   @override

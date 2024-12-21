@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A custom bottom navigation bar item for Sunday UI that adapts based on the style.
 ///

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:sunday_ui/CoreComponents/sunday_app/cupertino_app.dart';
-import 'package:sunday_ui/CoreComponents/sunday_app/material_app.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/CoreComponents/sunday_app/cupertino_app.dart';
+import 'package:sunday_platform/CoreComponents/sunday_app/material_app.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A customizable application widget that can switch between Material and Cupertino styles.
 ///

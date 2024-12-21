@@ -21,7 +21,7 @@ import 'package:sunday_get_storage/sunday_get_storage.dart';
 ///   Future<void>: A future that completes when the operation is done.
 Future<void> changeGlobals(String key, dynamic value) async {
   final box = GetStorage();
-  var globals = await box.read('sunday_ui:globals');
+  var globals = await box.read('sunday_platform:globals');
 
   // Split the key into parts
   List<String> keyParts = key.split('.');
@@ -44,7 +44,7 @@ Future<void> changeGlobals(String key, dynamic value) async {
   }
 
   // Save the updated globals back to storage
-  await box.write('sunday_ui:globals', globals);
+  await box.write('sunday_platform:globals', globals);
 
   sundayPrint('Updated value for key: $key');
 }

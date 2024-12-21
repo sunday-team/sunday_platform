@@ -1,7 +1,7 @@
-name: sunday_ui
+name: sunday_platform
 description: "A Flutter package providing universal UI components with custom styles, Cupertino, and Material design options."
-version: 0.2.3
-homepage: https://github.com/sunday-team/sunday_ui
+version: 0.2.4
+homepage: https://github.com/sunday-team/sunday_platform
 
 environment:
   sdk: ^3.5.3

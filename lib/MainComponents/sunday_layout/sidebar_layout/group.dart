@@ -2,8 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sunday_core/Print/print.dart';
-import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/animate.dart';
-import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/item.dart';
+import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/animate.dart';
+import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/item.dart';
 
 /// A widget that groups multiple [SidebarItem]s and provides functionality
 /// to collapse or expand the group.

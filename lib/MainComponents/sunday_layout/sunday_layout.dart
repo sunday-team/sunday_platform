@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sunday_ui/MainComponents/sunday_layout/classes.dart';
-import 'package:sunday_ui/sunday_ui.dart';
+import 'package:sunday_platform/MainComponents/sunday_layout/classes.dart';
+import 'package:sunday_platform/sunday_platform.dart';
 
 /// A widget that represents the main layout for the Sunday UI, adapting
 /// to different screen sizes and layout styles.

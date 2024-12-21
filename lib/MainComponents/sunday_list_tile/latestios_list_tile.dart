@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sunday_ui/MainComponents/sunday_text/sunday_text.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/MainComponents/sunday_text/sunday_text.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A Material-style list tile for the Sunday UI package.
 ///

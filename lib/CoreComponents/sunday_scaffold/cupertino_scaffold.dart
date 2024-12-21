@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sunday_ui/CoreComponents/sunday_appbar/sunday_appbar.dart';
+import 'package:sunday_platform/CoreComponents/sunday_appbar/sunday_appbar.dart';
 
 /// A Cupertino-style scaffold for the Sunday UI framework.
 ///

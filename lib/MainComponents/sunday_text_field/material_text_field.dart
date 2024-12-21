@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A customizable Material-style text field for the Sunday UI framework.
 ///

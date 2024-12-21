@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:sunday_ui/MainComponents/sunday_list_header/cupertino_list_header.dart';
-import 'package:sunday_ui/MainComponents/sunday_list_header/material_list_header.dart';
-import 'package:sunday_ui/style.dart';
+import 'package:sunday_platform/MainComponents/sunday_list_header/cupertino_list_header.dart';
+import 'package:sunday_platform/MainComponents/sunday_list_header/material_list_header.dart';
+import 'package:sunday_platform/style.dart';
 
 /// A list header component for the Sunday UI package.
 ///

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sunday_ui/sunday_ui.dart';
+import 'package:sunday_platform/sunday_platform.dart';
 
 /// A Cupertino-style list header for the Sunday UI package.
 class SundayCupertinoListHeader extends StatelessWidget {

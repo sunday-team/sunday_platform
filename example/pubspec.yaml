@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  sunday_ui:
+  sunday_platform:
     path: ../
   sunday_core: ^0.0.3
   color_theme_provider: ^1.1.1

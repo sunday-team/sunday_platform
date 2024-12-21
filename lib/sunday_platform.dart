@@ -1,9 +1,9 @@
-library sunday_ui;
+library sunday_platform;
 
 import 'dart:ui';
 
 import 'package:sunday_get_storage/sunday_get_storage.dart';
-import 'package:sunday_ui/Scripts/Colors/storing_color/storing_color.dart';
+import 'package:sunday_platform/Scripts/Colors/storing_color/storing_color.dart';
 
 /// export specific files
 export 'style.dart';
@@ -121,5 +121,5 @@ Future<void> initUI({Object? globals}) async {
     },
   };
 
-  await box.write('sunday_ui:globals', globals);
+  await box.write('sunday_platform:globals', globals);
 }

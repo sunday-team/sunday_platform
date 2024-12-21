@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:sunday_core/Print/print.dart';
 import 'package:sunday_get_storage/sunday_get_storage.dart';
 // Importing the sidebar item group widget.
-import 'package:sunday_ui/MainComponents/sunday_layout/sidebar_layout/group.dart';
+import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/group.dart';
 // Importing theme data for styling.
 
 /// A stateful widget representing the sidebar layout.
