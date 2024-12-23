@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  macos_ui: ^2.0.9
   sunday_core: ^0.0.3
   sunday_get_storage: ^2.1.1
   universal_io: ^2.2.2

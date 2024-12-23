@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sunday_platform/CoreComponents/sunday_app/cupertino_app.dart';
+import 'package:sunday_platform/CoreComponents/sunday_app/macos_app.dart';
 import 'package:sunday_platform/CoreComponents/sunday_app/material_app.dart';
 import 'package:sunday_platform/style.dart';
 
@@ -132,47 +133,89 @@ class _SundayAppState extends State<SundayApp> {
       ...?widget.localizationsDelegates,
     ];
 
-    final app = widget.uiStyle == Style.material
-        ? SundayMaterialApp(
-            theme: widget.theme,
-            home: widget.home,
-            title: widget.title,
-            routes: widget.routes,
-            initialRoute: widget.initialRoute,
-            navigatorKey: widget.navigatorKey,
-            navigatorObservers: widget.navigatorObservers,
-            onGenerateRoute: widget.onGenerateRoute,
-            onUnknownRoute: widget.onUnknownRoute,
-            supportedLocales: widget.supportedLocales,
-            locale: widget.locale,
-            debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-            showPerformanceOverlay: widget.showPerformanceOverlay,
-            showSemanticsDebugger: widget.showSemanticsDebugger,
-            supportDarkMode: widget.supportDarkMode,
-            localizationsDelegates: effectiveLocalizationsDelegates,
-            localeResolutionCallback: widget.localeResolutionCallback,
-          )
-        : SundayCupertinoApp(
-            theme: CupertinoThemeData(
-              primaryColor: widget.primaryColor,
-            ),
-            home: widget.home,
-            title: widget.title,
-            routes: widget.routes,
-            initialRoute: widget.initialRoute,
-            navigatorKey: widget.navigatorKey,
-            navigatorObservers: widget.navigatorObservers,
-            onGenerateRoute: widget.onGenerateRoute,
-            onUnknownRoute: widget.onUnknownRoute,
-            supportedLocales: widget.supportedLocales,
-            locale: widget.locale,
-            debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-            showPerformanceOverlay: widget.showPerformanceOverlay,
-            showSemanticsDebugger: widget.showSemanticsDebugger,
-            localizationsDelegates: effectiveLocalizationsDelegates,
-            localeResolutionCallback: widget.localeResolutionCallback,
-          );
-
-    return widget.builder != null ? widget.builder!(context, app) : app;
+    switch (widget.uiStyle) {
+      case Style.material:
+        return SundayMaterialApp(
+          theme: widget.theme,
+          home: widget.home,
+          title: widget.title,
+          routes: widget.routes,
+          initialRoute: widget.initialRoute,
+          navigatorKey: widget.navigatorKey,
+          navigatorObservers: widget.navigatorObservers,
+          onGenerateRoute: widget.onGenerateRoute,
+          onUnknownRoute: widget.onUnknownRoute,
+          supportedLocales: widget.supportedLocales,
+          locale: widget.locale,
+          debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+          showPerformanceOverlay: widget.showPerformanceOverlay,
+          showSemanticsDebugger: widget.showSemanticsDebugger,
+          supportDarkMode: widget.supportDarkMode,
+          localizationsDelegates: effectiveLocalizationsDelegates,
+          localeResolutionCallback: widget.localeResolutionCallback,
+        );
+      case Style.cupertino:
+        return SundayCupertinoApp(
+          theme: CupertinoThemeData(
+            primaryColor: widget.primaryColor,
+          ),
+          home: widget.home,
+          title: widget.title,
+          routes: widget.routes,
+          initialRoute: widget.initialRoute,
+          navigatorKey: widget.navigatorKey,
+          navigatorObservers: widget.navigatorObservers,
+          onGenerateRoute: widget.onGenerateRoute,
+          onUnknownRoute: widget.onUnknownRoute,
+          supportedLocales: widget.supportedLocales,
+          locale: widget.locale,
+          debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+          showPerformanceOverlay: widget.showPerformanceOverlay,
+          showSemanticsDebugger: widget.showSemanticsDebugger,
+          localizationsDelegates: effectiveLocalizationsDelegates,
+          localeResolutionCallback: widget.localeResolutionCallback,
+        );
+      case Style.custom:
+      case Style.latestIOS:
+        return SundayCupertinoApp(
+          theme: CupertinoThemeData(
+            primaryColor: widget.primaryColor,
+          ),
+          home: widget.home,
+          title: widget.title,
+          routes: widget.routes,
+          initialRoute: widget.initialRoute,
+          navigatorKey: widget.navigatorKey,
+          navigatorObservers: widget.navigatorObservers,
+          onGenerateRoute: widget.onGenerateRoute,
+          onUnknownRoute: widget.onUnknownRoute,
+          supportedLocales: widget.supportedLocales,
+          locale: widget.locale,
+          debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+          showPerformanceOverlay: widget.showPerformanceOverlay,
+          showSemanticsDebugger: widget.showSemanticsDebugger,
+          localizationsDelegates: effectiveLocalizationsDelegates,
+          localeResolutionCallback: widget.localeResolutionCallback,
+        );
+      case Style.macos:
+        return SundayMacoOSApp(
+          navigatorKey: widget.navigatorKey,
+          home: widget.home,
+          routes: widget.routes ?? const <String, WidgetBuilder>{},
+          initialRoute: widget.initialRoute,
+          onGenerateRoute: widget.onGenerateRoute,
+          onUnknownRoute: widget.onUnknownRoute,
+          navigatorObservers: widget.navigatorObservers ?? const <NavigatorObserver>[],
+          builder: widget.builder,
+          title: widget.title,
+          locale: widget.locale,
+          localizationsDelegates: effectiveLocalizationsDelegates,
+          localeResolutionCallback: widget.localeResolutionCallback,
+          supportedLocales: widget.supportedLocales,
+          showPerformanceOverlay: widget.showPerformanceOverlay ?? false,
+          showSemanticsDebugger: widget.showSemanticsDebugger ?? false,
+          debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner ?? true,
+        );
+    }
   }
 }

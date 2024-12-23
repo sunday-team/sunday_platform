@@ -1,6 +1,6 @@
-name: sunday_ui_library
-description: "A flutter project to showcase sunday_ui components"
-version: 1.0.0+1
+name: sunday_platform_exemple
+description: "A flutter project to showcase sunday_platform components"
+version: 1.0.0
 publish_to: none
 
 environment:
@@ -15,6 +15,7 @@ dependencies:
     path: ../
   sunday_core: ^0.0.3
   color_theme_provider: ^1.1.1
+  macos_ui: ^2.0.9
 dev_dependencies:
   flutter_test:
     sdk: flutter

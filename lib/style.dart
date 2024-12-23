@@ -11,6 +11,9 @@ enum Style {
 
   /// Latest iOS design style.
   latestIOS,
+
+  /// Macos design style.
+  macos,
 }
 
 /// Helper class for managing and checking different UI styles.
@@ -33,6 +36,9 @@ class StyleHelper {
   /// A [StyleHelper] instance for the latest iOS design style.
   static const StyleHelper latestIOS = StyleHelper(style: Style.latestIOS);
 
+  /// A [StyleHelper] instance for the latest macOS design style.
+  static const StyleHelper macos = StyleHelper(style: Style.macos);
+
   /// Checks if the current style is Material design.
   bool get isMaterial => style == Style.material;
 
@@ -44,4 +50,7 @@ class StyleHelper {
 
   /// Checks if the current style is the latest iOS design.
   bool get isLatestIOS => style == Style.latestIOS;
+
+  /// Checks if the current style is the latest iOS design.
+  bool get isLatestMacOS => style == Style.macos;
 }

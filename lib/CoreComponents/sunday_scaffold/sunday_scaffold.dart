@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:macos_ui/macos_ui.dart';
 import 'package:sunday_platform/CoreComponents/sunday_scaffold/cupertino_scaffold.dart';
+import 'package:sunday_platform/CoreComponents/sunday_scaffold/macos_scaffold.dart';
 import 'package:sunday_platform/CoreComponents/sunday_scaffold/material_scaffold.dart';
 import 'package:sunday_platform/style.dart';
 
@@ -53,8 +55,27 @@ class SundayScaffold extends StatelessWidget {
           backgroundColor: backgroundColor,
           child: child,
         );
-      default:
-        throw UnimplementedError('Unsupported style: $style');
+        case Style.macos:
+        return SundayMacOSScaffold(
+            appBar: ToolBar(
+            leading: appBar.leading,
+            title: appBar.middle,
+            height: appBar.preferredSize.height,
+            alignment: Alignment.center,
+            titleWidth: appBar.titleWidth ?? 150,
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4.0),
+            decoration: appBar.decoration,
+            automaticallyImplyLeading: true,
+            actions: appBar.actions,
+            centerTitle: false,
+            dividerColor: appBar.dividerColor,
+            allowWallpaperTintingOverrides: true,
+            enableBlur: false,
+            ),
+          body: child,
+          backgroundColor: backgroundColor,
+        );
+      
     }
   }
 }

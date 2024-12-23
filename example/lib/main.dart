@@ -1,7 +1,8 @@
 import 'package:color_theme_provider/color_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:sunday_platform/sunday_platform.dart';
-import 'package:sunday_ui_library/theme_data.dart';
+import './theme_data.dart';
 
 void main() {
   runApp(
@@ -33,12 +34,23 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return SundayApp(
-      home: MyHomePage(
-        currentStyle: _currentStyle,
-        onStyleToggle: _toggleStyle,
+      home: SundayScaffold(
+        backgroundColor: Colors.white,
+        appBar: const SundayAppBar(
+          middle: Text("Helloa"),
+          style: Style.macos,
+          leading: Text("Hellaoa"),
+          allowWallpaperTintingOverrides: true,
+          enableBlur: true,
+        ),
+        style: Style.macos,
+        child: MyHomePage(
+          currentStyle: _currentStyle,
+          onStyleToggle: _toggleStyle,
+        ),
       ),
-      title: "Style Switcher Demo",
-      uiStyle: _currentStyle,
+      title: "Sunday Patform",
+      uiStyle: Style.macos,
     );
   }
 }

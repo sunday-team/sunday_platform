@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:macos_ui/macos_ui.dart';
+import 'package:sunday_platform/CoreComponents/sunday_appbar/macos_appbar.dart';
 import 'package:sunday_platform/CoreComponents/sunday_appbar/material_appbar.dart';
 import 'package:sunday_platform/CoreComponents/sunday_appbar/cupertino_appbar.dart';
 import 'package:sunday_platform/style.dart';
@@ -62,6 +64,38 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Whether to transition between routes when the app bar is tapped.
   final bool transitionBetweenRoutes;
 
+  /// The height of the app bar.
+  /// Defaults to [kToolbarHeight].
+  final double height;
+
+  /// The alignment of the app bar's content.
+  /// Defaults to [Alignment.center].
+  final Alignment alignment;
+
+  /// The width of the title widget.
+  /// Defaults to 52.0.
+  final double titleWidth;
+
+  /// The padding for the content inside the app bar.
+  /// Defaults to [EdgeInsets.symmetric(horizontal: 8, vertical: 4.0)].
+  final EdgeInsets padding;
+
+  /// The decoration to paint behind the app bar.
+  /// Defaults to null.
+  final BoxDecoration? decoration;
+
+  /// The color of the divider between the app bar and the content.
+  /// Defaults to null.
+  final Color? dividerColor;
+
+  /// Whether to allow wallpaper tinting overrides.
+  /// Defaults to true.
+  final bool allowWallpaperTintingOverrides;
+
+  /// Whether to enable blur.
+  /// Defaults to false.
+  final bool enableBlur;
+
   /// Creates a [SundayAppBar].
   ///
   /// The [style] and [middle] arguments must not be null.
@@ -87,6 +121,14 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.toolbarOpacity,
     this.bottomOpacity,
     this.transitionBetweenRoutes = true,
+    this.height = 150.0,
+    this.alignment = Alignment.center,
+    this.titleWidth = 52.0,
+    this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 4.0),
+    this.decoration,
+    this.dividerColor,
+    this.allowWallpaperTintingOverrides = true,
+    this.enableBlur = false,
   });
 
   @override
@@ -111,6 +153,22 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
         );
       case Style.cupertino:
       case Style.custom:
+      case Style.macos:
+        return SundayMacOSAppBar(
+          height: height,
+          alignment: alignment,
+          title: middle,
+          titleWidth: titleWidth,
+          padding: padding,
+          decoration: decoration,
+          leading: leading,
+          automaticallyImplyLeading: automaticallyImplyLeading,
+          // actions: [
+          //   if (trailing != null)
+          //     ToolBarIconButton(label: label, icon: icon, showLabel: showLabel),
+          //   if (actions != null) ...actions!,
+          // ],
+        );
       case Style.latestIOS:
         return SundayCupertinoAppBar(
           transitionBetweenRoutes: transitionBetweenRoutes,
