@@ -12,29 +12,28 @@ import 'package:sunday_platform/style.dart';
 /// A stateful widget representing the sidebar layout.
 class SundayMacOSSidebar extends StatefulWidget {
   /// Constructor for SideBarLayout, requiring a title and children.
-  const SundayMacOSSidebar({
-    super.key,
-    required this.title,
-    required this.children,
-    this.backgroundColor,
-    this.titleColor = Colors.black,
-    this.itemTextColor = Colors.black,
-    this.darkTitleColor = Colors.white,
-    this.darkItemTextColor = Colors.white,
-    this.itemBackgroundColor = const Color(0xffDFDEE5),
-    this.darkItemBackgroundColor = const Color(0xff39383D),
-    required this.keyCollapsed,
-    this.initialIsCollapsed = false,
-    this.selectedItemTextColor = Colors.black,
-    this.darkSelectedItemTextColor = Colors.white,
-    required this.style
-  });
+  const SundayMacOSSidebar(
+      {super.key,
+      required this.title,
+      required this.children,
+      this.backgroundColor,
+      this.titleColor = Colors.black,
+      this.itemTextColor = Colors.black,
+      this.darkTitleColor = Colors.white,
+      this.darkItemTextColor = Colors.white,
+      this.itemBackgroundColor = const Color(0xffDFDEE5),
+      this.darkItemBackgroundColor = const Color(0xff39383D),
+      required this.keyCollapsed,
+      this.initialIsCollapsed = false,
+      this.selectedItemTextColor = Colors.black,
+      this.darkSelectedItemTextColor = Colors.white,
+      required this.style});
 
   /// The title of the sidebar layout.
   final String title;
 
   /// A list of SidebarItemGroup widgets to be displayed.
-  final List<SundaySideBarItemGroup>children;
+  final List<SundaySideBarItemGroup> children;
 
   /// The background color of the sidebar layout.
   final Color? backgroundColor;

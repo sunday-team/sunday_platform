@@ -51,23 +51,22 @@ class _SundayLayoutState extends State<SundayLayout> {
           child: isMobile
               ? Row(
                   children: [
-                   SideBarLayout(
-                        style: widget.style,
-                        keyCollapsed: widget.desktopLayoutStyle.keyCollapsed,
-                        itemTextColor: widget.desktopLayoutStyle.itemTextColor,
-                        darkItemTextColor:
-                            widget.desktopLayoutStyle.darkItemTextColor,
-                        titleColor: widget.desktopLayoutStyle.titleColor,
-                        backgroundColor:
-                            widget.desktopLayoutStyle.backgroundColor,
-                        title: widget.desktopLayoutStyle.title,
-                        children: widget.desktopLayoutStyle.children,
-                        itemBackgroundColor:
-                            widget.desktopLayoutStyle.itemBackgroundColor,
-                        darkItemBackgroundColor:
-                            widget.desktopLayoutStyle.darkItemBackgroundColor,
-                      ),
-                    
+                    SideBarLayout(
+                      style: widget.style,
+                      keyCollapsed: widget.desktopLayoutStyle.keyCollapsed,
+                      itemTextColor: widget.desktopLayoutStyle.itemTextColor,
+                      darkItemTextColor:
+                          widget.desktopLayoutStyle.darkItemTextColor,
+                      titleColor: widget.desktopLayoutStyle.titleColor,
+                      backgroundColor:
+                          widget.desktopLayoutStyle.backgroundColor,
+                      title: widget.desktopLayoutStyle.title,
+                      children: widget.desktopLayoutStyle.children,
+                      itemBackgroundColor:
+                          widget.desktopLayoutStyle.itemBackgroundColor,
+                      darkItemBackgroundColor:
+                          widget.desktopLayoutStyle.darkItemBackgroundColor,
+                    ),
                     Expanded(child: widget.mainView),
                   ],
                 )

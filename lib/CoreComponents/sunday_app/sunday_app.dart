@@ -205,7 +205,8 @@ class _SundayAppState extends State<SundayApp> {
           initialRoute: widget.initialRoute,
           onGenerateRoute: widget.onGenerateRoute,
           onUnknownRoute: widget.onUnknownRoute,
-          navigatorObservers: widget.navigatorObservers ?? const <NavigatorObserver>[],
+          navigatorObservers:
+              widget.navigatorObservers ?? const <NavigatorObserver>[],
           builder: widget.builder,
           title: widget.title,
           locale: widget.locale,

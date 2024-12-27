@@ -8,20 +8,19 @@ class SidebarItem extends StatefulWidget {
   ///
   /// The [onTap], [icon], [text], [keyIndex], [itemTextColor], [darkItemTextColor], and [selectedIndex] parameters
   /// must not be null.
-  const SidebarItem({
-    super.key,
-    required this.onTap,
-    required this.icon,
-    required this.text,
-    required this.keyIndex,
-    required this.selectedIndex,
-    this.itemTextColor = Colors.black,
-    this.darkItemTextColor = Colors.white,
-    this.itemBackgroundColor = const Color(0xffDFDEE5),
-    this.darkItemBackgroundColor = const Color(0xff39383D),
-    this.selectedItemTextColor = Colors.black,
-    this.darkSelectedItemTextColor = Colors.white
-  });
+  const SidebarItem(
+      {super.key,
+      required this.onTap,
+      required this.icon,
+      required this.text,
+      required this.keyIndex,
+      required this.selectedIndex,
+      this.itemTextColor = Colors.black,
+      this.darkItemTextColor = Colors.white,
+      this.itemBackgroundColor = const Color(0xffDFDEE5),
+      this.darkItemBackgroundColor = const Color(0xff39383D),
+      this.selectedItemTextColor = Colors.black,
+      this.darkSelectedItemTextColor = Colors.white});
 
   /// Callback function to be executed when the item is tapped.
   final void Function() onTap;
@@ -104,10 +103,12 @@ class _SidebarItemState extends State<SidebarItem> {
                 fontSize: 16,
                 fontWeight: FontWeight.normal,
                 color: widget.selectedIndex == widget.keyIndex
-                    ? (MediaQuery.of(context).platformBrightness == Brightness.dark
+                    ? (MediaQuery.of(context).platformBrightness ==
+                            Brightness.dark
                         ? widget.darkSelectedItemTextColor
                         : widget.selectedItemTextColor)
-                    : (MediaQuery.of(context).platformBrightness == Brightness.dark
+                    : (MediaQuery.of(context).platformBrightness ==
+                            Brightness.dark
                         ? widget.darkItemTextColor
                         : widget.itemTextColor),
               ),

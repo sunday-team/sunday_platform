@@ -55,27 +55,30 @@ class SundayScaffold extends StatelessWidget {
           backgroundColor: backgroundColor,
           child: child,
         );
-        case Style.macos:
+      case Style.macos:
         return SundayMacOSScaffold(
-            appBar: appBar == null ? null : ToolBar(
-              leading: appBar?.leading ?? const SizedBox(),
-              title: appBar?.title ?? appBar?.middle ?? const SizedBox(),
-              height: appBar?.preferredSize?.height ?? 10,
-              alignment: appBar?.alignment ?? Alignment.center,
-              titleWidth: appBar?.titleWidth ?? 10,
-              padding: appBar?.padding ?? const EdgeInsets.all(0),
-              decoration: appBar?.decoration,
-              automaticallyImplyLeading: appBar?.automaticallyImplyLeading ?? true,
-              actions: appBar?.actions,
-              centerTitle: appBar?.centerTitle ?? false,
-              dividerColor: appBar?.dividerColor,
-              allowWallpaperTintingOverrides: appBar?.allowWallpaperTintingOverrides ?? true,
-              enableBlur: appBar?.enableBlur ?? false,
-            ),
+          appBar: appBar == null
+              ? null
+              : ToolBar(
+                  leading: appBar?.leading ?? const SizedBox(),
+                  title: appBar?.title ?? appBar?.middle ?? const SizedBox(),
+                  height: appBar?.preferredSize?.height ?? 10,
+                  alignment: appBar?.alignment ?? Alignment.center,
+                  titleWidth: appBar?.titleWidth ?? 10,
+                  padding: appBar?.padding ?? const EdgeInsets.all(0),
+                  decoration: appBar?.decoration,
+                  automaticallyImplyLeading:
+                      appBar?.automaticallyImplyLeading ?? true,
+                  actions: appBar?.actions,
+                  centerTitle: appBar?.centerTitle ?? false,
+                  dividerColor: appBar?.dividerColor,
+                  allowWallpaperTintingOverrides:
+                      appBar?.allowWallpaperTintingOverrides ?? true,
+                  enableBlur: appBar?.enableBlur ?? false,
+                ),
           body: child,
           backgroundColor: backgroundColor,
         );
-      
     }
   }
 }

@@ -22,7 +22,7 @@ class SundayMacOSScaffold extends StatelessWidget {
 
   /// The background color of the scaffold.
   final Color? backgroundColor;
-  
+
   /// The app bar to display at the top of the scaffold.
   final ToolBar? appBar;
 
