@@ -96,6 +96,9 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Defaults to false.
   final bool enableBlur;
 
+  /// Title of the appbar
+  final Widget? title;
+
   /// Creates a [SundayAppBar].
   ///
   /// The [style] and [middle] arguments must not be null.
@@ -124,11 +127,12 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.height = 150.0,
     this.alignment = Alignment.center,
     this.titleWidth = 52.0,
-    this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 4.0),
+    this.padding = const EdgeInsets.all(0),
     this.decoration,
     this.dividerColor,
     this.allowWallpaperTintingOverrides = true,
     this.enableBlur = false,
+    this.title,
   });
 
   @override
@@ -157,7 +161,7 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
         return SundayMacOSAppBar(
           height: height,
           alignment: alignment,
-          title: middle,
+          title: title,
           titleWidth: titleWidth,
           padding: padding,
           decoration: decoration,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sunday_platform/MainComponents/sunday_layout/classes.dart';
+import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/sidebar/sunday_sidebar.dart';
 import 'package:sunday_platform/sunday_platform.dart';
 
 /// A widget that represents the main layout for the Sunday UI, adapting
@@ -44,15 +45,14 @@ class _SundayLayoutState extends State<SundayLayout> {
           style: widget.style,
           child: widget.mobileLayoutStyle,
         );
-      case const (SideBarLayout):
+      case const (SundaySidebarView):
         return SundayScaffold(
           style: widget.style,
           child: isMobile
               ? Row(
                   children: [
-                    SundayScaffold(
-                      style: widget.style,
-                      child: SideBarLayout(
+                   SideBarLayout(
+                        style: widget.style,
                         keyCollapsed: widget.desktopLayoutStyle.keyCollapsed,
                         itemTextColor: widget.desktopLayoutStyle.itemTextColor,
                         darkItemTextColor:
@@ -67,7 +67,7 @@ class _SundayLayoutState extends State<SundayLayout> {
                         darkItemBackgroundColor:
                             widget.desktopLayoutStyle.darkItemBackgroundColor,
                       ),
-                    ),
+                    
                     Expanded(child: widget.mainView),
                   ],
                 )

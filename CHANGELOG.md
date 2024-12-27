@@ -111,3 +111,17 @@
 * fixed some problems
 
 * and more...
+
+## 0.2.4
+
+* fixed some problems
+
+* and more...
+
+## 0.2.5
+
+* added many new components for the new style : macos
+
+* upcoming update with more components for macos style, material, and a brand new style : fluent
+
+* And always more...

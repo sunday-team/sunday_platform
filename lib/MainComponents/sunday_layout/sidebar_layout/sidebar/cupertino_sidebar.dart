@@ -10,9 +10,9 @@ import 'package:sunday_platform/style.dart';
 // Importing theme data for styling.
 
 /// A stateful widget representing the sidebar layout.
-class SideBarLayout extends StatefulWidget {
+class SundayCupertinoSidebar extends StatefulWidget {
   /// Constructor for SideBarLayout, requiring a title and children.
-  const SideBarLayout({
+  const SundayCupertinoSidebar({
     super.key,
     required this.title,
     required this.children,
@@ -74,11 +74,11 @@ class SideBarLayout extends StatefulWidget {
 
   /// Creates the mutable state for this widget.
   @override
-  State<SideBarLayout> createState() => _SideBarLayoutState();
+  State<SundayCupertinoSidebar> createState() => _SideBarLayoutState();
 }
 
 /// The state class for SideBarLayout.
-class _SideBarLayoutState extends State<SideBarLayout>
+class _SideBarLayoutState extends State<SundayCupertinoSidebar>
     with SingleTickerProviderStateMixin {
   /// An integer variable to track a tapped item, initialized to 1.
   var tappedOne = 1;

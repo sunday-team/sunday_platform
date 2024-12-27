@@ -1,6 +1,9 @@
 import 'package:color_theme_provider/color_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:macos_ui/macos_ui.dart';
+import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/sidebar/sunday_sidebar.dart';
+import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/sidebar_item/sunday_sidebar_item.dart';
 import 'package:sunday_platform/sunday_platform.dart';
 import './theme_data.dart';
 
@@ -22,35 +25,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Style _currentStyle = Style.latestIOS;
+  Style currentStyle = Style.macos;
 
   void _toggleStyle() {
     setState(() {
-      _currentStyle =
-          _currentStyle == Style.material ? Style.latestIOS : Style.material;
+      currentStyle =
+          currentStyle == Style.material ? Style.latestIOS : Style.material;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return SundayApp(
+      theme: MacosThemeData.dark(),
       home: SundayScaffold(
-        backgroundColor: Colors.white,
-        appBar: const SundayAppBar(
-          middle: Text("Helloa"),
-          style: Style.macos,
-          leading: Text("Hellaoa"),
-          allowWallpaperTintingOverrides: true,
-          enableBlur: true,
-        ),
-        style: Style.macos,
+        style: currentStyle,
         child: MyHomePage(
-          currentStyle: _currentStyle,
+          currentStyle: currentStyle,
           onStyleToggle: _toggleStyle,
         ),
       ),
       title: "Sunday Patform",
-      uiStyle: Style.macos,
+      uiStyle: currentStyle,
     );
   }
 }
@@ -101,87 +97,54 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       mainView: SundayScaffold(
+        appBar: SundayAppBar(
+          middle: const Text("Sunday Platform App Bar"),
+          title: const Text("Sunday Platform AppBar"),
+          titleWidth: 200,
+          padding: const EdgeInsets.all(0),
+          style: widget.currentStyle,
+          leading: const ToggleSidebarButton(
+            keyCollapsed: 'desktop-sidebar-layout',
+          ),
+        ),
         style: widget.currentStyle,
         child: Center(child: Text("Tab $selectedIndex")),
       ),
-      desktopLayoutStyle: SideBarLayout(
-        title: "Title",
+      desktopLayoutStyle: SundaySidebarView(
+        style: widget.currentStyle,
+        title: "Sunday Platform",
         keyCollapsed: "desktop-sidebar-layout",
         children: [
-          SideBarItemGroup(
+          SundaySideBarItemGroup(
+            style: widget.currentStyle,
             isCollapsed: false,
             showAndHide: false,
             title: "Photo Library",
             children: [
-              SidebarItem(
-                  keyIndex: "library",
+              SundaySidebarItem(
+                  style: widget.currentStyle,
+                  keyIndex: "item1",
                   selectedIndex: selectedIndex,
                   onTap: () {
                     setState(() {
-                      selectedIndex = "library";
+                      selectedIndex = "item1";
+                    });
+                  },
+                  icon: const Icon(CupertinoIcons.airplane),
+                  text: "Sunday Sidebar Item 1"),
+              SundaySidebarItem(
+                  style: widget.currentStyle,
+                  keyIndex: "item2",
+                  selectedIndex: selectedIndex,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = "item2";
                     });
                   },
                   icon: const Icon(CupertinoIcons.photo_on_rectangle),
-                  text: "Photo Library"),
-              SidebarItem(
-                  keyIndex: "liked",
-                  selectedIndex: selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = "liked";
-                    });
-                  },
-                  icon: const Icon(CupertinoIcons.heart),
-                  text: "Liked Photos"),
-              SidebarItem(
-                  keyIndex: "recent",
-                  selectedIndex: selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = "recent";
-                    });
-                  },
-                  icon: const Icon(CupertinoIcons.clock),
-                  text: "Recent"),
+                  text: "Sunday Sidebar Item 2"),
             ],
           ),
-          SideBarItemGroup(
-            isCollapsed: false,
-            showAndHide: true,
-            title: "Albums",
-            children: [
-              SidebarItem(
-                  keyIndex: "albums",
-                  selectedIndex: selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = "albums";
-                    });
-                  },
-                  icon: const Icon(CupertinoIcons.square_stack),
-                  text: "Albums"),
-              SidebarItem(
-                  keyIndex: "4",
-                  selectedIndex: selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = "4";
-                    });
-                  },
-                  icon: const Icon(CupertinoIcons.heart),
-                  text: "Liked Photos"),
-              SidebarItem(
-                  keyIndex: "5",
-                  selectedIndex: selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = "5";
-                    });
-                  },
-                  icon: const Icon(CupertinoIcons.heart),
-                  text: "Liked Photos"),
-            ],
-          )
         ],
       ),
     );

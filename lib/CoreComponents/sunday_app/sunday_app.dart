@@ -19,7 +19,7 @@ class SundayApp extends StatefulWidget {
   final String title;
 
   /// The theme to use for the Material version of the app.
-  final ThemeData? theme;
+  final dynamic theme;
 
   /// The primary color to use for the Cupertino version of the app.
   final Color? primaryColor;

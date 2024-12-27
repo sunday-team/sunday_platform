@@ -1,5 +1,5 @@
 // Importing the color theme provider package for theme management.
-// Importing Cupertino widgets for iOS-style design.
+// Importing MacOS widgets for macOS-style design.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sunday_core/Print/print.dart';
@@ -10,9 +10,9 @@ import 'package:sunday_platform/style.dart';
 // Importing theme data for styling.
 
 /// A stateful widget representing the sidebar layout.
-class SideBarLayout extends StatefulWidget {
+class SundayMacOSSidebar extends StatefulWidget {
   /// Constructor for SideBarLayout, requiring a title and children.
-  const SideBarLayout({
+  const SundayMacOSSidebar({
     super.key,
     required this.title,
     required this.children,
@@ -74,11 +74,11 @@ class SideBarLayout extends StatefulWidget {
 
   /// Creates the mutable state for this widget.
   @override
-  State<SideBarLayout> createState() => _SideBarLayoutState();
+  State<SundayMacOSSidebar> createState() => _SundayMacOSSidebarState();
 }
 
 /// The state class for SideBarLayout.
-class _SideBarLayoutState extends State<SideBarLayout>
+class _SundayMacOSSidebarState extends State<SundayMacOSSidebar>
     with SingleTickerProviderStateMixin {
   /// An integer variable to track a tapped item, initialized to 1.
   var tappedOne = 1;

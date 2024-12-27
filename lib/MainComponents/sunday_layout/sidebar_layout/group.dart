@@ -2,14 +2,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sunday_core/Print/print.dart';
+import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/sidebar_item/sunday_sidebar_item.dart';
 import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/animate.dart';
-import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/item.dart';
+import 'package:sunday_platform/style.dart';
 
-/// A widget that groups multiple [SidebarItem]s and provides functionality
+/// A widget that groups multiple [SundaySidebarItem]s and provides functionality
 /// to collapse or expand the group.
-class SideBarItemGroup extends StatefulWidget {
-  /// A list of [SidebarItem] widgets to be displayed in the group.
-  final List<SidebarItem> children;
+class SundaySideBarItemGroup extends StatefulWidget {
+  /// A list of [SundaySidebarItem] widgets to be displayed in the group.
+  final List<SundaySidebarItem> children;
 
   /// A boolean indicating whether the group is initially collapsed.
   final bool isCollapsed;
@@ -38,30 +39,33 @@ class SideBarItemGroup extends StatefulWidget {
   /// The color of the text of the selected item in dark mode.
   final Color darkSelectedItemTextColor;
 
+  /// The selected style
+  final Style style;
+
   /// Creates a [SideBarItemGroup].
   ///
   /// The [children] and [title] parameters must not be null.
   /// The [isCollapsed] and [showAndHide] parameters default to false.
-  const SideBarItemGroup({
-    super.key,
-    required this.children,
-    required this.isCollapsed,
-    required this.showAndHide,
-    required this.title,
-    this.itemTextColor = Colors.black,
-    this.darkItemTextColor = Colors.white,
-    this.itemBackgroundColor = const Color(0xffDFDEE5),
-    this.darkItemBackgroundColor = const Color(0xff39383D),
-    this.selectedItemTextColor = Colors.black,
-    this.darkSelectedItemTextColor = Colors.white,
-  });
+  const SundaySideBarItemGroup(
+      {super.key,
+      required this.children,
+      required this.isCollapsed,
+      required this.showAndHide,
+      required this.title,
+      this.itemTextColor = Colors.black,
+      this.darkItemTextColor = Colors.white,
+      this.itemBackgroundColor = const Color(0xffDFDEE5),
+      this.darkItemBackgroundColor = const Color(0xff39383D),
+      this.selectedItemTextColor = Colors.black,
+      this.darkSelectedItemTextColor = Colors.white,
+      required this.style});
 
   @override
-  State<SideBarItemGroup> createState() => _SideBarItemGroupState();
+  State<SundaySideBarItemGroup> createState() => _SundaySideBarItemGroupState();
 }
 
 /// State class for [SideBarItemGroup].
-class _SideBarItemGroupState extends State<SideBarItemGroup> {
+class _SundaySideBarItemGroupState extends State<SundaySideBarItemGroup> {
   late bool isCollapsed;
 
   @override
@@ -71,7 +75,7 @@ class _SideBarItemGroupState extends State<SideBarItemGroup> {
   }
 
   @override
-  void didUpdateWidget(SideBarItemGroup oldWidget) {
+  void didUpdateWidget(SundaySideBarItemGroup oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isCollapsed != widget.isCollapsed) {
       setState(() {
@@ -129,7 +133,8 @@ class _SideBarItemGroupState extends State<SideBarItemGroup> {
               children: [
                 /// Map each child item to a [SidebarItem] widget.
                 ...widget.children.map((item) {
-                  return SidebarItem(
+                  return SundaySidebarItem(
+                    style: widget.style,
                     itemBackgroundColor: widget.itemBackgroundColor,
                     darkItemBackgroundColor: widget.darkItemBackgroundColor,
                     itemTextColor: widget.itemTextColor,
@@ -151,7 +156,8 @@ class _SideBarItemGroupState extends State<SideBarItemGroup> {
             children: [
               /// Map each child item to a [SidebarItem] widget.
               ...widget.children.map((item) {
-                return SidebarItem(
+                return SundaySidebarItem(
+                  style: widget.style,
                   itemBackgroundColor: widget.itemBackgroundColor,
                   darkItemBackgroundColor: widget.darkItemBackgroundColor,
                   itemTextColor: widget.itemTextColor,
