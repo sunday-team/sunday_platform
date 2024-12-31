@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:macos_ui/macos_ui.dart';
 import 'package:sunday_platform/CoreComponents/sunday_appbar/macos_appbar.dart';
 import 'package:sunday_platform/CoreComponents/sunday_appbar/material_appbar.dart';
 import 'package:sunday_platform/CoreComponents/sunday_appbar/cupertino_appbar.dart';
@@ -99,6 +98,36 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Title of the appbar
   final Widget? title;
 
+  /// The border to be drawn at the bottom of the app bar.
+  final Border? border;
+
+  /// The padding for the content inside the app bar.
+  final EdgeInsetsDirectional? directionalPadding;
+
+  /// Whether the navigation bar should be automatically sized.
+  final bool automaticallyImplyMiddle;
+
+  /// Custom back button icon.
+  final String? previousPageTitle;
+
+  /// Whether the navigation bar is translucent.
+  final bool? translucentNavigationBar;
+
+  /// The opacity of the navigation bar's background color.
+  final double? backgroundColorOpacity;
+
+  /// Whether to show a large title.
+  final bool largeTitleEnabled;
+
+  /// The large title widget.
+  final Widget? largeTitle;
+
+  /// The style for the large title.
+  final TextStyle? largeTitleTextStyle;
+
+  /// Whether the background should automatically adjust visibility.
+  final bool automaticBackgroundVisibility;
+
   /// Creates a [SundayAppBar].
   ///
   /// The [style] and [middle] arguments must not be null.
@@ -133,6 +162,16 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.allowWallpaperTintingOverrides = true,
     this.enableBlur = false,
     this.title,
+    this.border,
+    this.directionalPadding,
+    this.automaticallyImplyMiddle = true,
+    this.previousPageTitle,
+    this.translucentNavigationBar = true,
+    this.backgroundColorOpacity = 1.0,
+    this.largeTitleEnabled = false,
+    this.largeTitle,
+    this.largeTitleTextStyle,
+    this.automaticBackgroundVisibility = true,
   });
 
   @override
@@ -140,6 +179,7 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
     switch (style) {
       case Style.material:
         return SundayMaterialAppBar(
+          foregroundColor: backgroundColor,
           title: middle,
           leading: leading,
           actions: trailing != null ? [trailing!, ...(actions ?? [])] : actions,
@@ -178,11 +218,26 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
           transitionBetweenRoutes: transitionBetweenRoutes,
           middle: middle,
           leading: leading,
-          trailing: trailing,
+          trailing: Row(
+            children: [...(actions ?? [])],
+          ),
           automaticallyImplyLeading: automaticallyImplyLeading,
           backgroundColor: backgroundColor,
           brightness: brightness,
           heroTag: heroTag ?? '${context.hashCode}_app_bar',
+          automaticallyImplyMiddle: automaticallyImplyMiddle,
+          actions: actions,
+          previousPageTitle: previousPageTitle,
+          translucentNavigationBar: translucentNavigationBar,
+          backgroundColorOpacity: backgroundColorOpacity,
+          largeTitleEnabled: largeTitleEnabled,
+          largeTitle: largeTitle,
+          largeTitleTextStyle: largeTitleTextStyle,
+          automaticBackgroundVisibility: automaticBackgroundVisibility,
+          enableBackgroundFilterBlur: enableBlur,
+          bottom: bottom,
+          border: border,
+          padding: directionalPadding,
         );
     }
   }

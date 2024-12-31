@@ -36,9 +36,42 @@ class SundayCupertinoAppBar extends StatelessWidget {
   /// The hero tag for the app bar.
   final String heroTag;
 
+  /// Whether the navigation bar should be automatically sized.
+  final bool automaticallyImplyMiddle;
+
+  /// List of action widgets to display on the trailing side.
+  final List<Widget>? actions;
+
+  /// Custom back button icon.
+  final String? previousPageTitle;
+
+  /// Whether the navigation bar is translucent.
+  final bool? translucentNavigationBar;
+
+  /// The opacity of the navigation bar's background color.
+  final double? backgroundColorOpacity;
+
+  /// Whether to show a large title.
+  final bool largeTitleEnabled;
+
+  /// The large title widget.
+  final Widget? largeTitle;
+
+  /// The style for the large title.
+  final TextStyle? largeTitleTextStyle;
+
+  /// Whether the background should automatically adjust visibility.
+  final bool automaticBackgroundVisibility;
+
+  /// Whether to enable background filter blur effect.
+  final bool enableBackgroundFilterBlur;
+
+  /// PreferredSizeWidget to be displayed at the bottom of the navigation bar.
+  final PreferredSizeWidget? bottom;
+
   /// Creates a [SundayCupertinoAppBar].
   ///
-  /// The [automaticallyImplyLeading] and [transitionBetweenRoutes] arguments
+  /// The [automaticallyImplyLeading] argument
   /// must not be null.
   const SundayCupertinoAppBar({
     super.key,
@@ -52,12 +85,26 @@ class SundayCupertinoAppBar extends StatelessWidget {
     this.padding,
     this.transitionBetweenRoutes = true,
     required this.heroTag,
+    this.automaticallyImplyMiddle = true,
+    this.actions,
+    this.previousPageTitle,
+    this.translucentNavigationBar = true,
+    this.backgroundColorOpacity = 1.0,
+    this.largeTitleEnabled = false,
+    this.largeTitle,
+    this.largeTitleTextStyle,
+    this.automaticBackgroundVisibility = false,
+    this.enableBackgroundFilterBlur = true,
+    this.bottom,
   });
 
   @override
   Widget build(BuildContext context) {
     return CupertinoNavigationBar(
       leading: leading,
+      automaticallyImplyLeading: automaticallyImplyLeading,
+      automaticallyImplyMiddle: automaticallyImplyMiddle,
+      previousPageTitle: previousPageTitle,
       middle: middle,
       trailing: trailing,
       border: border,
@@ -66,6 +113,9 @@ class SundayCupertinoAppBar extends StatelessWidget {
       padding: padding,
       transitionBetweenRoutes: transitionBetweenRoutes,
       heroTag: heroTag,
+      automaticBackgroundVisibility: automaticBackgroundVisibility,
+      enableBackgroundFilterBlur: enableBackgroundFilterBlur,
+      bottom: bottom,
     );
   }
 }
