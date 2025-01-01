@@ -125,3 +125,7 @@
 * upcoming update with more components for macos style, material, and a brand new style : fluent
 
 * And always more...
+
+## 0.2.6
+
+* simple update with fix for sunday layout

@@ -52,6 +52,7 @@ class _SundayLayoutState extends State<SundayLayout> {
               ? Row(
                   children: [
                     SideBarLayout(
+                      isMobile: widget.desktopLayoutStyle.isMobile,
                       style: widget.style,
                       keyCollapsed: widget.desktopLayoutStyle.keyCollapsed,
                       itemTextColor: widget.desktopLayoutStyle.itemTextColor,

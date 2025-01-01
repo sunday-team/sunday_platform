@@ -27,7 +27,8 @@ class SundayCupertinoSidebar extends StatefulWidget {
       this.initialIsCollapsed = false,
       this.selectedItemTextColor = Colors.black,
       this.darkSelectedItemTextColor = Colors.white,
-      required this.style});
+      required this.style,
+      this.isMobile = false});
 
   /// The title of the sidebar layout.
   final String title;
@@ -70,6 +71,9 @@ class SundayCupertinoSidebar extends StatefulWidget {
 
   /// The selected style
   final Style style;
+
+  /// Does the sidebar has width or is expanded
+  final bool? isMobile;
 
   /// Creates the mutable state for this widget.
   @override
@@ -192,59 +196,98 @@ class _SideBarLayoutState extends State<SundayCupertinoSidebar>
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
-            width: 350,
-            child: CupertinoPageScaffold(
-              backgroundColor: backgroundColor,
-              child: CustomScrollView(
-                slivers: <Widget>[
-                  CupertinoSliverNavigationBar(
-                    leading: GestureDetector(
-                      onTap: () async {
-                        final state = {
-                          "isCollapsed": isCollapsed,
-                          "whichIsTapped": "sidebar-layout-toogle-button",
-                          "action": "collapse",
-                        };
-                        await _writeToStorage(state);
-                        toggleCollapsed();
-                      },
-                      child: const Icon(CupertinoIcons.sidebar_left),
-                    ),
-                    transitionBetweenRoutes: false,
-                    border: null,
+          widget.isMobile == false 
+              ? SizedBox(
+                  width: 350,
+                  child: CupertinoPageScaffold(
                     backgroundColor: backgroundColor,
-                    largeTitle: Text(
-                      widget.title,
-                      style: TextStyle(color: textColor),
+                    child: CustomScrollView(
+                      slivers: <Widget>[
+                        CupertinoSliverNavigationBar(
+                          leading: GestureDetector(
+                            onTap: () async {
+                              final state = {
+                                "isCollapsed": isCollapsed,
+                                "whichIsTapped": "sidebar-layout-toogle-button",
+                                "action": "collapse",
+                              };
+                              await _writeToStorage(state);
+                              toggleCollapsed();
+                            },
+                            child: const Icon(CupertinoIcons.sidebar_left),
+                          ),
+                          transitionBetweenRoutes: false,
+                          border: null,
+                          backgroundColor: backgroundColor,
+                          largeTitle: Text(
+                            widget.title,
+                            style: TextStyle(color: textColor),
+                          ),
+                        ),
+                        SliverToBoxAdapter(
+                          child: Column(
+                            children: widget.children.asMap().entries.map((entry) {
+                              final item = entry.value;
+                              return SundaySideBarItemGroup(
+                                style: widget.style,
+                                selectedItemTextColor: widget.selectedItemTextColor,
+                                darkSelectedItemTextColor:
+                                    widget.darkSelectedItemTextColor,
+                                darkItemTextColor: widget.darkItemTextColor,
+                                itemTextColor: widget.itemTextColor,
+                                itemBackgroundColor: widget.itemBackgroundColor,
+                                darkItemBackgroundColor:
+                                    widget.darkItemBackgroundColor,
+                                title: item.title,
+                                isCollapsed: item.isCollapsed,
+                                showAndHide: item.showAndHide,
+                                children: item.children,
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  SliverToBoxAdapter(
-                    child: Column(
-                      children: widget.children.asMap().entries.map((entry) {
-                        final item = entry.value;
-                        return SundaySideBarItemGroup(
-                          style: widget.style,
-                          selectedItemTextColor: widget.selectedItemTextColor,
-                          darkSelectedItemTextColor:
-                              widget.darkSelectedItemTextColor,
-                          darkItemTextColor: widget.darkItemTextColor,
-                          itemTextColor: widget.itemTextColor,
-                          itemBackgroundColor: widget.itemBackgroundColor,
-                          darkItemBackgroundColor:
-                              widget.darkItemBackgroundColor,
-                          title: item.title,
-                          isCollapsed: item.isCollapsed,
-                          showAndHide: item.showAndHide,
-                          children: item.children,
-                        );
-                      }).toList(),
+                ) 
+              : Expanded(
+                  child: CupertinoPageScaffold(
+                    backgroundColor: backgroundColor,
+                    child: CustomScrollView(
+                      slivers: <Widget>[
+                        CupertinoSliverNavigationBar(
+                          backgroundColor: backgroundColor,
+                          largeTitle: Text(
+                            widget.title,
+                            style: TextStyle(color: textColor),
+                          ),
+                        ),
+                        SliverToBoxAdapter(
+                          child: Column(
+                            children: widget.children.asMap().entries.map((entry) {
+                              final item = entry.value;
+                              return SundaySideBarItemGroup(
+                                style: widget.style,
+                                selectedItemTextColor: widget.selectedItemTextColor,
+                                darkSelectedItemTextColor:
+                                    widget.darkSelectedItemTextColor,
+                                darkItemTextColor: widget.darkItemTextColor,
+                                itemTextColor: widget.itemTextColor,
+                                itemBackgroundColor: widget.itemBackgroundColor,
+                                darkItemBackgroundColor:
+                                    widget.darkItemBackgroundColor,
+                                title: item.title,
+                                isCollapsed: item.isCollapsed,
+                                showAndHide: item.showAndHide,
+                                children: item.children,
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
+                ),
           Container(
             width: 1,
             decoration: BoxDecoration(

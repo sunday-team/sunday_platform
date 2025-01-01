@@ -19,6 +19,7 @@ class SundaySidebarView extends StatelessWidget {
   final Color selectedItemTextColor;
   final Color darkSelectedItemTextColor;
   final Style style;
+  final bool? isMobile;
 
   const SundaySidebarView({
     super.key,
@@ -36,6 +37,7 @@ class SundaySidebarView extends StatelessWidget {
     this.selectedItemTextColor = Colors.black,
     this.darkSelectedItemTextColor = Colors.white,
     required this.style,
+    this.isMobile = false
   });
 
   @override
@@ -55,6 +57,7 @@ class SundaySidebarView extends StatelessWidget {
       case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoSidebar(
+          isMobile: isMobile,
           title: title,
           backgroundColor: backgroundColor,
           titleColor: titleColor,
