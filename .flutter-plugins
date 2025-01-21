@@ -1,9 +1,9 @@
 # This is a generated file; do not edit or check into version control.
-appkit_ui_element_colors=C:\\Users\\ipado\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\appkit_ui_element_colors-1.0.0\\
-macos_ui=C:\\Users\\ipado\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\macos_ui-2.1.4\\
-macos_window_utils=C:\\Users\\ipado\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\macos_window_utils-1.6.1\\
-path_provider=C:\\Users\\ipado\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider-2.1.5\\
-path_provider_android=C:\\Users\\ipado\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider_android-2.2.15\\
-path_provider_foundation=C:\\Users\\ipado\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider_foundation-2.4.1\\
-path_provider_linux=C:\\Users\\ipado\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider_linux-2.2.1\\
-path_provider_windows=C:\\Users\\ipado\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider_windows-2.3.0\\
+appkit_ui_element_colors=/Users/priamc/.pub-cache/hosted/pub.dev/appkit_ui_element_colors-1.0.0/
+macos_ui=/Users/priamc/.pub-cache/hosted/pub.dev/macos_ui-2.0.9/
+macos_window_utils=/Users/priamc/.pub-cache/hosted/pub.dev/macos_window_utils-1.6.1/
+path_provider=/Users/priamc/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+path_provider_android=/Users/priamc/.pub-cache/hosted/pub.dev/path_provider_android-2.2.15/
+path_provider_foundation=/Users/priamc/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/
+path_provider_linux=/Users/priamc/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+path_provider_windows=/Users/priamc/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
