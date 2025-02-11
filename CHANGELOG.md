@@ -129,3 +129,7 @@
 ## 0.2.6
 
 * simple update with fix for sunday layout
+
+## 0.2.7
+
+* simple fix for stable flutter

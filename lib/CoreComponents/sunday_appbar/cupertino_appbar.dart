@@ -115,7 +115,6 @@ class SundayCupertinoAppBar extends StatelessWidget {
       heroTag: heroTag,
       automaticBackgroundVisibility: automaticBackgroundVisibility,
       enableBackgroundFilterBlur: enableBackgroundFilterBlur,
-      bottom: bottom,
     );
   }
 }
