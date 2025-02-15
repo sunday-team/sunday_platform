@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:sunday_platform/CoreComponents/sunday_scaffold/cupertino_scaffold.dart';
+import 'package:sunday_platform/CoreComponents/sunday_scaffold/fluent_scaffold.dart';
 import 'package:sunday_platform/CoreComponents/sunday_scaffold/macos_scaffold.dart';
 import 'package:sunday_platform/CoreComponents/sunday_scaffold/material_scaffold.dart';
 import 'package:sunday_platform/style.dart';
@@ -40,6 +41,10 @@ class SundayScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (style) {
+      case Style.fluent:
+        return SundayFluentScaffold(
+          appbar: appBar,
+            child: child);
       case Style.material:
         return SundayMaterialScaffold(
           appBar: appBar,
@@ -47,7 +52,6 @@ class SundayScaffold extends StatelessWidget {
           resizeToAvoidBottomInset: resizeToAvoidBottomInset ?? true,
         );
       case Style.cupertino:
-      case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoScaffold(
           navigationBar: appBar,

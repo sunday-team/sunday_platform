@@ -77,7 +77,6 @@ class SundayListView extends StatelessWidget {
           dividerColor: dividerColor,
           children: children,
         );
-      case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoListView(
           insetGrouped: insetGrouped,

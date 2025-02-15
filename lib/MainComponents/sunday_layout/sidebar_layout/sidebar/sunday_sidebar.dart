@@ -54,7 +54,7 @@ class SundaySidebarView extends StatelessWidget {
         );
       case Style.cupertino:
       case Style.material:
-      case Style.custom:
+      case Style.fluent:
       case Style.latestIOS:
         return SundayCupertinoSidebar(
           isMobile: isMobile,

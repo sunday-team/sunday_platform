@@ -27,7 +27,6 @@ class SundayListHeader extends StatelessWidget {
       case Style.material:
         return SundayMaterialListHeader(header: header);
       case Style.cupertino:
-      case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoListHeader(header: header);
       default:

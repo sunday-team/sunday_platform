@@ -1,4 +1,5 @@
 import 'package:color_theme_provider/color_theme_provider.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -25,19 +26,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Style currentStyle = Style.macos;
+  Style currentStyle = Style.fluent;
 
   void _toggleStyle() {
     setState(() {
       currentStyle =
-          currentStyle == Style.material ? Style.latestIOS : Style.material;
+          currentStyle == Style.fluent ? Style.latestIOS : Style.fluent;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return SundayApp(
-      theme: MacosThemeData.dark(),
       home: SundayScaffold(
         style: currentStyle,
         child: MyHomePage(
@@ -98,17 +98,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       mainView: SundayScaffold(
         appBar: SundayAppBar(
-          middle: const Text("Sunday Platform App Bar"),
+          middle: Text("Sunday Platform App Bar", style: FluentTheme.of(context).typography.subtitle,),
           title: const Text("Sunday Platform AppBar"),
-          titleWidth: 200,
-          padding: const EdgeInsets.all(0),
           style: widget.currentStyle,
           leading: const ToggleSidebarButton(
             keyCollapsed: 'desktop-sidebar-layout',
           ),
         ),
         style: widget.currentStyle,
-        child: Center(child: Text("Tab $selectedIndex")),
+        child: Center(
+            child: SundayTextButton(
+                onPressed: () {
+                  widget.onStyleToggle();
+                },
+                style: widget.currentStyle,
+                child: Text("Toogle Ui", style: FluentTheme.of(context).typography.body,))),
       ),
       desktopLayoutStyle: SundaySidebarView(
         style: widget.currentStyle,

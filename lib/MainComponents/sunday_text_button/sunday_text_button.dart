@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:sunday_platform/MainComponents/sunday_text_button/cupertino_text_button.dart';
+import 'package:sunday_platform/MainComponents/sunday_text_button/fluent_text_button.dart';
 import 'package:sunday_platform/MainComponents/sunday_text_button/material_text_button.dart';
 import 'package:sunday_platform/style.dart';
 
@@ -39,6 +40,11 @@ class SundayTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (style) {
+      case Style.fluent:
+        return FluentTextButton(
+          onPressed: onPressed,
+          child: child,
+        );
       case Style.material:
         return MaterialTextButton(
           onPressed: onPressed,
@@ -48,7 +54,6 @@ class SundayTextButton extends StatelessWidget {
           child: child,
         );
       case Style.cupertino:
-      case Style.custom:
       case Style.latestIOS:
         return CupertinoTextButton(
           onPressed: onPressed,

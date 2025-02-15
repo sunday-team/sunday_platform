@@ -53,14 +53,6 @@ class SundayNavigationBarItem {
           label: label,
           activeIcon: activeIcon,
         );
-      case Style.custom:
-        // For custom style, you might want to implement your own logic
-        return BottomNavigationBarItem(
-          icon: icon,
-          label: label,
-          activeIcon: activeIcon,
-          backgroundColor: backgroundColor,
-        );
       default:
         throw UnimplementedError('Unsupported style: $style');
     }

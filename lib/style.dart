@@ -6,14 +6,14 @@ enum Style {
   /// Cupertino (iOS) design style.
   cupertino,
 
-  /// Custom design style.
-  custom,
-
   /// Latest iOS design style.
   latestIOS,
 
   /// Macos design style.
   macos,
+
+  /// Fluent design style.
+  fluent
 }
 
 /// Helper class for managing and checking different UI styles.
@@ -30,9 +30,6 @@ class StyleHelper {
   /// A [StyleHelper] instance for Cupertino design style.
   static const StyleHelper cupertino = StyleHelper(style: Style.cupertino);
 
-  /// A [StyleHelper] instance for Custom design style.
-  static const StyleHelper custom = StyleHelper(style: Style.custom);
-
   /// A [StyleHelper] instance for the latest iOS design style.
   static const StyleHelper latestIOS = StyleHelper(style: Style.latestIOS);
 
@@ -45,12 +42,12 @@ class StyleHelper {
   /// Checks if the current style is Cupertino design.
   bool get isCupertino => style == Style.cupertino;
 
-  /// Checks if the current style is Custom design.
-  bool get isCustom => style == Style.custom;
-
   /// Checks if the current style is the latest iOS design.
   bool get isLatestIOS => style == Style.latestIOS;
 
   /// Checks if the current style is the latest iOS design.
   bool get isLatestMacOS => style == Style.macos;
+
+  /// Checks if the current style is the Fluent design.
+  bool get isFluent => style == Style.fluent;
 }

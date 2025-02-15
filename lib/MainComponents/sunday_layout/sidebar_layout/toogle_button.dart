@@ -85,12 +85,10 @@ class _ToggleSidebarButtonState extends State<ToggleSidebarButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: isVisible,
-      child: GestureDetector(
+    return isVisible ? GestureDetector(
         onTap: toogleButton,
         child: const Icon(CupertinoIcons.sidebar_left),
-      ),
-    );
+    
+    ) : const SizedBox();
   }
 }

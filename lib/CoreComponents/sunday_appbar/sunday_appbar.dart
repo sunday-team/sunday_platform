@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sunday_platform/CoreComponents/sunday_appbar/fluent_appbar.dart';
 import 'package:sunday_platform/CoreComponents/sunday_appbar/macos_appbar.dart';
 import 'package:sunday_platform/CoreComponents/sunday_appbar/material_appbar.dart';
 import 'package:sunday_platform/CoreComponents/sunday_appbar/cupertino_appbar.dart';
@@ -177,6 +178,8 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     switch (style) {
+      case Style.fluent:
+        return SundayFluentAppBar(middle: middle,leading: leading,height: height,trailing: trailing,actions: actions,);
       case Style.material:
         return SundayMaterialAppBar(
           foregroundColor: backgroundColor,
@@ -196,7 +199,6 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
           bottomOpacity: bottomOpacity ?? 1.0,
         );
       case Style.cupertino:
-      case Style.custom:
       case Style.macos:
         return SundayMacOSAppBar(
           height: height,

@@ -218,7 +218,6 @@ class SundayTextField extends StatelessWidget {
           magnifierConfiguration: magnifierConfiguration,
         );
       case Style.cupertino:
-      case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoTextField(
           controller: controller,

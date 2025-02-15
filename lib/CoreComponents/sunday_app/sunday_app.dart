@@ -1,7 +1,9 @@
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sunday_platform/CoreComponents/sunday_app/cupertino_app.dart';
+import 'package:sunday_platform/CoreComponents/sunday_app/fluent_app.dart';
 import 'package:sunday_platform/CoreComponents/sunday_app/macos_app.dart';
 import 'package:sunday_platform/CoreComponents/sunday_app/material_app.dart';
 import 'package:sunday_platform/style.dart';
@@ -134,6 +136,15 @@ class _SundayAppState extends State<SundayApp> {
     ];
 
     switch (widget.uiStyle) {
+      case Style.fluent:
+        return SundayFluentApp(
+          theme: widget.theme ?? FluentThemeData(),
+          home: widget.home,
+          title: widget.title,
+          routes: widget.routes ?? {},
+          initialRoute: widget.initialRoute,
+          navigatorKey: widget.navigatorKey,
+        );
       case Style.material:
         return SundayMaterialApp(
           theme: widget.theme,
@@ -175,7 +186,6 @@ class _SundayAppState extends State<SundayApp> {
           localizationsDelegates: effectiveLocalizationsDelegates,
           localeResolutionCallback: widget.localeResolutionCallback,
         );
-      case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoApp(
           theme: CupertinoThemeData(

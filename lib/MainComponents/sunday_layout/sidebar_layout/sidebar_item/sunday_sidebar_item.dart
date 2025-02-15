@@ -53,9 +53,9 @@ class SundaySidebarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (style) {
-      case Style.custom:
       case Style.material:
       case Style.cupertino:
+      case Style.fluent:
       case Style.latestIOS:
         return SundayCupertinoSidebarItem(
           onTap: onTap,

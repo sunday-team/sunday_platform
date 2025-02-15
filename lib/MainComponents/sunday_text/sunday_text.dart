@@ -62,7 +62,6 @@ class SundayText extends StatelessWidget {
             textScaleFactor: textScaleFactor,
             textColor: textColor);
       case Style.cupertino:
-      case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoText(
             text: data,

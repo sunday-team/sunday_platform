@@ -82,7 +82,6 @@ class SundayBottomBarState extends State<SundayBottomBar> {
           tabBuilder: widget.tabBuilder,
         );
       case Style.cupertino:
-      case Style.custom:
       case Style.latestIOS:
         return SundayCupertinoBottomBar(
           items: widget.items

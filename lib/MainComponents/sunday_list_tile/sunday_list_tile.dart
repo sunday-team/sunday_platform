@@ -87,7 +87,6 @@ class SundayListTile extends StatelessWidget {
           additionalInfo: additionalInfo,
           style: style,
         );
-      case Style.custom:
       case Style.latestIOS:
         return SundayLatestIOSListTile(
           leadingSize: leadingSize,
