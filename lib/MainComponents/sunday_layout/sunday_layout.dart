@@ -42,18 +42,15 @@ class _SundayLayoutState extends State<SundayLayout> {
     switch (widget.desktopLayoutStyle.runtimeType) {
       case const (SundayBottomBar):
         return SundayScaffold(
-          style: widget.style,
           child: widget.mobileLayoutStyle,
         );
       case const (SundaySidebarView):
         return SundayScaffold(
-          style: widget.style,
           child: isMobile
               ? Row(
                   children: [
                     SideBarLayout(
                       isMobile: widget.desktopLayoutStyle.isMobile,
-                      style: widget.style,
                       keyCollapsed: widget.desktopLayoutStyle.keyCollapsed,
                       itemTextColor: widget.desktopLayoutStyle.itemTextColor,
                       darkItemTextColor:
@@ -75,7 +72,6 @@ class _SundayLayoutState extends State<SundayLayout> {
         );
       case const (SplitViewSideBarRight):
         return SundayScaffold(
-          style: widget.style,
           child: Row(
             children: [
               widget.desktopLayoutStyle.leftView,
@@ -90,7 +86,7 @@ class _SundayLayoutState extends State<SundayLayout> {
           ),
         );
       default:
-        return SundayScaffold(style: widget.style, child: const Placeholder());
+        return SundayScaffold(child: const Placeholder());
     }
   }
 }

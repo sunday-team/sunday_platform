@@ -224,7 +224,6 @@ class _SundayMacOSSidebarState extends State<SundayMacOSSidebar>
                       children: widget.children.asMap().entries.map((entry) {
                         final item = entry.value;
                         return SundaySideBarItemGroup(
-                          style: widget.style,
                           selectedItemTextColor: widget.selectedItemTextColor,
                           darkSelectedItemTextColor:
                               widget.darkSelectedItemTextColor,

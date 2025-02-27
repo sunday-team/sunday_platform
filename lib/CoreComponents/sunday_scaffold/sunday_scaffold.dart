@@ -5,6 +5,7 @@ import 'package:sunday_platform/CoreComponents/sunday_scaffold/fluent_scaffold.d
 import 'package:sunday_platform/CoreComponents/sunday_scaffold/macos_scaffold.dart';
 import 'package:sunday_platform/CoreComponents/sunday_scaffold/material_scaffold.dart';
 import 'package:sunday_platform/style.dart';
+import 'package:sunday_platform/sunday_config.dart';
 
 /// A scaffold widget that adapts to different UI styles (Material, Cupertino, etc.).
 ///
@@ -13,18 +14,14 @@ import 'package:sunday_platform/style.dart';
 class SundayScaffold extends StatelessWidget {
   /// Creates a [SundayScaffold].
   ///
-  /// The [style], [appBar], and [child] parameters must not be null.
+  /// The [appBar], and [child] parameters must not be null.
   const SundayScaffold({
     super.key,
-    required this.style,
     this.resizeToAvoidBottomInset,
     this.backgroundColor,
     this.appBar,
     required this.child,
   });
-
-  /// The UI style to use for this scaffold.
-  final Style style;
 
   /// Whether the [child] should resize when the keyboard appears.
   final bool? resizeToAvoidBottomInset;
@@ -40,7 +37,8 @@ class SundayScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (style) {
+    final config = SundayConfigWidget.of(context);
+    switch (config.uiStyle) {
       case Style.fluent:
         return SundayFluentScaffold(
           appbar: appBar,

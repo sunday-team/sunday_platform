@@ -70,7 +70,7 @@ class SundayListView extends StatelessWidget {
           padding: padding ?? EdgeInsets.zero,
           scrollController: scrollController ?? ScrollController(),
           header: header != null
-              ? SundayText(header!, style: style)
+              ? SundayText(header!)
               : const SizedBox.shrink(),
           footer: footer ?? const SizedBox.shrink(),
           backgroundColor: CupertinoColors.systemGroupedBackground,
@@ -88,7 +88,6 @@ class SundayListView extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
                   child: SundayText(
                     header?.toUpperCase() ?? "",
-                    style: style,
                     textStyle: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w400,

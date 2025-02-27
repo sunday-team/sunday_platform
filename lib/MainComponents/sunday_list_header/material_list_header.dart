@@ -21,7 +21,6 @@ class SundayMaterialListHeader extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 0, 15, 0),
           child: SundayText(
             header,
-            style: Style.material,
             textStyle: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,

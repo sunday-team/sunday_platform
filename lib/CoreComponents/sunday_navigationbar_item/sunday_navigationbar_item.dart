@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sunday_platform/style.dart';
+import 'package:sunday_platform/sunday_config.dart';
 
 /// A custom bottom navigation bar item for Sunday UI that adapts based on the style.
 ///
@@ -21,8 +22,8 @@ class SundayNavigationBarItem {
   /// The background color of the navigation item.
   final Color? backgroundColor;
 
-  /// The style of the navigation item (Material, Cupertino, etc.).
-  final Style style;
+  // Context to get the style
+  final BuildContext context;
 
   /// Creates a [SundayNavigationBarItem].
   ///
@@ -33,12 +34,13 @@ class SundayNavigationBarItem {
     this.label,
     this.activeIcon,
     this.backgroundColor,
-    required this.style,
+    required this.context,
   });
 
   /// Converts this item to a [BottomNavigationBarItem] based on the specified style.
   BottomNavigationBarItem toBottomNavigationBarItem() {
-    switch (style) {
+    final config = SundayConfigWidget.of(context);
+    switch (config.uiStyle) {
       case Style.material:
         return BottomNavigationBarItem(
           icon: icon,
@@ -54,7 +56,7 @@ class SundayNavigationBarItem {
           activeIcon: activeIcon,
         );
       default:
-        throw UnimplementedError('Unsupported style: $style');
+        throw UnimplementedError('Unsupported style: ${config.uiStyle}');
     }
   }
 }

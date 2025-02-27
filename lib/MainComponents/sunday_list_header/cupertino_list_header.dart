@@ -20,7 +20,6 @@ class SundayCupertinoListHeader extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(33, 10, 0, 0),
           child: SundayText(
             header.toUpperCase(),
-            style: Style.cupertino,
             textStyle: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w400,

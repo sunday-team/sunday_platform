@@ -229,7 +229,6 @@ class _SideBarLayoutState extends State<SundayCupertinoSidebar>
                             children: widget.children.asMap().entries.map((entry) {
                               final item = entry.value;
                               return SundaySideBarItemGroup(
-                                style: widget.style,
                                 selectedItemTextColor: widget.selectedItemTextColor,
                                 darkSelectedItemTextColor:
                                     widget.darkSelectedItemTextColor,
@@ -267,7 +266,6 @@ class _SideBarLayoutState extends State<SundayCupertinoSidebar>
                             children: widget.children.asMap().entries.map((entry) {
                               final item = entry.value;
                               return SundaySideBarItemGroup(
-                                style: widget.style,
                                 selectedItemTextColor: widget.selectedItemTextColor,
                                 darkSelectedItemTextColor:
                                     widget.darkSelectedItemTextColor,

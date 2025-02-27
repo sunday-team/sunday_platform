@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/sidebar_item/cupertino_sidebar_item.dart';
 import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/sidebar_item/macos_sidebar_item.dart';
 import 'package:sunday_platform/style.dart';
+import 'package:sunday_platform/sunday_config.dart';
 
 /// A customizable sidebar item that adapts to different UI styles (Material, Cupertino, etc.).
 class SundaySidebarItem extends StatelessWidget {
-  /// The UI style to be used for the sidebar item.
-  final Style style;
 
   /// The icon to display in the sidebar item.
   final Widget icon;
@@ -38,7 +37,6 @@ class SundaySidebarItem extends StatelessWidget {
   /// Creates a sidebar item with the specified style and properties.
   const SundaySidebarItem({
     super.key,
-    required this.style,
     required this.icon,
     required this.text,
     required this.selectedIndex,
@@ -52,7 +50,8 @@ class SundaySidebarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (style) {
+    final config = SundayConfigWidget.of(context);
+    switch (config.uiStyle) {
       case Style.material:
       case Style.cupertino:
       case Style.fluent:

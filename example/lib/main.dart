@@ -39,7 +39,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return SundayApp(
       home: SundayScaffold(
-        style: currentStyle,
         child: MyHomePage(
           currentStyle: currentStyle,
           onStyleToggle: _toggleStyle,
@@ -76,14 +75,14 @@ class _MyHomePageState extends State<MyHomePage> {
       mobileLayoutStyle: SundayBottomBar(
         items: [
           SundayNavigationBarItem(
+            context: context,
             icon: const Icon(CupertinoIcons.chat_bubble_2),
             label: "Messages",
-            style: widget.currentStyle,
           ),
           SundayNavigationBarItem(
             icon: const Icon(CupertinoIcons.gear),
             label: "Settings",
-            style: widget.currentStyle,
+            context: context,
           ),
         ],
         currentIndex: 0,
@@ -91,7 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
         style: widget.currentStyle,
         tabBuilder: (BuildContext context, int index) {
           return SundayScaffold(
-            style: widget.currentStyle,
             child: Center(child: Text("Tab $index")),
           );
         },
@@ -100,12 +98,10 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: SundayAppBar(
           middle: Text("Sunday Platform App Bar", style: FluentTheme.of(context).typography.subtitle,),
           title: const Text("Sunday Platform AppBar"),
-          style: widget.currentStyle,
           leading: const ToggleSidebarButton(
             keyCollapsed: 'desktop-sidebar-layout',
           ),
         ),
-        style: widget.currentStyle,
         child: Center(
             child: SundayTextButton(
                 onPressed: () {
@@ -120,13 +116,11 @@ class _MyHomePageState extends State<MyHomePage> {
         keyCollapsed: "desktop-sidebar-layout",
         children: [
           SundaySideBarItemGroup(
-            style: widget.currentStyle,
             isCollapsed: false,
             showAndHide: false,
             title: "Photo Library",
             children: [
               SundaySidebarItem(
-                  style: widget.currentStyle,
                   keyIndex: "item1",
                   selectedIndex: selectedIndex,
                   onTap: () {
@@ -137,7 +131,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   icon: const Icon(CupertinoIcons.airplane),
                   text: "Sunday Sidebar Item 1"),
               SundaySidebarItem(
-                  style: widget.currentStyle,
                   keyIndex: "item2",
                   selectedIndex: selectedIndex,
                   onTap: () {

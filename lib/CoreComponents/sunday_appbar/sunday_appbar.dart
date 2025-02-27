@@ -4,14 +4,12 @@ import 'package:sunday_platform/CoreComponents/sunday_appbar/macos_appbar.dart';
 import 'package:sunday_platform/CoreComponents/sunday_appbar/material_appbar.dart';
 import 'package:sunday_platform/CoreComponents/sunday_appbar/cupertino_appbar.dart';
 import 'package:sunday_platform/style.dart';
+import 'package:sunday_platform/sunday_config.dart';
 
 /// A customizable app bar that adapts to different UI styles (Material, Cupertino, etc.).
 class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// The primary content of the app bar.
   final Widget middle;
-
-  /// The UI style to be used for the app bar.
-  final Style style;
 
   /// A widget to display before the [middle] widget.
   final Widget? leading;
@@ -136,7 +134,6 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SundayAppBar({
     super.key,
     required this.middle,
-    required this.style,
     this.leading,
     this.trailing,
     this.automaticallyImplyLeading = true,
@@ -177,9 +174,16 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (style) {
+    final config = SundayConfigWidget.of(context);
+    switch (config.uiStyle) {
       case Style.fluent:
-        return SundayFluentAppBar(middle: middle,leading: leading,height: height,trailing: trailing,actions: actions,);
+        return SundayFluentAppBar(
+          middle: middle,
+          leading: leading,
+          height: height,
+          trailing: trailing,
+          actions: actions,
+        );
       case Style.material:
         return SundayMaterialAppBar(
           foregroundColor: backgroundColor,

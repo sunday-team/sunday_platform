@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:sunday_platform/MainComponents/sunday_text/cupertino_text.dart';
 import 'package:sunday_platform/MainComponents/sunday_text/material_text.dart';
 import 'package:sunday_platform/style.dart';
+import 'package:sunday_platform/sunday_config.dart';
 
 /// A widget that displays text with different styles based on the provided [Style].
 ///
@@ -11,10 +12,6 @@ import 'package:sunday_platform/style.dart';
 class SundayText extends StatelessWidget {
   /// The text to display.
   final String data;
-
-  /// The style to apply to the text. This determines whether the text will be displayed
-  /// using Material or Cupertino design language.
-  final Style style;
 
   /// The style to use for the text.
   final TextStyle? textStyle;
@@ -40,7 +37,6 @@ class SundayText extends StatelessWidget {
   const SundayText(
     this.data, {
     super.key,
-    required this.style,
     this.textStyle,
     this.textAlign,
     this.overflow,
@@ -51,7 +47,8 @@ class SundayText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (style) {
+    final config = SundayConfigWidget.of(context);
+    switch (config.uiStyle) {
       case Style.material:
         return SundayMaterialText(
             text: data,
@@ -75,7 +72,7 @@ class SundayText extends StatelessWidget {
             textWidthBasis: TextWidthBasis.parent,
             style: textStyle);
       default:
-        throw UnimplementedError('Unsupported style: $style');
+        throw UnimplementedError('Unsupported style: ${config.uiStyle}');
     }
   }
 }

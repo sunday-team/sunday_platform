@@ -64,7 +64,7 @@ class SundayLatestIOSListTile extends StatelessWidget {
               child: leading,
             )
           : null,
-      title: title ?? const SundayText("", style: Style.latestIOS),
+      title: title ?? const SundayText(""),
       subtitle: subtitle,
       trailing: trailing,
       onTap: onTap,

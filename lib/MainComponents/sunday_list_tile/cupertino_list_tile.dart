@@ -58,7 +58,7 @@ class SundayCupertinoListTile extends StatelessWidget {
               child: leading,
             )
           : null,
-      title: title ?? SundayText("", style: style),
+      title: title ?? SundayText(""),
       subtitle: subtitle,
       trailing: trailing,
       onTap: onTap,

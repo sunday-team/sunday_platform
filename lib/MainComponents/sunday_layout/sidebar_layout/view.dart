@@ -6,7 +6,6 @@ import 'package:sunday_core/Print/print.dart';
 import 'package:sunday_get_storage/sunday_get_storage.dart';
 // Importing the sidebar item group widget.
 import 'package:sunday_platform/MainComponents/sunday_layout/sidebar_layout/group.dart';
-import 'package:sunday_platform/style.dart';
 // Importing theme data for styling.
 
 /// A stateful widget representing the sidebar layout.
@@ -27,7 +26,6 @@ class SideBarLayout extends StatefulWidget {
       this.initialIsCollapsed = false,
       this.selectedItemTextColor = Colors.black,
       this.darkSelectedItemTextColor = Colors.white,
-      required this.style,
       this.isMobile = false});
 
   /// The title of the sidebar layout.
@@ -68,9 +66,6 @@ class SideBarLayout extends StatefulWidget {
 
   /// The color of the text of the selected item in dark mode.
   final Color darkSelectedItemTextColor;
-
-  /// The selected style
-  final Style style;
 
   /// Does the sidebar has width or is expanded
   final bool? isMobile;
@@ -122,7 +117,7 @@ class _SideBarLayoutState extends State<SideBarLayout>
       end: 0,
     ).animate(CurvedAnimation(
       parent: _controller,
-      curve: Curves.easeInOut,
+      curve: Curves.easeInOutQuart, // Changed to a better curve
     ));
 
     // Initialize storage and set up listener
@@ -229,7 +224,6 @@ class _SideBarLayoutState extends State<SideBarLayout>
                             children: widget.children.asMap().entries.map((entry) {
                               final item = entry.value;
                               return SundaySideBarItemGroup(
-                                style: widget.style,
                                 selectedItemTextColor: widget.selectedItemTextColor,
                                 darkSelectedItemTextColor:
                                     widget.darkSelectedItemTextColor,
@@ -281,7 +275,6 @@ class _SideBarLayoutState extends State<SideBarLayout>
                             children: widget.children.asMap().entries.map((entry) {
                               final item = entry.value;
                               return SundaySideBarItemGroup(
-                                style: widget.style,
                                 selectedItemTextColor: widget.selectedItemTextColor,
                                 darkSelectedItemTextColor:
                                     widget.darkSelectedItemTextColor,

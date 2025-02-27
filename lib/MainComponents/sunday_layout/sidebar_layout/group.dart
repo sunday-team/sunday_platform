@@ -39,9 +39,6 @@ class SundaySideBarItemGroup extends StatefulWidget {
   /// The color of the text of the selected item in dark mode.
   final Color darkSelectedItemTextColor;
 
-  /// The selected style
-  final Style style;
-
   /// Creates a [SideBarItemGroup].
   ///
   /// The [children] and [title] parameters must not be null.
@@ -57,8 +54,7 @@ class SundaySideBarItemGroup extends StatefulWidget {
       this.itemBackgroundColor = const Color(0xffDFDEE5),
       this.darkItemBackgroundColor = const Color(0xff39383D),
       this.selectedItemTextColor = Colors.black,
-      this.darkSelectedItemTextColor = Colors.white,
-      required this.style});
+      this.darkSelectedItemTextColor = Colors.white});
 
   @override
   State<SundaySideBarItemGroup> createState() => _SundaySideBarItemGroupState();
@@ -134,7 +130,6 @@ class _SundaySideBarItemGroupState extends State<SundaySideBarItemGroup> {
                 /// Map each child item to a [SidebarItem] widget.
                 ...widget.children.map((item) {
                   return SundaySidebarItem(
-                    style: widget.style,
                     itemBackgroundColor: widget.itemBackgroundColor,
                     darkItemBackgroundColor: widget.darkItemBackgroundColor,
                     itemTextColor: widget.itemTextColor,
@@ -157,7 +152,6 @@ class _SundaySideBarItemGroupState extends State<SundaySideBarItemGroup> {
               /// Map each child item to a [SidebarItem] widget.
               ...widget.children.map((item) {
                 return SundaySidebarItem(
-                  style: widget.style,
                   itemBackgroundColor: widget.itemBackgroundColor,
                   darkItemBackgroundColor: widget.darkItemBackgroundColor,
                   itemTextColor: widget.itemTextColor,

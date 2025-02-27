@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:sunday_platform/MainComponents/sunday_text/sunday_text.dart';
 
 /// A custom implementation of a MacOS-style app bar for Sunday app.
 ///
@@ -138,9 +139,9 @@ class SundayMacOSAppBar extends StatelessWidget {
       height: height,
       titleWidth: titleWidth,
       actions: actions,
-      leading: const Text(
+      leading: const SundayText(
         'Toolbar',
-        style: TextStyle(color: Colors.white),
+        textStyle: TextStyle(color: Colors.white),
       ),
       title: const Text(
         'Toolbar',
