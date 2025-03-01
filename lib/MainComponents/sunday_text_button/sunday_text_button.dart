@@ -45,6 +45,7 @@ class SundayTextButton extends StatelessWidget {
           onPressed: onPressed,
           child: child,
         );
+      case Style.yaru:
       case Style.material:
         return MaterialTextButton(
           onPressed: onPressed,
@@ -53,6 +54,7 @@ class SundayTextButton extends StatelessWidget {
           padding: padding,
           child: child,
         );
+      case Style.macos:
       case Style.cupertino:
       case Style.latestIOS:
         return CupertinoTextButton(
@@ -62,8 +64,6 @@ class SundayTextButton extends StatelessWidget {
           padding: padding,
           child: child,
         );
-      default:
-        throw UnimplementedError('Unsupported style: $style');
     }
   }
 }

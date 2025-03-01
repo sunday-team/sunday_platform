@@ -145,6 +145,7 @@ class _SundayAppState extends State<SundayApp> {
           initialRoute: widget.initialRoute,
           navigatorKey: widget.navigatorKey,
         );
+      case Style.yaru:
       case Style.material:
         return SundayMaterialApp(
           theme: widget.theme,

@@ -43,6 +43,7 @@ class SundayScaffold extends StatelessWidget {
         return SundayFluentScaffold(
           appbar: appBar,
             child: child);
+      case Style.yaru:
       case Style.material:
         return SundayMaterialScaffold(
           appBar: appBar,

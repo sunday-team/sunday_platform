@@ -17,6 +17,8 @@ dependencies:
   color_theme_provider: ^1.1.1
   macos_ui: ^2.0.9
   fluent_ui: ^4.11.1
+  shared_preferences_listener:
+    git: https://github.com/sunday-team/shared_preferences_listener.git
 dev_dependencies:
   flutter_test:
     sdk: flutter

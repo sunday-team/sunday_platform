@@ -1,6 +1,6 @@
 /// Enum representing different styles for the UI.
 enum Style {
-  /// Material design style.
+  /// Material design style (Android).
   material,
 
   /// Cupertino (iOS) design style.
@@ -12,8 +12,11 @@ enum Style {
   /// Macos design style.
   macos,
 
-  /// Fluent design style.
-  fluent
+  /// Fluent design style (Windows).
+  fluent,
+
+  /// Yaru design style (Linux)
+  yaru
 }
 
 /// Helper class for managing and checking different UI styles.
@@ -36,6 +39,12 @@ class StyleHelper {
   /// A [StyleHelper] instance for the latest macOS design style.
   static const StyleHelper macos = StyleHelper(style: Style.macos);
 
+  /// A [StyleHelper] instance for the Fluent design style.
+  static const StyleHelper fluent = StyleHelper(style: Style.fluent);
+
+  /// A [StyleHelper] instance for the Yaru design style.
+  static const StyleHelper yaru = StyleHelper(style: Style.yaru);
+
   /// Checks if the current style is Material design.
   bool get isMaterial => style == Style.material;
 
@@ -45,9 +54,12 @@ class StyleHelper {
   /// Checks if the current style is the latest iOS design.
   bool get isLatestIOS => style == Style.latestIOS;
 
-  /// Checks if the current style is the latest iOS design.
+  /// Checks if the current style is the latest macOS design.
   bool get isLatestMacOS => style == Style.macos;
 
   /// Checks if the current style is the Fluent design.
   bool get isFluent => style == Style.fluent;
+
+  /// Checks if the current style is the Yaru design.
+  bool get isYaru => style == Style.yaru;
 }

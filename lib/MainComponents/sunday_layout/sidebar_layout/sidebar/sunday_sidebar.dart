@@ -52,6 +52,7 @@ class SundaySidebarView extends StatelessWidget {
           style: style,
           children: children,
         );
+      case Style.yaru:
       case Style.cupertino:
       case Style.material:
       case Style.fluent:

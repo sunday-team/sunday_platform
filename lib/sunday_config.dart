@@ -117,9 +117,11 @@ class SundayStyledSection extends StatelessWidget {
       config: SundayConfig(
         uiStyle: style,
         colorTheme: _colorTheme ?? parentConfig?.colorTheme ?? SundayColorTheme(
-          background: SColor(dark: Colors.blue, light: Colors.blue),
+          backgroundColor: SColor(dark: Colors.blue, light: Colors.blue),
           textColor: SColor(dark: Colors.white, light: Colors.black),
-          subTitleTextColor: SColor(dark: Colors.grey[300]!, light: Colors.grey[700]!)
+          subTitleTextColor: SColor(dark: Colors.grey[300]!, light: Colors.grey[700]!),
+          borderColor: SColor(dark: Colors.grey[300]!, light: Colors.grey[700]!),
+          backgroundElementColor: SColor(dark: Colors.grey[300]!, light: Colors.grey[700]!)
         )
       ),
       child: child,

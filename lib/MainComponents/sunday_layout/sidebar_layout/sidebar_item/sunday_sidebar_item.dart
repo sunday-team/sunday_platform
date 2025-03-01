@@ -52,6 +52,7 @@ class SundaySidebarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final config = SundayConfigWidget.of(context);
     switch (config.uiStyle) {
+      case Style.yaru:
       case Style.material:
       case Style.cupertino:
       case Style.fluent:

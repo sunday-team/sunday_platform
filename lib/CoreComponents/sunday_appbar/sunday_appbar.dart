@@ -184,6 +184,7 @@ class SundayAppBar extends StatelessWidget implements PreferredSizeWidget {
           trailing: trailing,
           actions: actions,
         );
+      case Style.yaru:
       case Style.material:
         return SundayMaterialAppBar(
           foregroundColor: backgroundColor,

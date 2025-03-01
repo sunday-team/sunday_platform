@@ -69,6 +69,7 @@ class SundayBottomBarState extends State<SundayBottomBar> {
   @override
   Widget build(BuildContext context) {
     switch (widget.style) {
+      case Style.fluent:
       case Style.material:
         return SundayMaterialBottomBar(
           items: widget.items
